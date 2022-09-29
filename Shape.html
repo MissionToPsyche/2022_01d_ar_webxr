@@ -39,13 +39,15 @@
             //move camera to (0,0,5)
             camera.position.z = 5;
 
-            //render the scene every time the screen is refreshed, so 60 times/ second
+            //function that renders the scene every time the screen is refreshed, so 60 times/ second
             function animate() {
                 requestAnimationFrame(animate);
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
                 renderer.render(scene, camera);
             }
+
+            //run function animate()
             animate();
 
 		</script>
