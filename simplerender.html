@@ -31,15 +31,33 @@
                 }
             } );
 
+            // large cube
             const geometry = new THREE.BoxGeometry(1, 1, 1);
-            const material = new THREE.MeshBasicMaterial({color: 0x237c81});
+            const material = new THREE.MeshBasicMaterial({color: 0xd70b8e});
             const cube = new THREE.Mesh(geometry, material);
-            cube.rotation.x = .75;
+            cube.rotation.x = .5;
             scene.add(cube);
+
+            // orbiting cube
+            const geometry2 = new THREE.BoxGeometry(0.25, 0.25, 0.25);
+            const material2 = new THREE.MeshBasicMaterial({color: 0x48eb02});
+            const cube2 = new THREE.Mesh(geometry2, material2);
+            cube2.rotation.x = .5;
+            cube2.position.x = Math.sin(0) * 1.5;
+            cube2.position.z = Math.cos(0) * 1.5;
+            scene.add(cube2);
+
+            var time = 0.0;
 
             function animate() {
                 requestAnimationFrame(animate);
-                cube.rotation.y += 0.025;
+                // spin at different rates and direction
+                cube.rotation.y -= 0.025;
+                cube2.rotation.y += 0.015;
+                // orbit
+                time += 0.025;
+                cube2.position.x = Math.sin(time) * 1.5;
+                cube2.position.z = Math.cos(time) * 1.5;
                 renderer.render(scene, camera);
             }
 
