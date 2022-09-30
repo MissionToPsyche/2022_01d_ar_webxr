@@ -1,0 +1,23 @@
+{
+  "name": "test-example",
+  "version": "1.0.0",
+  "description": "testing three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter list",
+    "tws": "mocha-webpack -r jsdom-global/register ./test/test*.js",
+    "tw": "mocha-webpack --watch -r jsdom-global/register ./test/test*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "20.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^10.0.0",
+    "mocha-jsdom": "^2.0.0",
+    "three": "^0.145.0"
+  },
+  "dependencies": {
+    "chai": "^4.3.6"
+  }
+}
