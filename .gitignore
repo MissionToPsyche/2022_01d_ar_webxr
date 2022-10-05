@@ -1,3 +1,5 @@
 node_modules
 
 test-example/package-lock.json
+
+.vscode/settings.json

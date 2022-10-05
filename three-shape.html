@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script> -->
 </head>
 <body>
 <script>
@@ -40,6 +40,7 @@
     var pointLight4 = new THREE.PointLight(0xbdaba6, 1, 500);
     pointLight4.position.set(-10, 0, 20);
     scene.add(pointLight4);
+
     var dodecaGeometry = new THREE.DodecahedronGeometry(1, 1);
     var dodecaMat = new THREE.MeshLambertMaterial({ color: 0x524f4e });
     var dodeca = new THREE.Mesh(dodecaGeometry, dodecaMat);
