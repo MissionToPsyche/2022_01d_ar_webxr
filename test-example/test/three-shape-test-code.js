@@ -1,8 +1,16 @@
 const THREE = require('three');
+
+// Add the below three lines to get "window/DOM" objects to work in tests
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const { window } = new JSDOM(`...`);
+
+// Then comment out all references to "renderer/WebGL" objects to get tests to run.... :(
+
 const scene = new THREE.Scene();
 
-// var innerWidth = window.innerWidth;
-// var innerHeight = window.innerHeight;
+var innerWidth = window.innerWidth;
+var innerHeight = window.innerHeight;
 
 var innerHeight = 500;
 var innerWidth = 500;
