@@ -1,5 +1,8 @@
+const sourceAR = require('./../src/sourceAR.js');
+
 const THREE = require('./../js/three.js');
 const assert = require('assert');
+
 
 describe('The THREE object', function() {
     it('should have a defined BasicShadowMap constant', function() {
@@ -12,10 +15,8 @@ describe('The THREE object', function() {
     })
   })
 
-  /*
-describe('SourceAR.js object', function() {
-    it('should contain an object', function() {
-        assert.notEqual('undefined', sourceAR.scene);
-    } )
-} )
-*/
+  describe('Setup XR', () => {
+    it('should return true if XR setup is success', () => {
+      assert.equal(sourceAR.initialize(), true);
+    });
+   })

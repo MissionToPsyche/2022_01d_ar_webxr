@@ -199,11 +199,15 @@ function animate()
 	render();
 }
 
-
 //=============================================================================
 // make available in nodejs
 //=============================================================================
 if (typeof(exports) !== 'undefined')
 {
-  module.exports = sourceAR;
+  module.exports = {
+	initialize,
+	update,
+	render,
+	animate,
+  };
 }
