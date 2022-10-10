@@ -13,24 +13,24 @@
 
 #### To run the AR example on your iPhone:
 1. Install OpenSSL
-    1. Run openssl.exe that comes with Git 'C:\Program Files\Git\usr\bin\openssl.exe'
+    1. Run openssl.exe that comes with Git `C:\Program Files\Git\usr\bin\openssl.exe`
 2. Generate keys:
     1. Use the following commands to generate the certificate and keys
-	'openssl genrsa -out key.pem'
-	'openssl req -new -key key.pem -out csr.pem'
-	'openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem'
-	'rm csr.pem'
+	`openssl genrsa -out key.pem`
+	`openssl req -new -key key.pem -out csr.pem`
+	`openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem`
+	`rm csr.pem`
 3. Modify settings.json:
 	1. Create a directory called .vscode/
     2. Create a file called settings.json in this directory and paste the following code into it:
-    '{
+    `{
         "liveServer.settings.https": {
             "enable": true, //set it true to enable the feature.
             "cert": "C:\\Users\\tayle\\OneDrive\\Documents\\School\\SER 401\\Group Project\\2022_01d_ar_webxr\\cert.pem", //full path of the certificate
             "key": "C:\\Users\\tayle\\OneDrive\\Documents\\School\\SER 401\\Group Project\\2022_01d_ar_webxr\\key.pem", //full path of the private key
             "passphrase": "hello"
         }
-    }'
+    }`
     3. change cert and key fields to the full path of the location of those files (these are the keys generated in the step above)
 	4. Change passphrase to the passphrase you used for the key
 4. Start Server (on computer):
