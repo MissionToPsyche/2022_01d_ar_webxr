@@ -21,8 +21,18 @@
 	'openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem'
 	'rm csr.pem'
 3. Modify settings.json:
-	1. In the file .vscode/settings.json, change cert and key to the full path of the location of those files (these are the keys generated in the step above)
-	2. Change passphrase to the passphrase you used for the key
+	1. Create a directory called .vscode/
+    2. Create a file called settings.json in this directory and paste the following code into it:
+    '{
+        "liveServer.settings.https": {
+            "enable": true, //set it true to enable the feature.
+            "cert": "C:\\Users\\tayle\\OneDrive\\Documents\\School\\SER 401\\Group Project\\2022_01d_ar_webxr\\cert.pem", //full path of the certificate
+            "key": "C:\\Users\\tayle\\OneDrive\\Documents\\School\\SER 401\\Group Project\\2022_01d_ar_webxr\\key.pem", //full path of the private key
+            "passphrase": "hello"
+        }
+    }'
+    3. change cert and key fields to the full path of the location of those files (these are the keys generated in the step above)
+	4. Change passphrase to the passphrase you used for the key
 4. Start Server (on computer):
 	1. Install the "Live Server" extension in VS Code
 	2. Right click on your html file in VS Code and select Open with Live Server
