@@ -1,5 +1,9 @@
 .vscode/settings.json
 
+models/fish_texture.png
+models/fish-2.mtl
+models/fish-2.obj
+
 cert.pem
 
 key.pem
