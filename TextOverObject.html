@@ -16,16 +16,20 @@
 				<a-mixin id="text"
 					text="align: center; width: 3;
 					font: https://cdn.aframe.io/fonts/Aileron-Semibold.fnt;
-					value: Some text.">
+					value: Welcome to Psyche">
 				</a-mixin>
 		
 			</a-assets>
 
-			
 			<a-marker preset="hiro">
 				<a-text mixin="text" position="0 0 1" wrap-count="15" rotation="-90 0 0" color="blue"></a-text>
+				<a-entity
+				position="0 0 0"
+				rotation="0 0 0"
+				scale="0.05 0.05 0.05"
+				gltf-model="/image-tracking/nft/trex/scene.gltf"
+				></a-entity>
 			</a-marker>
-			
 
 			<a-light type="ambient" color="#fff"></a-light>
 			<a-light type="directional" color="#fff" intensity="0.3" position="-0.5 1 1"></a-light>
