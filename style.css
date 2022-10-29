@@ -11,3 +11,106 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: url('src/webpage-images/background.png');
 }
+.instruction, .experience {
+    display: flex;
+    justify-content: center;
+}
+img {
+    max-width: 100%;
+}
+p {
+    font-size: 1.2em;
+    color: var(--main-font-color);
+}
+
+.border {
+    position: absolute;
+}
+#exp-border{
+    top: 0;
+    max-width: 100%;
+}
+.instruction {
+    align-items: center;
+    margin: 8rem 0;
+}
+.instruction-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 35px;
+    margin-left: 50px;
+    flex-direction: column;
+}
+.instruction #title {
+    margin: 20px 0;
+}
+.instruction .ar-demo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+.instruction .ar-demo #video-overlay {
+    top: 0;
+}
+.title-container {
+    max-width: 600px;
+}
+.instruction .title-text {
+    line-height: 1.5em;
+}
+.fuel-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.fuel-section img {
+    max-width: 100%;
+    margin: 10px;
+}
+.fuel-section #fuel-percent {
+    width: 30%;
+}
+.experience {
+    position: relative;
+}
+.experience-container {
+    margin: 3em;
+}
+.experience .experience-border {
+    
+}
+.experience #exp-title {
+    margin-bottom: 1.5em;
+}
+.grid-container {
+    display: grid;
+}
+.footer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+}
+@media screen and (max-width: 600px){
+    /* For mobile phones */
+    p {
+        font-size: 1em;
+    }
+    .instruction-container {
+        max-width: 100%;
+    }
+    .instruction {
+        margin: 6.5rem 0;
+        margin-bottom: 8rem;
+    }
+    .instruction .ar-demo #video-overlay {
+        max-width: 100%;
+    }
+}
+    
