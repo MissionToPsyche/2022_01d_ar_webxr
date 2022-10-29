@@ -34,21 +34,22 @@
 
 		<!-- Make component visible on hover script -->
 		<script>
-			AFRAME.registerComponent('set-visible-true-on-hover', {
+			AFRAME.registerComponent('iss-visible-on-hover', {
 			  schema: {
 				visible: {default: 'false'}
 			  },
 		  
 			  init: function () {
 				var data = this.data;
-				var el = this.el;  
+				var el = this.el; 
+				var issE1 = document.querySelector('#ISS'); 
 		  
 				el.addEventListener('mouseenter', function () {
-				  el.setAttribute('visible', true);
+					issE1.setAttribute('visible', true);
 				});
 		  
 				el.addEventListener('mouseleave', function () {
-				  el.setAttribute('visible', false);
+					issE1.setAttribute('visible', false);
 				});
 			  }
 			});
@@ -75,7 +76,6 @@
 			  }
 			});
 		</script>
-
 		
 		<!-- Beginning of A-Scene -->
 		<a-scene>
@@ -88,7 +88,7 @@
 					position="-2 0 -1"
 					rotation="0 0 -25"
 					visible="true"
-					set-visible-false-on-hover>
+					iss-visible-on-hover>
 					<a-text
 						value="Hover over me"
 						color="blue"
@@ -97,6 +97,15 @@
 						rotation="-90 0 0"
 						material="color: blue">
 					</a-text>
+					<a-entity
+						id="ISS"
+						position="0 0 -3"
+						rotation="0 0 0"
+						animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+						scale="0.05 0.05 0.05"
+						gltf-model="/models/gltf/iss/iss.gltf"
+						visible="false">
+					</a-entity>
 				</a-box>
 
 				<a-box 
@@ -129,17 +138,6 @@
 					material="color: #559AFF"
 					change-color-on-hover="color: FFFFFF">
 				</a-text>
-
-				<!-- ISS Model-->
-				<a-entity
-					id="ISS"
-					position="0 0 0"
-					rotation="0 0 0"
-					animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-					scale="0.05 0.05 0.05"
-					visible = "false"
-					gltf-model="/models/gltf/iss/iss.gltf">
-				</a-entity>
 			</a-marker>
 
 			<a-light type="ambient" color="#fff"></a-light>
