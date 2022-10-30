@@ -1,116 +1,228 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Share:wght@400;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
 }
 :root {
-    --main-font-color: #67C7F4;
+    --orange-font-color: #F5B06F;
+    --dark-orange-font-color: #FF6B00;
+    --white-font-color: #ffff;
+    --blue-font-color: #AEEBFB;
   }
 body {
-    font-family: 'Montserrat', sans-serif;
-    background: url('src/webpage-images/background.png');
-}
-.instruction, .experience {
-    display: flex;
-    justify-content: center;
-}
-img {
-    max-width: 100%;
+    font-family: 'Share', cursive;
+    overflow-x: hidden;
 }
 p {
     font-size: 1.2em;
-    color: var(--main-font-color);
+}
+h2 {
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+.missionToPsyche {
+    position: relative;
+    background: linear-gradient(180deg, #090029 0%, #130045 44.98%, #050F7E 100%);
+    height: 100vh;
+}
+.missionToPsyche .introText {
+    position: relative;
+    text-align: center;
+    padding-top: 10em;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+}
+.missionToPsyche .introText p {
+    color: var(--orange-font-color);
+    text-transform: uppercase;
+}
+.missionToPsyche .introText .sparks {
+    position: absolute;
+    max-width: 100%;
+}
+.missionToPsyche .introText #sparkRight {
+    top: 7em;
+    margin-left: 4em;
+}
+.missionToPsyche .introText #sparkLeft {
+    top: 10em;
+    margin-left: -10em;
+}
+.earthAndRocket {
+    position: absolute;
+    text-align: center;
+    background-image: url(/src/img/earth.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-size: 25em;
+    bottom: 0;
+    height: 310px;
+    width: 100%;
+}
+.earthAndRocket #earth {
+    max-width: 100%;
+    padding-top: 20px;
+}
+.earthAndRocket #rocket {
+    position: absolute;
+    max-width: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 48%;
+}
+.scrollToStart {
+    color: var(--dark-orange-font-color);
+    text-transform: uppercase;
+    position: absolute;
+    bottom: -20px;
+    text-align: center;
+    width: 100%;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+}
+.arInfo {
+    margin-top: 50px;
+}
+.arInfo .whatIsAR {
+    margin: 0 20px;
+}
+.arInfo h2 {
+    color: #5C04D7;
+    font-weight: 400;
+    margin: 10px 0;
+}
+.arInfo h2 span {
+    font-size: 1.2em;
+}
+.arInfo .howDoesItWork #arVideo {
+    overflow: hidden;
+}
+.howDoesItWork {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+.howDoesItWork > * {
+    flex: 1;
+}
+.howDoesItWork h2 {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+.experiences {
+    background: url("src/img/experiences-bg.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    padding-top: 75px;
+}
+.experiences .checkout {
+    padding-left: 20px;
+}
+.experiences .checkout h2 {
+    color: var(--blue-font-color);
+}
+.experiences .checkout h2 span {
+    text-transform: uppercase;
+}
+.chooseExperience {
+    margin-top: 50px;
+    padding-left: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-auto-flow: column;
+    overflow-x: auto;
+}
+.chooseExperience h2 {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.chooseExperience p {
+    color: white;
+    padding-bottom: 25px;
+}
+.chooseExperience .exp {
+    margin-top: 50px;
+    padding: 0 20px;
+}
+.chooseExperience div a {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+}
+.exp1, .exp2, .exp3, .exp4, .exp5 {
+    height: 17em;
+    width: 15em;
+    border-radius: 13px;
+}
+.chooseExperience .expImg {
+    margin-top: -30px;
+}
+.chooseExperience .exp4 .expImg {
+    margin-top: -50px;
+}
+.chooseExperience .exp1 {
+    background: linear-gradient(180deg, #0BEEFF 0%, rgba(11, 238, 255, 0.03) 100%);
+}
+.chooseExperience .exp1 a {
+    background: #90E6EE;
+    border: 1px solid #0BDDF1;
+    border-radius: 3px;
+}
+.chooseExperience .exp2 {
+    background: linear-gradient(180deg, #0BFFC4 0%, rgba(11, 255, 196, 0.03) 100%);
+}
+.chooseExperience .exp2 a {
+    background: #7FF0CA;
+    border: 1px solid #079E6B;
+    border-radius: 3px;
+}
+.chooseExperience .exp3 {
+    background: linear-gradient(180deg, #CF4D8E 0%, rgba(207, 77, 142, 0.03) 100%);
+}
+.chooseExperience .exp3 a {
+    background: #FC9FBC;
+    border: 1px solid #CF4D8E;
+    border-radius: 3px;
+}
+.chooseExperience .exp4 {
+    background: linear-gradient(180deg, #FA7167 0%, rgba(250, 113, 103, 0.03) 100%);
+}
+.chooseExperience .exp4 a {
+    background: #FB8E6D;
+    border: 1px solid #F36F65;
+    border-radius: 3px;
+}
+.chooseExperience .exp5 {
+    background: linear-gradient(180deg, #5C04D7 0%, rgba(92, 4, 215, 0.03) 100%);
+}
+.chooseExperience .exp5 a {
+    background: #C8B8F6;
+    border: 1px solid #210943;
+    border-radius: 3px;
 }
 
-.border {
-    position: absolute;
-}
-#exp-border{
-    top: 0;
-    max-width: 100%;
-}
-.instruction {
-    align-items: center;
-    margin: 8rem 0;
-}
-.instruction-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 35px;
-    margin-left: 50px;
-    flex-direction: column;
-}
-.instruction #title {
-    margin: 20px 0;
-}
-.instruction .ar-demo {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 30px 0;
-}
-.instruction .ar-demo #video-overlay {
-    top: 0;
-}
-.title-container {
-    max-width: 600px;
-}
-.instruction .title-text {
-    line-height: 1.5em;
-}
-.fuel-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.fuel-section img {
-    max-width: 100%;
-    margin: 10px;
-}
-.fuel-section #fuel-percent {
-    width: 30%;
-}
-.experience {
-    position: relative;
-}
-.experience-container {
-    margin: 3em;
-}
-.experience .experience-border {
-    
-}
-.experience #exp-title {
-    margin-bottom: 1.5em;
-}
-.grid-container {
-    display: grid;
-}
-.footer {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 600px;
-}
-@media screen and (max-width: 600px){
+@media screen and (max-width: 499px){
     /* For mobile phones */
+    h2 {
+        font-size: 1.2em;
+    }
     p {
         font-size: 1em;
     }
-    .instruction-container {
-        max-width: 100%;
+    .earthAndRocket #rocket {
+        width: 100%;
     }
-    .instruction {
-        margin: 6.5rem 0;
-        margin-bottom: 8rem;
+    .arInfo .howDoesItWork #arVideo {
+        width: 100%;
+        margin-top: -25%;
     }
-    .instruction .ar-demo #video-overlay {
-        max-width: 100%;
-    }
+
 }
     
