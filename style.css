@@ -113,11 +113,21 @@ h2 {
     align-items: center;
     margin: 0 20px;
 }
+.howDoesItWork span {
+    text-transform: uppercase;
+}
+.overlayCloud {
+    width: 100%;
+    margin-top: -5px;
+}
 .experiences {
     background: url("src/img/experiences-bg.png");
     background-repeat: repeat-x;
-    background-size: contain;
-    padding-top: 75px;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--white-font-color);
+    padding-bottom: 40px;
 }
 .experiences .checkout {
     padding-left: 20px;
@@ -130,11 +140,12 @@ h2 {
 }
 .chooseExperience {
     margin-top: 50px;
-    padding-left: 20px;
+    padding: 0 20px;
     display: grid;
     grid-gap: 20px;
     grid-auto-flow: column;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 .chooseExperience h2 {
     color: white;
@@ -157,8 +168,8 @@ h2 {
     padding: 10px 20px;
 }
 .exp1, .exp2, .exp3, .exp4, .exp5 {
-    height: 17em;
-    width: 15em;
+    height: 18em;
+    width: 10em;
     border-radius: 13px;
 }
 .chooseExperience .expImg {
@@ -207,7 +218,81 @@ h2 {
     border: 1px solid #210943;
     border-radius: 3px;
 }
-
+.dataCollected {
+    background: rgba(14, 9, 53, 0.66);
+    border-radius: 13px;
+    margin: 20px;
+    padding: 20px;
+}
+.dataCollected h3 {
+    text-transform: uppercase;
+    color: var(--white-font-color);
+    letter-spacing: 1px;
+}
+.dataCollected #progressBar {
+    height: 15px;
+    width: 100%;
+    border-radius: 13px;
+    background: white;
+    margin: 10px 0;
+}
+.dataCollected #progress {
+    height: 15px;
+    width: 100%;
+    border-radius: 13px;
+    background: white;
+    margin: 10px 0;
+}
+.dataCollected .dataProgress, .dataCollected .badgesContainer {
+    display: flex;
+    align-items: center;
+}
+.dataProgress #percentage {
+    padding: 0 10px;
+}
+.dataCollected .badgesContainer .badges {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+.dataCollected .badgesContainer #collected {
+    padding: 0 10px;
+}
+.complete {
+    text-align: center;
+    padding-top: 15px;
+}
+.lastPart {
+    background: url(src/img/last-bg.png);
+    background-size: cover;
+    background-position: center;
+    color: var(--white-font-color);
+}
+.lastPart .lastPartContainer {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.53) 74.48%, rgba(0, 0, 0, 0.92) 100%);
+    padding: 20px;
+}
+.lastPart h2 {
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+.lastPart p {
+    line-height: 1.2em;
+}
+.asteroid {
+    position: relative;
+    text-align: center;
+}
+.asteroid #spacecraftImg {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    margin-left: 80px;
+}
+.logos {
+    text-align: end;
+}
 @media screen and (max-width: 499px){
     /* For mobile phones */
     h2 {
@@ -223,6 +308,10 @@ h2 {
         width: 100%;
         margin-top: -25%;
     }
-
+    .complete p {
+        font-size: 0.7em;
+    }
 }
     
+
+
