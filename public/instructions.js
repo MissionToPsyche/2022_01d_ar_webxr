@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from './jsm/controls/OrbitControls.js'
 import { FontLoader } from './jsm/loaders/FontLoader.js'
 import { TextGeometry } from './jsm/geometries/TextGeometry.js'
+import { Camera, PlaneGeometry } from 'three'
 
 const scene = new THREE.Scene()
 
@@ -12,8 +13,6 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-const controls = new OrbitControls(camera, renderer.domElement)
-
 const geometry = new THREE.SphereGeometry(6,16,8)
 const material = new THREE.MeshBasicMaterial({
     color: 0xffed00,
@@ -22,6 +21,8 @@ const material = new THREE.MeshBasicMaterial({
 const sphere = new THREE.Mesh(geometry, material)
 sphere.position.z=-3;
 scene.add(sphere)
+
+const controls = new OrbitControls(sphere, renderer.domElement)
 
 const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
 scene.add( ambientLight );
@@ -64,6 +65,12 @@ loader.load('./fonts/droid/droid_sans_regular.typeface.json', function (font){
     }
     );
 
+    const planeGeometry = new THREE.PlaneGeometry( 1, 1 );
+    const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+    const plane = new THREE.Mesh( planeGeometry, planeMaterial );
+    plane.position.y=10;
+    scene.add( plane );
+
 
 window.addEventListener(
     'resize',
@@ -76,11 +83,21 @@ window.addEventListener(
     false
 )
 
+let width =1;
+
 function animate() {
     requestAnimationFrame(animate)
     sphere.rotation.x += 0.001
     sphere.rotation.y += 0.001
-    controls.update()
+    if (isClicked) {
+        for(width=1;width<10;width++){
+            
+        }
+    }
+    width+=0.001;
+    plane.position.x+=0.00075;
+    plane.scale.set(width,1,1);
+    //controls.update();
     render()
 }
 
