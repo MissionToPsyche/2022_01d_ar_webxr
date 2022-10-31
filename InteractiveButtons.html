@@ -139,16 +139,26 @@
 				</a-box>
 
 				<!-- Text that changes color when you hover -->
-				<a-text 
-					id="HoverButton" 
-					value="Hover over me to see color change"
-					align="center"
-					position="0 0 1" 
-					rotation="-90 0 0"
-					color="#559AFF"
-					material="color: #559AFF"
-					change-color-on-hover="color: FFFFFF">
-				</a-text>
+				<!-- Button that dissapears when you hover over it -->
+				<a-box 
+					color="black" 
+					depth="1" 
+					height="0.25" 
+					width="3.5"
+					position="0 1 1"
+					rotation="0 0 0">
+					<a-text 
+						id="HoverButton" 
+						value="Hover over me to see color change"
+						align="center"
+						position="0 .3 0" 
+						rotation="-90 0 0"
+						color="#559AFF"
+						material="color: #559AFF"
+						change-color-on-hover="color: 000000">
+					</a-text>
+				</a-box>				
+
 			</a-marker>
 
 			<a-light type="ambient" color="#fff"></a-light>

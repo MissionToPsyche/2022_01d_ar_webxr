@@ -1,8 +1,6 @@
 # 2022_01d_ar_webxr
 #### `ShapeAR.html` code is adapted from the Three.js repo example here: https://github.com/stemkoski/AR-Examples/blob/master/refraction.html
 
-#### My design document for the proposed "experience" I will be developing is here: https://docs.google.com/document/d/1_j3K9mMhZ7Otm19FaLptunAWWm74WjgiXb6EoAhWMyc/edit?usp=sharing
-
 #### To run the AR example on your desktop:
 
 1. Install VS Code if you don't have it already.
