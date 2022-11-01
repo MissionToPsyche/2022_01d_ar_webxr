@@ -23,22 +23,39 @@
           right: 40px;
           bottom: 40px;
           background: rgba(127,127,127,0.25);
-          color: white;
+          color: #243b7a35;
           border: 1px solid rgba(255,255,255,0.25);
           padding: 6px 8px;
           font-weight: bold;
       }
 	  .scrollabletextbox {
-		height: 300px;
+		height: 500px;
 		width: 400px;
 		position: absolute;
+    background: #093ea8c5;
+    color: #ffca2c;
+    border: 5px solid #0cfff7ff;
+    border-radius: 20px;
+    scrollbar-color: #00ccff #7b00ff;
 		top:0;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		
 		margin: auto;
+    -webkit-animation: glow 2.0s infinite alternate;  
+    -webkit-transition: border 2.0s linear, box-shadow 2.0s linear;
+    -moz-transition: border 2.0s linear, box-shadow 2.0s linear;
+    transition: border 2.0s linear, box-shadow 2.0s linear;
 	  }
+    @-webkit-keyframes glow {
+    to {
+         border-color: #e100ff;
+    -webkit-box-shadow: 0 0 5px #ff00ea;
+       -moz-box-shadow: 0 0 5px #c800bb;
+            box-shadow: 0 0 5px #6a00ff;
+    }
+  }
     </style>
     <script>
 		window.onload = function() {
@@ -52,7 +69,7 @@
     <div id="overlay">
       <span id="greeting">
 		<textarea class="scrollabletextbox" name="note">
-			 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
 
 Sed ipsum augue, scelerisque sed sollicitudin vel, dictum in velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc lacinia feugiat neque, id cursus elit condimentum non. Pellentesque eget iaculis enim, sit amet maximus turpis. Quisque rhoncus quam quis finibus condimentum. Fusce nec posuere turpis, at luctus urna. Donec sed velit in purus hendrerit feugiat. In gravida massa nulla, sed consectetur sapien hendrerit vel. Aliquam mollis mattis varius. Aliquam erat volutpat. Integer finibus, nibh lobortis imperdiet hendrerit, augue felis lacinia felis, vel facilisis nibh lorem ac neque. Mauris mollis diam at purus commodo hendrerit. In hac habitasse platea dictumst. Cras in orci lacus.
 
