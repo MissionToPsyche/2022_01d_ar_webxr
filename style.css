@@ -70,7 +70,7 @@ h2 {
     max-width: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 48%;
+    top: 45%;
 }
 .scrollToStart {
     color: var(--dark-orange-font-color);
@@ -96,25 +96,47 @@ h2 {
 .arInfo h2 span {
     font-size: 1.2em;
 }
-.arInfo .howDoesItWork #arVideo {
-    overflow: hidden;
-}
 .howDoesItWork {
-    margin-top: 100px;
-    margin-bottom: 50px;
+    position: relative;
+    /* margin-top: 120px; */
+    /* margin-bottom: 300px; */
     display: flex;
     align-items: center;
+    height: 27rem;
+    padding-left: 20px;
+    margin-top: 100px
 }
-.howDoesItWork > * {
+.howDoesItWork .title{
+    padding-top: 50px;
+}
+/* .howDoesItWork > * {
     flex: 1;
-}
-.howDoesItWork h2 {
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-}
+} */
 .howDoesItWork span {
     text-transform: uppercase;
+}
+.arVideoContainer {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+.howDoesItWork #arVideoFrame {
+    /* overflow: hidden;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 30rem;
+    width: 70%; */
+    position: relative;
+    max-width: 100%;
+}
+.arVideoContainer #arVideo {
+    position: absolute;
+    left: 11%;
+    bottom: 3%;
+    width: 58%;
+    height: 38%;
+    z-index: -1;
 }
 .overlayCloud {
     width: 100%;
@@ -221,27 +243,44 @@ h2 {
 .dataCollected {
     background: rgba(14, 9, 53, 0.66);
     border-radius: 13px;
+    border-image-source: url('src/img/dataCollected-bg.png');
+  border-image-slice: 60 30;
+    /* background: url('src/img/dataCollected-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat; */
     margin: 20px;
+    margin-top: 60px;
     padding: 20px;
+    /* border-image: radial-gradient(#0BE1F5 0%, #0CE7B8 18.23%, #A63D80 42.71%, #E76A61 71.88%, #5408BF 98.96%), linear-gradient(0deg, rgba(14, 9, 53, 0.66), rgba(14, 9, 53, 0.66)); */
+    /* border-style: solid;
+    border-width: 5px;
+    border-image: radial-gradient(#0BE1F5 1%, #0CE7B8 8%, #A63D80 19%, #E76A61 30%, #5408BF 42%) 1; */
+
 }
 .dataCollected h3 {
     text-transform: uppercase;
     color: var(--white-font-color);
     letter-spacing: 1px;
 }
+.dataCollected .progressBarContainer {
+    position: relative;
+    width: 100%;
+}
 .dataCollected #progressBar {
     height: 15px;
     width: 100%;
     border-radius: 13px;
-    background: white;
+    background: rgba(255, 255, 255, 0.58);
     margin: 10px 0;
 }
 .dataCollected #progress {
+    position: absolute;
     height: 15px;
-    width: 100%;
+    width: 62%;
     border-radius: 13px;
-    background: white;
+    background: linear-gradient(90deg, #0BEAFC 0%, #0BF8C0 18.73%, #C84B8A 39.74%, #F36D5E 60.74%, #5706C8 75.5%, rgba(87, 6, 200, 0.08) 101.05%);
     margin: 10px 0;
+    top: 0;
 }
 .dataCollected .dataProgress, .dataCollected .badgesContainer {
     display: flex;
@@ -289,6 +328,7 @@ h2 {
     left: 50%;
     bottom: 50px;
     margin-left: 80px;
+    animation: float 25s ease-in-out infinite;
 }
 .logos {
     text-align: end;
@@ -301,17 +341,40 @@ h2 {
     p {
         font-size: 1em;
     }
+    .earthAndRocket {
+        background-size: 100%;
+    }
     .earthAndRocket #rocket {
         width: 100%;
     }
-    .arInfo .howDoesItWork #arVideo {
+    .arInfo .howDoesItWork #arVideoFrame {
         width: 100%;
-        margin-top: -25%;
     }
     .complete p {
         font-size: 0.7em;
     }
+    .howDoesItWork {
+        margin-top: 30px;
+        align-items: unset;
+    }
 }
     
 
+@keyframes float {
+	0% {
+		transform: translatey(0px) translateZ(0px);
+	}
+    20% {
+        transform: translateX(-61px) translateY(81px) rotate(39deg) scale(1.2);
+    }
+    50% {
+        transform: translatex(-233px) translatey(22px) rotate(116deg) scale(1);
+    }
+    70% {
+        transform: translatex(-249px) translatey(-96px) rotate(170deg) scale(0.7);
+    }
+	100% {
+		transform: translatey(0px) translateZ(0px);
+	}
+}
 

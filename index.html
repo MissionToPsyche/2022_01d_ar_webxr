@@ -31,11 +31,16 @@
             <p>Augmented reality (AR) is the integration of digital information with the user's environment in real time. Unlike virtual reality (VR), which creates a totally artificial environment, AR users experience a real-world environment with generated perceptual information overlaid on top of it.</p>
         </div>
         <div class="howDoesItWork">
-            <div>
+            <div class="title">
                 <h2>How does it</h2>
                 <h2><span>work?</span></h2>
             </div>
-            <img id="arVideo" src="src/img/howItWorks.png" alt="">
+            <div class="arVideoContainer">
+                <img id="arVideoFrame" src="src/img/howItWorks.png" alt="">
+                <iframe id="arVideo"
+                src="https://www.youtube.com/embed/tAUbLVS243E?autoplay=1&mute=1" frameborder="0" allowfullscreen  allow='autoplay'>
+                </iframe>
+            </div>
         </div>
         <!-- <div class="overlay">
             <img src="src/img/overlay.png" alt="">
@@ -50,7 +55,7 @@
                 <div class="exp exp1">
                     <img class="expImg" src="src/img/expImg1.png" alt="">
                     <h2>Exploration</h2>
-                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the Psyche Mission. </p>
+                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the <br> Psyche Mission. </p>
                     <div class="startButton">
                         <a href="">Start!</a>
                     </div>
@@ -58,7 +63,7 @@
                 <div class="exp exp2">
                     <img class="expImg" src="src/img/expImg2.png" alt="">
                     <h2>Exploration</h2>
-                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the Psyche Mission. </p>
+                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the <br> Psyche Mission. </p>
                     <div class="startButton">
                         <a href="">Start!</a>
                     </div>
@@ -66,7 +71,7 @@
                 <div class="exp exp3">
                     <img class="expImg" src="src/img/expImg3.png" alt="">
                     <h2>Exploration</h2>
-                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the Psyche Mission. </p>
+                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the <br> Psyche Mission. </p>
                     <div class="startButton">
                         <a href="">Start!</a>
                     </div>
@@ -74,7 +79,7 @@
                 <div class="exp exp4">
                     <img class="expImg" src="src/img/expImg4.png" alt="">
                     <h2>Exploration</h2>
-                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the Psyche Mission. </p>
+                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the <br> Psyche Mission. </p>
                     <div class="startButton">
                         <a href="">Start!</a>
                     </div>
@@ -82,7 +87,7 @@
                 <div class="exp exp5">
                     <img class="expImg" src="src/img/expImg5.png" alt="">
                     <h2>Exploration</h2>
-                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the Psyche Mission. </p>
+                    <p>Embark on a quest to the Asteroid Belt in search of the Psyche Asteroid while we journey through the phases of the <br> Psyche Mission. </p>
                     <div class="startButton">
                         <a href="">Start!</a>
                     </div>
@@ -91,7 +96,10 @@
             <div class="dataCollected">
                 <h3>Data Collected</h3>
                 <div class="dataProgress">
-                    <div id="progressBar"></div>
+                    <div class="progressBarContainer">
+                        <div id="progressBar"></div>
+                        <div id="progress"></div>
+                    </div>
                     <p id="percentage">62%</p>
                 </div>
                 <h3>Badges</h3>
@@ -106,7 +114,7 @@
                     <p id="collected"><span>2</span>/5</p>
                 </div>
                 <div class="complete">
-                    <p>Complete all of the Psyche experiences to collect all data and earn your badge! </p>
+                    <p>Complete all of the Psyche experiences to collect all data <br> and earn your badge! </p>
                 </div>
             </div>
         </div>
