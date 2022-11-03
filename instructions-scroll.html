@@ -6,11 +6,9 @@
     <meta name="description">
     <script src="aframe-master.js"></script>
     <style>
-      /* By default, hide the DOM Overlay element. */
       #overlay {
           display: none;
       }
-      /* Show the DOM Overlay element while active (:xr-overlay pseudoclass) */
       #overlay:xr-overlay {
           display: initial;
       }
@@ -28,34 +26,51 @@
           padding: 6px 8px;
           font-weight: bold;
       }
-	  .scrollabletextbox {
-		height: 500px;
-		width: 400px;
-		position: absolute;
-    background: #093ea8c5;
-    color: #ffca2c;
-    border: 5px solid #0cfff7ff;
-    border-radius: 20px;
-    scrollbar-color: #00ccff #7b00ff;
-		top:0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		
-		margin: auto;
-    -webkit-animation: glow 2.0s infinite alternate;  
-    -webkit-transition: border 2.0s linear, box-shadow 2.0s linear;
-    -moz-transition: border 2.0s linear, box-shadow 2.0s linear;
-    transition: border 2.0s linear, box-shadow 2.0s linear;
-	  }
-    @-webkit-keyframes glow {
-    to {
-         border-color: #e100ff;
-    -webkit-box-shadow: 0 0 5px #ff00ea;
-       -moz-box-shadow: 0 0 5px #c800bb;
-            box-shadow: 0 0 5px #6a00ff;
-    }
-  }
+      #image-test {
+          background: url(dancing-gir.gif) no-repeat;
+          background-size:contain;
+          width: 200px;
+          height: 200px;
+          margin-left: 120px;
+      }
+      .scrollabletextbox {
+      height: 500px;
+      width: 400px;
+      position: absolute;
+      background: #093ea8c5;
+      color: #ffca2c;
+      border: 5px solid #0cfff7ff;
+      border-radius: 20px;
+      scrollbar-color: #00ccff #7b00ff;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      resize: none;
+      
+      margin: auto;
+      -webkit-animation: glow 2.0s infinite alternate;  
+      -webkit-transition: border 2.0s linear, box-shadow 2.0s linear;
+      -moz-transition: border 2.0s linear, box-shadow 2.0s linear;
+      transition: border 2.0s linear, box-shadow 2.0s linear;
+      }
+      @-webkit-keyframes glow {
+        to {
+            border-color: #e100ff;
+        -webkit-box-shadow: 0 0 5px #ff00ea;
+          -moz-box-shadow: 0 0 5px #c800bb;
+                box-shadow: 0 0 5px #6a00ff;
+        }
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00eaff; 
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar {
+        background: #242d70; 
+        border-radius: 5px;
+        width: 20px;
+      }
     </style>
     <script>
 		window.onload = function() {
@@ -68,6 +83,8 @@
   <body>
     <div id="overlay">
       <span id="greeting">
+
+      <div id="image-test"></div>
 		<textarea class="scrollabletextbox" name="note">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
 
