@@ -3,6 +3,7 @@ import { OrbitControls } from './jsm/controls/OrbitControls.js'
 import { FontLoader } from './jsm/loaders/FontLoader.js'
 import { TextGeometry } from './jsm/geometries/TextGeometry.js'
 import { Camera, PlaneGeometry } from 'three'
+import {GUI} from './jsm/libs/lil-gui.module.min.js'
 
 const scene = new THREE.Scene()
 
@@ -43,8 +44,7 @@ loader.load('./fonts/droid/droid_sans_regular.typeface.json', function (font){
         } ) 
         
         const textMesh = new THREE.Mesh(textGeometry, [
-            new THREE.MeshPhongMaterial({color: 0xffffff}),
-            //new THREE.MeshPhongMaterial({color: 0xffffff})
+            new THREE.MeshPhongMaterial({color: 0xffffff})
         ])
         
         textMesh.position.x = -4;
@@ -52,14 +52,10 @@ loader.load('./fonts/droid/droid_sans_regular.typeface.json', function (font){
         textMesh.position.z = 2;
         
         scene.add(textMesh);
-
     },
-
     function ( xhr ) {
         console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
     },
-
-    // onError callback
     function ( err ) {
         console.log( 'An error happened' );
     }
@@ -70,6 +66,50 @@ loader.load('./fonts/droid/droid_sans_regular.typeface.json', function (font){
     const plane = new THREE.Mesh( planeGeometry, planeMaterial );
     plane.position.y=10;
     scene.add( plane );
+
+    var position = 1;
+    function buttonFunction() {
+        switch(position) {
+            case(0): {
+                plane.scale.set(1,1,1);
+                plane.position.x-=2.5;
+                position=1;
+            } break;
+            case(1): {
+                plane.scale.set(2,1,1);
+                plane.position.x+=.5;
+                position=2;
+            } break;
+            case(2): {
+                plane.scale.set(3,1,1);
+                plane.position.x+=.5;
+                position=3;
+            } break;
+            case(3): {
+                plane.scale.set(4,1,1);
+                plane.position.x+=.5;
+                position=4;
+            } break;
+            case(4): {
+                plane.scale.set(5,1,1);
+                plane.position.x+=.5;
+                position=5;
+            } break;
+            case(5): {
+                plane.scale.set(6,1,1);
+                plane.position.x+=.5;
+                position=0;
+            } break;
+
+        }
+    }   
+    var params = {
+        AddFuel: buttonFunction
+    };    
+    var gui = new GUI();
+    var folder = gui.addFolder('Fuel Button');    
+    folder.add(params, 'AddFuel');
+    folder.open();
 
 
 window.addEventListener(
@@ -83,21 +123,10 @@ window.addEventListener(
     false
 )
 
-let width =1;
-
 function animate() {
     requestAnimationFrame(animate)
     sphere.rotation.x += 0.001
     sphere.rotation.y += 0.001
-    if (isClicked) {
-        for(width=1;width<10;width++){
-            
-        }
-    }
-    width+=0.001;
-    plane.position.x+=0.00075;
-    plane.scale.set(width,1,1);
-    //controls.update();
     render()
 }
 
