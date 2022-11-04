@@ -33,7 +33,7 @@
 			});
 		</script>
 
-		<!-- Make a model visible on hover script -->
+		<!-- Make ISS model visible on hover script -->
 		<script>
 			AFRAME.registerComponent('iss-visible-on-hover', {
 			  schema: {
@@ -44,6 +44,29 @@
 				var data = this.data;
 				var el = this.el; 
 				var issE1 = document.querySelector('#ISS'); 
+		  
+				el.addEventListener('mouseenter', function () {
+					issE1.setAttribute('visible', true);
+				});
+		  
+				el.addEventListener('mouseleave', function () {
+					issE1.setAttribute('visible', false);
+				});
+			  }
+			});
+		</script>
+
+		<!-- Make Psyche asteroid model visible on hover script -->
+		<script>
+			AFRAME.registerComponent('asteroid-visible-on-hover', {
+			  schema: {
+				visible: {default: 'false'}
+			  },
+		  
+			  init: function () {
+				var data = this.data;
+				var el = this.el; 
+				var issE1 = document.querySelector('#Psyche'); 
 		  
 				el.addEventListener('mouseenter', function () {
 					issE1.setAttribute('visible', true);
@@ -86,6 +109,10 @@
 					id="ISS-model"
 					src="/models/gltf/iss/iss.gltf">
 				</a-asset-item>
+				<a-asset-item
+					id="psyche-asteroid-model"
+					src="/models/gltf/asteroid/psyche.gltf">
+				</a-asset-item>
 			</a-assets>
 			
 			<!--Marker -->
@@ -99,9 +126,9 @@
 					width="3"
 					position="-2 0 -1"
 					rotation="0 0 -25"
-					iss-visible-on-hover>
+					asteroid-visible-on-hover>
 					<a-text
-						value="Hover over me to see the ISS"
+						value="Hover over me to see Psyche"
 						color="blue"
 						align="center"
 						position="0 0.3 0"
@@ -109,8 +136,8 @@
 						material="color: blue">
 					</a-text>
 					<a-gltf-model 
-						id="ISS" 
-						src="#ISS-model"
+						id="Psyche" 
+						src="#psyche-asteroid-model"
 						position="0 0 -3"
 						rotation="0 0 0"
 						animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
@@ -124,12 +151,12 @@
 					color="blue" 
 					depth="1" 
 					height="0.25" 
-					width="3"
+					width="3.5"
 					position="2 0 -1"
 					rotation="0 0 25"
 					set-visible-false-on-hover>
 					<a-text
-						value="Hover over me to disappear"
+						value="Hover over me to see me dissapear"
 						color="tomato"
 						align="center"
 						position="0 0.3 0"
@@ -139,7 +166,6 @@
 				</a-box>
 
 				<!-- Text that changes color when you hover -->
-				<!-- Button that dissapears when you hover over it -->
 				<a-box 
 					color="black" 
 					depth="1" 
