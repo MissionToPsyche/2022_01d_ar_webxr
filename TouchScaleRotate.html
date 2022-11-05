@@ -3,39 +3,39 @@
 <head>
 	<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 	<script>
-        const boxDefaults = {scale:{x:1, y:1, z:1}, rotation:"0 45 0", enlarged:false, animating:false};
-        let boxes = [
-            boxDefaults, boxDefaults
-        ];
+		const boxDefaults = {scale:{x:1, y:1, z:1}, rotation:"0 45 0", enlarged:false, animating:false};
+		let boxes = [
+			boxDefaults, boxDefaults
+		];
 
 		AFRAME.registerComponent('scale-event', {
-            init: function () {
-                var el = this.el; // <a-box>
-                el.addEventListener('click', function () {
-                    if (boxes[0].enlarged) {
-                        el.setAttribute('scale', boxDefaults.scale);
-                        boxes[0].enlarged = false;
-                    } else {
-                        el.setAttribute('scale', {x: 2, y: 2, z: 2});
-                        boxes[0].enlarged = true;
-                    }
-                });
-            }
-        });
+			init: function () {
+				var el = this.el; // <a-box>
+				el.addEventListener('click', function () {
+					if (boxes[0].enlarged) {
+						el.setAttribute('scale', boxDefaults.scale);
+						boxes[0].enlarged = false;
+					} else {
+						el.setAttribute('scale', {x: 2, y: 2, z: 2});
+						boxes[0].enlarged = true;
+					}
+				});
+			}
+		});
 		AFRAME.registerComponent('rotate-event', {
-            init: function () {
-                var el = this.el; // <a-box>
-                el.addEventListener('click', function () {
-                    if (boxes[1].animating) {
-                        el.setAttribute('animation', "property: rotation; to: 0 45 0; loop: false; dur: 0");
-                        boxes[1].animating = false;
-                    } else {
-                        el.setAttribute('animation', "property: rotation; to: 0 135 0; easing: linear; loop: true; dur: 500");
-                        boxes[1].animating = true;
-                    }
-                });
-            }
-        });
+			init: function () {
+				var el = this.el; // <a-box>
+				el.addEventListener('click', function () {
+					if (boxes[1].animating) {
+						el.setAttribute('animation', "property: rotation; to: 0 45 0; loop: false; dur: 0");
+						boxes[1].animating = false;
+					} else {
+						el.setAttribute('animation', "property: rotation; to: 0 135 0; easing: linear; loop: true; dur: 500");
+						boxes[1].animating = true;
+					}
+				});
+			}
+		});
 	</script>
 </head>
 
