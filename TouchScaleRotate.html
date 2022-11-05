@@ -22,13 +22,27 @@
                 });
             }
         });
+		AFRAME.registerComponent('rotate-event', {
+            init: function () {
+                var el = this.el; // <a-box>
+                el.addEventListener('click', function () {
+                    if (boxes[1].animating) {
+                        el.setAttribute('animation', "property: rotation; to: 0 45 0; loop: false; dur: 0");
+                        boxes[1].animating = false;
+                    } else {
+                        el.setAttribute('animation', "property: rotation; to: 0 135 0; easing: linear; loop: true; dur: 500");
+                        boxes[1].animating = true;
+                    }
+                });
+            }
+        });
 	</script>
 </head>
 
 <body>
 	<a-scene>
-		<a-box position="-2 1 -7.5" rotation="0 45 0" color="green"></a-box>
-		<a-box position="2 1 -7.5" rotation="0 45 0" color="blue" scale-event></a-box>
+		<a-box position="-2 1 -7.5" rotation="0 45 0" color="green" scale-event></a-box>
+		<a-box position="2 1 -7.5" rotation="0 45 0" color="blue" rotate-event></a-box>
 
 		<a-camera><a-cursor></a-cursor></a-camera>
 	</a-scene>
