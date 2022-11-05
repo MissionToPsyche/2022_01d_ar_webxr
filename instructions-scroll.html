@@ -26,13 +26,7 @@
           padding: 6px 8px;
           font-weight: bold;
       }
-      #image-test {
-          background: url(dancing-gir.gif) no-repeat;
-          background-size:contain;
-          width: 200px;
-          height: 200px;
-          margin-left: 120px;
-      }
+
       .scrollabletextbox {
       height: 500px;
       width: 400px;
@@ -54,12 +48,27 @@
       -moz-transition: border 2.0s linear, box-shadow 2.0s linear;
       transition: border 2.0s linear, box-shadow 2.0s linear;
       }
+
+      .scrollboxholder {
+        height: 620px;
+        width: 500px;
+        position: absolute;
+        top: 55px;
+        bottom: 0;
+        left: 10px;
+        right: 0;
+        resize: none;
+        margin: auto;
+        background: url(scrollbox-holder.png) no-repeat;
+        z-index: 1;
+        pointer-events: none;
+      }
       @-webkit-keyframes glow {
         to {
-            border-color: #e100ff;
-        -webkit-box-shadow: 0 0 5px #ff00ea;
-          -moz-box-shadow: 0 0 5px #c800bb;
-                box-shadow: 0 0 5px #6a00ff;
+            border-color: #0066ff;
+        -webkit-box-shadow: 0 0 5px #0000ff;
+          -moz-box-shadow: 0 0 5px #a9e8ff;
+                box-shadow: 0 0 5px #00ddff;
         }
       }
       ::-webkit-scrollbar-thumb {
@@ -83,9 +92,8 @@
   <body>
     <div id="overlay">
       <span id="greeting">
-
-      <div id="image-test"></div>
-		<textarea class="scrollabletextbox" name="note">
+        <div class="scrollboxholder"></div>
+		<textarea class="scrollabletextbox" name="note" readonly>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
 
 Sed ipsum augue, scelerisque sed sollicitudin vel, dictum in velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc lacinia feugiat neque, id cursus elit condimentum non. Pellentesque eget iaculis enim, sit amet maximus turpis. Quisque rhoncus quam quis finibus condimentum. Fusce nec posuere turpis, at luctus urna. Donec sed velit in purus hendrerit feugiat. In gravida massa nulla, sed consectetur sapien hendrerit vel. Aliquam mollis mattis varius. Aliquam erat volutpat. Integer finibus, nibh lobortis imperdiet hendrerit, augue felis lacinia felis, vel facilisis nibh lorem ac neque. Mauris mollis diam at purus commodo hendrerit. In hac habitasse platea dictumst. Cras in orci lacus.
