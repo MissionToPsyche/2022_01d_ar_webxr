@@ -9,11 +9,10 @@
 		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     	<!-- we import arjs version without NFT but with marker + location based support -->
     	<script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-		<!-- AFrame extras, which includes collision detection-->
-		<script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
 
+		
 		<!-- Beginning of A-Scene -->
-		<a-scene physics="debug: true">
+		<a-scene>
         
 			<!-- Assets to use later -->
 			<a-assets>
@@ -27,12 +26,32 @@
                 </a-asset-item>
 			</a-assets>
 
-			<a-sphere color="#ff0000" radius="0.5" position="0 0 -3" dynamic-body></a-sphere>
-			<a-sphere color="#0000FF" radius="0.5" position="3 0 -3" dynamic-body ></a-sphere>
-
-			
 			<!--Marker -->
 			<a-marker preset="hiro">
+
+                <!-- Intro Text -->
+				<a-box 
+                    color="#666666" 
+                    depth="1" 
+                    height="0.25" 
+                    width="3"
+                    position="0 3 0"
+                    rotation="0 0 0"
+                    opacity="0"
+                    animation="property: opacity; to: 1; loop: 1; dur:5000"
+                    animation__2="property: opacity; from:1; to: 0; loop: 1; delay:10000; dur:5000">
+                    <a-text
+                        value="How was Psyche Formed"
+                        color="white"
+                        align="center"
+                        position="0 0.3 0"
+                        rotation="-90 0 0"
+                        material="color: blue"
+                        opacity="0"
+                        animation="property: opacity; to: 1; loop: 1; dur:5000"
+                        animation__2="property: opacity; from:1; to: 0; loop: 1; delay:10000; dur:5000">
+                    </a-text>
+                </a-box>
 
                 <!-- Planetesimal -->
 				<a-gltf-model 
@@ -40,9 +59,8 @@
 					src="#planetesimal-model"
 					position="0 0 0"
 					rotation="0 0 0"
-					animation="property: rotation; to: 0 360 0; loop: true; dur: 100000"
-					scale="0.005 0.005 0.005"
-					dynamic-body="linearDamping: 0.5">
+					animation="property: rotation; to: 0 360 0; loop: true; dur: 50000"
+					scale="0.005 0.005 0.005">
 				</a-gltf-model>
 
 				<!-- Other Asteroid -->
@@ -51,10 +69,10 @@
 					src="#asteroid-model"
 					position="10 0 -1"
 					rotation="0 0 0"
-					animation="property: position; to: -10 0 -1; easing:linear; loop: true; dur: 10000"
-					animation__2="property: rotation; to: 0 360 0; loop: true; dur: 10000"  
-					scale="0.01 0.01 0.01"
-					dynamic-body="linearDamping: 0.5">
+					animation="property: position; to: 3 0 -1; easing:linear; loop: 1; dur: 5000; delay:15000"
+					animation__2="property: position; from: 3 0 -1; to: 0 0 -10; easing:linear; loop: 1; delay:20000; dur: 5000"
+					animation__3="property: rotation; to: 0 360 0; loop: true; dur: 10000"  
+					scale="0.01 0.01 0.01">
 				</a-gltf-model>
 			</a-marker>
 
