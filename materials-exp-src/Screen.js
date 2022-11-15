@@ -1,4 +1,4 @@
-class Screen {
+export default class Screen {
 
     overlayDiv;
     aframeDiv;
@@ -20,6 +20,10 @@ class Screen {
 
     getInstructionText() {
         return this.instructionText;
+    }
+
+    testScreenClass() {
+        console.log("Hello from Screen class");
     }
 
 }
