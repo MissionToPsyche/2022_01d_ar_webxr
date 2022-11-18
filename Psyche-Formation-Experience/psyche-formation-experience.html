@@ -39,7 +39,7 @@
                     rotation="0 0 0"
                     opacity="0"
                     animation="property: opacity; to: 1; loop: 1; dur:5000"
-                    animation__2="property: opacity; from:1; to: 0; loop: 1; delay:10000; dur:5000">
+                    animation__2="property: opacity; from:1; to: 0; loop: 1; delay:5000; dur:5000">
                     <a-text
                         value="How was Psyche Formed"
                         color="white"
@@ -49,7 +49,7 @@
                         material="color: blue"
                         opacity="0"
                         animation="property: opacity; to: 1; loop: 1; dur:5000"
-                        animation__2="property: opacity; from:1; to: 0; loop: 1; delay:10000; dur:5000">
+                        animation__2="property: opacity; from:1; to: 0; loop: 1; delay:5000; dur:5000">
                     </a-text>
                 </a-box>
 
@@ -58,8 +58,8 @@
 					id="Planetesimal" 
 					src="#planetesimal-model"
 					position="0 0 0"
-					rotation="0 0 0"
-					animation="property: rotation; to: 0 360 0; loop: true; dur: 50000"
+					rotation="-90 0 0"
+					animation="property: rotation; to: 360 0 0; loop: true; dur: 50000"
 					scale="0.005 0.005 0.005">
 				</a-gltf-model>
 
@@ -69,9 +69,9 @@
 					src="#asteroid-model"
 					position="10 0 -1"
 					rotation="0 0 0"
-					animation="property: position; to: 3 0 -1; easing:linear; loop: 1; dur: 5000; delay:15000"
-					animation__2="property: position; from: 3 0 -1; to: 0 0 -10; easing:linear; loop: 1; delay:20000; dur: 5000"
-					animation__3="property: rotation; to: 0 360 0; loop: true; dur: 10000"  
+					animation="property: position; to: 3 0 -1; easing:linear; loop: 1; dur: 5000; delay:10000"
+					animation__move_towards_planetesimal="property: position; from: 3 0 -1; to: -3 0 -21; easing:linear; loop: 1; delay:15000; dur: 10000"
+					animation__bounce_off="property: rotation; to: 0 360 0; loop: true; dur: 10000"  
 					scale="0.01 0.01 0.01">
 				</a-gltf-model>
 			</a-marker>
