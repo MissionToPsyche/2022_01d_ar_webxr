@@ -39,6 +39,7 @@ AFRAME.registerComponent('begin', {
             factElplane.setAttribute('height','1');
             factElplane.setAttribute('width','2');
             factElplane.setAttribute('color','#ffffff');
+            factElplane.setAttribute('weight','');
             var factEltext = document.createElement('a-text');
             factEltext.setAttribute('value','How heavy is it?');
             factEltext.setAttribute('position',{x:-3.75, y:-3, z:-14.8});
@@ -48,6 +49,7 @@ AFRAME.registerComponent('begin', {
             factElplane2.setAttribute('height','1');
             factElplane2.setAttribute('width','2');
             factElplane2.setAttribute('color','#ffffff');
+            factElplane2.setAttribute('location','');
             var factEltext2 = document.createElement('a-text');
             factEltext2.setAttribute('value','Where is it at?');
             factEltext2.setAttribute('position',{x:-0.75, y:-3, z:-14.8});
@@ -57,6 +59,7 @@ AFRAME.registerComponent('begin', {
             factElplane3.setAttribute('height','1');
             factElplane3.setAttribute('width','2');
             factElplane3.setAttribute('color','#ffffff');
+            factElplane3.setAttribute('size','');
             var factEltext3 = document.createElement('a-text');
             factEltext3.setAttribute('value','How big is it?');
             factEltext3.setAttribute('position',{x:2.25, y:-3, z:-14.8});
@@ -70,7 +73,7 @@ AFRAME.registerComponent('begin', {
                 document.querySelector('a-scene').appendChild(factEltext2);
                 document.querySelector('a-scene').appendChild(factElplane3);
                 document.querySelector('a-scene').appendChild(factEltext3);
-            }, 11000);
+            }, 10500);
         
             //Remove buttonand instructions
             var buttonEl = document.querySelector('a-entity');
