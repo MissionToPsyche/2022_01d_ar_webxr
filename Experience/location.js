@@ -4,6 +4,8 @@ AFRAME.registerComponent('location', {
         let el = this.el;
         this.locationAdventure = function() {
 
+            var spacecraftEl = document.getElementById('spacecraft');
+            spacecraftEl.parentNode.removeChild(spacecraftEl);
             var factPlane = document.getElementById('fact-plane');
             factPlane.parentNode.removeChild(factPlane);
             var factPlane2 = document.getElementById('fact-plane2');
@@ -23,9 +25,15 @@ AFRAME.registerComponent('location', {
 
             //add back button
             var backPlane = document.createElement('a-plane');
+            backPlane.setAttribute('id','back-plane');
             backPlane.setAttribute('back','');
-            backPlane.setAttribute('position',{x:0,y:-2,z:-15}); 
+            backPlane.setAttribute('position',{x:0,y:-3,z:-15}); 
             document.querySelector('a-scene').appendChild(backPlane);
+            var backText = document.createElement('a-text');
+            backText.setAttribute('id', 'back-text');
+            backText.setAttribute('value', 'Back');
+            backText.setAttribute('position',{x:-.25,y:-3,z:-14.7});
+            document.querySelector('a-scene').appendChild(backText);
 
         }
         this.el.addEventListener('click',this.locationAdventure);

@@ -11,19 +11,19 @@ AFRAME.registerComponent('begin', {
             document.querySelector('a-scene').appendChild(newBG);
 
             //Add central asset
-            var newEl = document.createElement('a-box');
-            newEl.setAttribute('position',{x:0,y:0,z:-15});
-            newEl.setAttribute('rotation','0 0 0');
-            newEl.setAttribute('id','main-asset');
-            newEl.setAttribute('animation','property: rotation; to: 360 360 0; loop: true; dur: 7500; easing: linear');
-            document.querySelector('a-scene').appendChild(newEl);
+            var asteroidEl = document.createElement('a-box');
+            asteroidEl.setAttribute('position',{x:0,y:0,z:-15});
+            asteroidEl.setAttribute('rotation','0 0 0');
+            asteroidEl.setAttribute('id','main-asset');
+            asteroidEl.setAttribute('animation','property: rotation; to: 360 360 0; loop: true; dur: 7500; easing: linear');
+            document.querySelector('a-scene').appendChild(asteroidEl);
 
             //Add spacecraft
             var spacecraftEl = document.createElement('a-image');
             spacecraftEl.setAttribute('src','../src/img/spacecraft.png');
             spacecraftEl.setAttribute('position',{x:10, y:0, z:-15});
             spacecraftEl.setAttribute('id','spacecraft');
-            spacecraftEl.setAttribute('animation','property: position; to: 1.5 0 -15; loop: false; dur: 10000; easing: linear');
+            spacecraftEl.setAttribute('animation','property: position; to: 1.5 0 -15; loop: false; dur: 5000; easing: linear');
             document.querySelector('a-scene').appendChild(spacecraftEl);
 
             //Add information planes and text after ship arrives
@@ -83,7 +83,7 @@ AFRAME.registerComponent('begin', {
                 document.querySelector('a-scene').appendChild(factEltext2);
                 document.querySelector('a-scene').appendChild(factElplane3);
                 document.querySelector('a-scene').appendChild(factEltext3);
-            }, 10500);
+            }, 5500);
         
             //Remove button and instructions
             var buttonEl = document.querySelector('a-entity');
