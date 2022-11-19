@@ -4,4 +4,5 @@ Description:
 How To Use:
     Open index.html in Live Server
     Move black circle cursor over button
-    Click to begin
+    Click the box to begin
+    Continue using the black circle to click each selection
