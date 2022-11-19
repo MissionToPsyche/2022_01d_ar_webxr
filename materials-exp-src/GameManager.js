@@ -30,8 +30,11 @@ export class GameManager {
 
     buildScreens() {
         // build screens here
-        var overlayDiv = `Hello from Inserted Overlay Div!`;
-        // var aFrameDiv = `<a-node><a-box position="0 1 -3" rotation="0 45 15" color="#ff00ea" shadow></a-box></a-node>`;
+        var overlayDiv = `
+                <div class="scientist-overlay"></div>
+        		<textarea class="scrollabletextbox" name="note" readonly> The instructions for the experience will go here.
+		        </textarea>
+        `;
         var aFrameDiv = document.createElement("a-entity");
         aFrameDiv.innerHTML = `<a-box position="0 1 -3" rotation="0 45 15" color="#ff00ea" shadow></a-box>`;
         var instructions = ["Testing instructions array"];
