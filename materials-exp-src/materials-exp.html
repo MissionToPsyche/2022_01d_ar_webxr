@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Scrollable Text Box Test</title>
+    <meta name="description">
+    <script src="aframe-master.js"></script>
+    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script> -->
+    <script type="module" src="./Main.js"></script>
+    <style>
+      #overlay {
+          display: none;
+      }
+      #overlay:xr-overlay {
+          display: initial;
+      }
+      #greeting {
+          background-color: rgba(1, 1, 1, 0.25);
+          margin: 10px;
+      }
+      #exit-ar {
+          position: absolute;
+          right: 40px;
+          bottom: 40px;
+          background: rgba(127,127,127,0.25);
+          color: #243b7a35;
+          border: 1px solid rgba(255,255,255,0.25);
+          padding: 6px 8px;
+          font-weight: bold;
+      }
+
+      .scrollabletextbox {
+      height: 500px;
+      width: 330px;
+      position: absolute;
+      background: #093ea8c5;
+      color: #ffca2c;
+      border: 5px solid #0cfff7ff;
+      border-radius: 20px;
+      scrollbar-color: #00ccff #7b00ff;
+      top: -300px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      resize: none;
+      
+      margin: auto;
+      -webkit-animation: glow 2.0s infinite alternate;  
+      -webkit-transition: border 2.0s linear, box-shadow 2.0s linear;
+      -moz-transition: border 2.0s linear, box-shadow 2.0s linear;
+      transition: border 2.0s linear, box-shadow 2.0s linear;
+      }
+
+      .scientist-overlay {
+        height: 620px;
+        width: 500px;
+        position: absolute;
+        top: 350px;
+        bottom: 0;
+        left: 0px;
+        right: 0;
+        resize: none;
+        margin: auto;
+        background: url(elkins-tanton.png) no-repeat;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .scrollboxholder {
+        height: 620px;
+        width: 500px;
+        position: absolute;
+        top: 55px;
+        bottom: 0;
+        left: 10px;
+        right: 0;
+        resize: none;
+        margin: auto;
+        background: url(scrollbox-holder.png) no-repeat;
+        z-index: 1;
+        pointer-events: none;
+      }
+      @-webkit-keyframes glow {
+        to {
+            border-color: #0066ff;
+        -webkit-box-shadow: 0 0 5px #0000ff;
+          -moz-box-shadow: 0 0 5px #a9e8ff;
+                box-shadow: 0 0 5px #00ddff;
+        }
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00eaff; 
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar {
+        background: #242d70; 
+        border-radius: 5px;
+        width: 20px;
+      }
+
+      #changeColor {
+        position: absolute;
+        top: 450px;
+        left: 370px;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      #btn {
+        width: 100px;
+        height: 150px;
+        top: 100px;
+        position: absolute;
+      }
+    </style>
+    <script>
+
+      function nextScreen() {
+        console.log("clicked");
+        getNextScreen();
+      }
+      </script>
+  </head>
+  <body>
+    <div id="overlay">
+      <span id="changeColor"  style="color:#0000ff">
+      <button id="btn" onclick="nextScreen()">Next Screen</button>
+      </span>
+      <span id ="overlaySpan">
+
+      </span>
+      <!-- <span id="greeting"> -->
+        <!-- <div class="scrollboxholder"></div> -->
+		<!-- <textarea class="scrollabletextbox" name="note" readonly>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
+
+Sed ipsum augue, scelerisque sed sollicitudin vel, dictum in velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc lacinia feugiat neque, id cursus elit condimentum non. Pellentesque eget iaculis enim, sit amet maximus turpis. Quisque rhoncus quam quis finibus condimentum. Fusce nec posuere turpis, at luctus urna. Donec sed velit in purus hendrerit feugiat. In gravida massa nulla, sed consectetur sapien hendrerit vel. Aliquam mollis mattis varius. Aliquam erat volutpat. Integer finibus, nibh lobortis imperdiet hendrerit, augue felis lacinia felis, vel facilisis nibh lorem ac neque. Mauris mollis diam at purus commodo hendrerit. In hac habitasse platea dictumst. Cras in orci lacus.
+
+Donec non magna mi. In ultricies, urna ullamcorper tincidunt dapibus, leo nisl hendrerit nulla, id bibendum neque erat eu mauris. Phasellus tincidunt ante sit amet venenatis dapibus. Aenean rhoncus lectus vel mauris iaculis molestie. Fusce vel dignissim nibh, quis pellentesque enim. Phasellus eget consectetur sem. Etiam euismod porttitor tortor a sollicitudin. Aenean eu iaculis nulla, eu rutrum dui. Sed hendrerit quis enim ac tincidunt. Sed malesuada facilisis arcu quis tincidunt. Suspendisse nec condimentum dolor. Aenean sit amet posuere odio. 
+		</textarea> -->
+      <!-- </span> -->
+    </div>
+ <a-scene  id="aFrameScene" background="color: #ECECEC"
+             webxr="optionalFeatures: dom-overlay; overlayElement: #overlay">
+
+    </a-scene>
+  </body>
+</html>
