@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="launch.ico" />
+    <title>Psyche Mission</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <div class="mainDiv">
+      <img id="border" src="../img/psyche-border.png" alt="">
+      <div class="main-container">
+        <div id="marsContainer" class="marsFlyByContainer">
+            <div class="marsFlyBy">
+                <h3>Welcome To:</h3>
+                <h2>The Mars Flyby</h2>
+                <p><span>Trajectory: </span> The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist.</p>
+            </div>
+            <img id="exploreBtn" src="../img/explore-button.png" onclick="click_explore()" alt="">
+        </div>
+        <div class="marsPsycheBtnContainer">
+          <a href="asteroid.html">
+            <img id="marsPsycheButton" src="../img/psyche-button.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+    <a-scene embedded class="aFrameContainer">
+        <a-assets>
+          <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+          <img id="mars" src="../img/mars.jpeg">
+          <img id="galaxy" src="../img/gx.png">
+          <img id="border" src="../img/psyche-border.png" alt="">
+          <img id="welcomeToSpace" src="../img/welcome-to-space.png" alt="">
+          <img id="startMission" src="../img/start-mission.png" alt="">
+        </a-assets>
+
+        <a-sphere position="-1.5 3 -5"
+        src="#mars" 
+        repeat="1 1" 
+        normal-map="#mars"
+        normal-texture-repeat="1 1"
+        normal-scale="3 1"
+        roughness="0.7"
+        animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true"
+        color="#FFFFFF" 
+        radius="3"></a-sphere>
+      
+        <a-sky id="image-360" src="#galaxy"></a-sky>
+        <a-camera>
+            <!-- <a-image src="#border" height="2.5" width="1.5" position="0 0 -1.5" transparent="true" alpha-test="0.5"></a-image> -->
+            <!-- <a-image src="#welcomeToSpace" height="0.2" width="0.7" position="0 0.1 -1"></a-image>
+            <a-image id="btnStartMission" src="#startMission" height="0.15" width="0.5" position="0 -0.15 -1"></a-image> -->
+        </a-camera>
+      </a-scene>
+      <script src="mars.js"></script>
+</body>
+</html>
