@@ -1,26 +1,13 @@
 
-AFRAME.registerComponent('begin', {
+AFRAME.registerComponent('back', {
     init: function() {
         let el = this.el;
-        this.beginExperience = function() {
-
-            //Add background
-            var newBG = document.createElement('a-sky');
-            newBG.setAttribute('src','../src/img/space.jpg');
-            newBG.setAttribute('id','background');
-            document.querySelector('a-scene').appendChild(newBG);
-
-            //Add central asset
-            var asteroidEl = document.createElement('a-box');
-            asteroidEl.setAttribute('position',{x:0,y:0,z:-15});
-            asteroidEl.setAttribute('rotation','0 0 0');
-            asteroidEl.setAttribute('id','main-asset');
-            asteroidEl.setAttribute('animation','property: rotation; to: 360 360 0; loop: true; dur: 7500; easing: linear');
-            document.querySelector('a-scene').appendChild(asteroidEl);
-
+        this.backButton = function() {
+            console.log('Back pressed!');
+            
             //Add spacecraft
             var spacecraftEl = document.createElement('a-image');
-            spacecraftEl.setAttribute('src','../src/img/spacecraft.png');
+            spacecraftEl.setAttribute('src','../../src/img/spacecraft.png');
             spacecraftEl.setAttribute('position',{x:10, y:0, z:-15});
             spacecraftEl.setAttribute('id','spacecraft');
             spacecraftEl.setAttribute('animation','property: position; to: 1.5 0 -15; loop: false; dur: 5000; easing: linear');
@@ -84,18 +71,18 @@ AFRAME.registerComponent('begin', {
                 document.querySelector('a-scene').appendChild(factElplane3);
                 document.querySelector('a-scene').appendChild(factEltext3);
             }, 5500);
-        
-            //Remove button and instructions
-            var buttonEl = document.querySelector('a-entity');
-            buttonEl.parentNode.removeChild(buttonEl);
-            
-            var instructionEl = document.querySelector('a-text');
-            instructionEl.parentNode.removeChild(instructionEl);
+
+            //remove back button
+            var backElPlane = document.getElementById('back-plane');
+            backElPlane.parentNode.removeChild(backElPlane);
+            var backElText = document.getElementById('back-text');
+            backElText.parentNode.removeChild(backElText);
 
         }
-        this.el.addEventListener('click',this.beginExperience);
+        this.el.addEventListener('click',this.backButton);
     },
+    
     remove: function() {
-        this.el.removeEventListener('click',this.beginExperience);
+        this.el.removeEventListener('click',this.backButton);
     }
 }) 
