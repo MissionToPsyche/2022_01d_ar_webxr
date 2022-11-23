@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ceres
+* source:	https://sketchfab.com/3d-models/ceres-da43eb1f4f1548bda2420af1ab796183
+* author:	uperesito (https://sketchfab.com/uperesito)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ceres" (https://sketchfab.com/3d-models/ceres-da43eb1f4f1548bda2420af1ab796183) by uperesito (https://sketchfab.com/uperesito) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

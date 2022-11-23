@@ -2,8 +2,8 @@ cert.pem
 
 key.pem
 
-node_modules
+node_modules/
 
-.vscode
+.vscode/
 
 .DS_Store
