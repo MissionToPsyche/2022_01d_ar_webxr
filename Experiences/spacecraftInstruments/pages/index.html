@@ -83,11 +83,21 @@
 
 <body>
 	<a-scene>
-		<!--spacecraft-->
-		<a-box position="0 1 -7.5" scale="2 2 2" rotation="0 0 0" color="gray"
+		<!-- spacecraft -->
+		<a-box class="spacecraft" position="0 1 -7.5" scale="2 2 2" rotation="0 0 0" color="gray"
 		animation="property: rotation; to: 0 90 0; easing: linear; loop: true; dur: 1000"
 		material="src: ../../../src/img/spacecraft.png; color: #696969; roughness: 1; metalness: 0"
 		separate-event></a-box>
+		<!-- components -->
+		<a-box class="component" id="multi" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="blue" component-select></a-box>
+		<a-box class="component" id="gamma" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="red" component-select></a-box>
+		<a-box class="component" id="magnet" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="green" component-select></a-box>
+		<a-box class="component" id="xband" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="yellow" component-select></a-box>
+		<!-- component text -->
+		<a-text class="componentText" id="multiText" value="Multispectral Imager"></a-text>
+		<a-text class="componentText" id="gammaText" value="Gamma Ray and\nNeutron Spectrometer"></a-text>
+		<a-text class="componentText" id="magnetText" value="Magnetometer"></a-text>
+		<a-text class="componentText" id="xbandText" value="X-band Radio\nTelecommunications"></a-text>
 
 		<a-camera><a-cursor></a-cursor></a-camera>
 	</a-scene>
