@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>Render Text AR using A-Frame</title>
+	</head>
+
+	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+		<!-- include a-frame-->
+		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    	<!-- we import arjs version without NFT but with marker + location based support -->
+    	<script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+		
+		<!-- Change color on hover script -->
+		<script>
+			AFRAME.registerComponent('change-color-on-hover', {
+			  schema: {
+				color: {default: 'red'}
+			  },
+		  
+			  init: function () {
+				var data = this.data;
+				var el = this.el;  
+				var defaultColor = el.getAttribute('material').color;
+		  
+				el.addEventListener('mouseenter', function () {
+				  el.setAttribute('color', data.color);
+				});
+		  
+				el.addEventListener('mouseleave', function () {
+				  el.setAttribute('color', defaultColor);
+				});
+			  }
+			});
+		</script>
+
+		<!-- Make ISS model visible on hover script -->
+		<script>
+			AFRAME.registerComponent('iss-visible-on-hover', {
+			  schema: {
+				visible: {default: 'false'}
+			  },
+		  
+			  init: function () {
+				var data = this.data;
+				var el = this.el; 
+				var issE1 = document.querySelector('#ISS'); 
+		  
+				el.addEventListener('mouseenter', function () {
+					issE1.setAttribute('visible', true);
+				});
+		  
+				el.addEventListener('mouseleave', function () {
+					issE1.setAttribute('visible', false);
+				});
+			  }
+			});
+		</script>
+
+		<!-- Make Psyche asteroid model visible on hover script -->
+		<script>
+			AFRAME.registerComponent('asteroid-visible-on-hover', {
+			  schema: {
+				visible: {default: 'false'}
+			  },
+		  
+			  init: function () {
+				var data = this.data;
+				var el = this.el; 
+				var issE1 = document.querySelector('#Psyche'); 
+		  
+				el.addEventListener('mouseenter', function () {
+					issE1.setAttribute('visible', true);
+				});
+		  
+				el.addEventListener('mouseleave', function () {
+					issE1.setAttribute('visible', false);
+				});
+			  }
+			});
+		</script>
+
+		<!-- Make component invisible on hover script -->
+		<script>
+			AFRAME.registerComponent('set-visible-false-on-hover', {
+			  schema: {
+				visible: {default: 'true'}
+			  },
+		  
+			  init: function () {
+				var data = this.data;
+				var el = this.el;  
+		  
+				el.addEventListener('mouseenter', function () {
+				  el.setAttribute('visible', false);
+				});
+		  
+				el.addEventListener('mouseleave', function () {
+				  el.setAttribute('visible', true);
+				});
+			  }
+			});
+		</script>
+		
+		<!-- Beginning of A-Scene -->
+		<a-scene>
+			<!-- Assets to use later -->
+			<a-assets>
+				<a-asset-item
+					id="ISS-model"
+					src="/models/gltf/iss/iss.gltf">
+				</a-asset-item>
+				<a-asset-item
+					id="psyche-asteroid-model"
+					src="/models/gltf/asteroid/psyche.gltf">
+				</a-asset-item>
+			</a-assets>
+			
+			<!--Marker -->
+			<a-marker preset="hiro">
+
+				<!-- Button to make an object visible -->
+				<a-box 
+					color="tomato" 
+					depth="1" 
+					height="0.25" 
+					width="3"
+					position="-2 0 -1"
+					rotation="0 0 -25"
+					asteroid-visible-on-hover>
+					<a-text
+						value="Hover over me to see Psyche"
+						color="blue"
+						align="center"
+						position="0 0.3 0"
+						rotation="-90 0 0"
+						material="color: blue">
+					</a-text>
+					<a-gltf-model 
+						id="Psyche" 
+						src="#psyche-asteroid-model"
+						position="0 0 -3"
+						rotation="0 0 0"
+						animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+						scale="0.5 0.5 0.5"
+						visible="false">
+					</a-gltf-model>
+				</a-box>
+
+				<!-- Button that dissapears when you hover over it -->
+				<a-box 
+					color="blue" 
+					depth="1" 
+					height="0.25" 
+					width="3.5"
+					position="2 0 -1"
+					rotation="0 0 25"
+					set-visible-false-on-hover>
+					<a-text
+						value="Hover over me to see me dissapear"
+						color="tomato"
+						align="center"
+						position="0 0.3 0"
+						rotation="-90 0 0"
+						material="color: tomato">
+					</a-text>
+				</a-box>
+
+				<!-- Text that changes color when you hover -->
+				<a-box 
+					color="black" 
+					depth="1" 
+					height="0.25" 
+					width="3.5"
+					position="0 1 1"
+					rotation="0 0 0">
+					<a-text 
+						id="HoverButton" 
+						value="Hover over me to see color change"
+						align="center"
+						position="0 .3 0" 
+						rotation="-90 0 0"
+						color="#559AFF"
+						material="color: #559AFF"
+						change-color-on-hover="color: 000000">
+					</a-text>
+				</a-box>				
+
+			</a-marker>
+
+			<a-light type="ambient" color="#fff"></a-light>
+			<a-light type="directional" color="#fff" intensity="0.3" position="-0.5 1 1"></a-light>
+
+			<a-camera><a-cursor></a-cursor></a-camera>
+		</a-scene>
+	</body>
+</html>

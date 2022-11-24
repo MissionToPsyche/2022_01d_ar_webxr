@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="launch.ico" />
+    <title>Psyche Mission</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <div class="mainDiv">
+      <img id="info-border" src="../img/info-border.png" alt="">
+      <div class="launch-container">
+        <img class="infoBg" src="../img/info-bg.png" alt="">
+        <div class="informationText">
+            <h3>Set Destination To: </h3>
+            <h2>Psyche Asteroid</h2>
+            <img src="../img/psyche-map.png" alt="">
+            <h3>Planet Earth 644,018,760</h3>
+            <div class="list">
+              <ul>
+                <li>
+                  <p>Psyche orbits the Sun between Mars and Jupiter between 235 million to 309 million miles (378 million to 497 million kilometers), which is 2.5 to 3.3 Astronomical Units (AU) </p>
+                </li>
+                <li>
+                  <p>1 AU being the distance between Earth and the Sun.</p>
+                </li>
+                <li>
+                  <p>Psyche takes about 5 Earth years to complete one orbit of the Sun</p>
+                </li>
+                <li>
+                  <p>It takes just over four hours to rotate once on its axis (a Psyche “day”).</p>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <a href="countdown.html">
+          <img id="psycheBtn" src="../img/psyche-button.png" alt="">
+        </a>
+      </div>
+    </div>
+    <a-scene embedded class="aFrameContainer">
+        <a-assets>
+          <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+          <img id="galaxy" src="../img/gx.png">
+          <img id="border" src="../img/psyche-border.png" alt="">
+          <img id="welcomeToSpace" src="../img/welcome-to-space.png" alt="">
+          <img id="startMission" src="../img/start-mission.png" alt="">
+        </a-assets>
+      
+        <a-sky id="image-360" src="#galaxy"></a-sky>
+        <a-camera>
+            <!-- <a-image src="#border" height="2.5" width="1.5" position="0 0 -1.5" transparent="true" alpha-test="0.5"></a-image> -->
+            <!-- <a-image src="#welcomeToSpace" height="0.2" width="0.7" position="0 0.1 -1"></a-image>
+            <a-image id="btnStartMission" src="#startMission" height="0.15" width="0.5" position="0 -0.15 -1"></a-image> -->
+        </a-camera>
+      </a-scene>
+      <script src="index.js"></script>
+</body>
+</html>
