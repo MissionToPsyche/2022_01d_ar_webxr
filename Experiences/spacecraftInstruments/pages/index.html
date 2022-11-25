@@ -65,6 +65,29 @@
 
 						// change state
 						state = 2;
+					} else if (state == 2) {
+						// resume spacecraft rotation
+						el.setAttribute('animation', "property: rotation; to: 0 90 0; easing: linear; loop: true; dur: 1000");
+						// restore spacecraft opacity
+						el.setAttribute('material', "opacity: 1; transparent: false");
+						// shrink spacecraft
+						el.setAttribute('scale', "2 2 2");
+
+						// hide components and associated text
+						const components = document.querySelectorAll("a-box.component");
+						components.forEach((item) => {
+							item.removeAttribute('animation');
+							item.removeAttribute('animation__2');
+							item.setAttribute('animation', 'property: position; to: 0 1 -7.5; loop: false; dur: 300; easing: linear');
+							item.setAttribute('animation__2', 'property: scale; to: 0 0 0; loop: false; dur: 300; easing: linear');
+						});
+						const texts = document.querySelectorAll("a-text.componentText");
+						texts.forEach((item) => {
+							item.setAttribute('scale', '0 0 0')
+						});
+
+						// change state
+						state = 1;
 					}
 					}
 				});
