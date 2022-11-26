@@ -46,7 +46,7 @@ export class GameManager {
         var screen2 = new Screen(overlayDiv2, aFrameDiv2, instructions);
         var screensList = [screen1, screen2];
         this.screensCollection = new ScreensCollection(screensList);
-        this.buildNextScreen();
+        // this.buildNextScreen();
     }
 
     readHTML() {
