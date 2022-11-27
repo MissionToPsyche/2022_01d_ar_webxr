@@ -42,7 +42,7 @@ AFRAME.registerComponent('weight', {
             infoPlane.setAttribute('position',{x:0,y:5,z:-15}); 
             document.querySelector('a-scene').appendChild(infoPlane);
             var infoText = document.createElement('a-text');
-            infoText.setAttribute('id', 'back-text');
+            infoText.setAttribute('id', 'info-text');
             infoText.setAttribute('value', 'Psyche weighs between 22,170,000,000,000,000,000kg and 23,570,000,000,000,000,000kg. That is equal to 1,400,000,000,000,000 18-wheeler tractor trailer trucks');
             infoText.setAttribute('position',{x:-.25,y:5,z:-14.7});
             document.querySelector('a-scene').appendChild(infoText);

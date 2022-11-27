@@ -35,6 +35,17 @@ AFRAME.registerComponent('location', {
             backText.setAttribute('position',{x:-.25,y:-3,z:-14.7});
             document.querySelector('a-scene').appendChild(backText);
 
+            //scene elements
+            var infoPlane = document.createElement('a-plane');
+            infoPlane.setAttribute('id','info-plane');
+            infoPlane.setAttribute('position',{x:0,y:5,z:-15}); 
+            document.querySelector('a-scene').appendChild(infoPlane);
+            var infoText = document.createElement('a-text');
+            infoText.setAttribute('id', 'info-text');
+            infoText.setAttribute('value', 'jfnwofjwodnw  cowojnjcwoc wecjwj cwo c');
+            infoText.setAttribute('position',{x:-.25,y:5,z:-14.7});
+            document.querySelector('a-scene').appendChild(infoText);
+
         }
         this.el.addEventListener('click',this.locationAdventure);
     },

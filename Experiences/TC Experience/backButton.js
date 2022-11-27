@@ -77,6 +77,10 @@ AFRAME.registerComponent('back', {
             backElPlane.parentNode.removeChild(backElPlane);
             var backElText = document.getElementById('back-text');
             backElText.parentNode.removeChild(backElText);
+            var infoPlane = document.getElementById('info-plane');
+            infoPlane.parentNode.removeChild(infoPlane);
+            var infoText = document.getElementById('info-text');
+            infoText.parentNode.removeChild(infoText);
 
         }
         this.el.addEventListener('click',this.backButton);
