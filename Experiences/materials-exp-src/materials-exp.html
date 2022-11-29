@@ -135,9 +135,19 @@
         document.querySelector('a-scene').appendChild(instrShape);
         var textTest = document.createElement('a-text');
         textTest.setAttribute('value','Instructions Test');
-        textTest.setAttribute('position',{x:0, y:2, z:-2});
+        textTest.setAttribute('position',{x:0, y:2, z:-1});
+        textTest.setAttribute('scale', '0.3 0.3 0.3');
         document.querySelector('a-scene').appendChild(textTest);
       }
+
+      AFRAME.registerComponent('click-event', {
+			init: function () {
+				var el = this.el; 
+				el.addEventListener('click', function () {
+          console.log('click');
+        });
+      }
+    });
 
       
       function nextScreen() {
@@ -151,36 +161,19 @@
 
   </head>
   <body>
-    <div id="overlay">
-      <span id="changeColor"  style="color:#0000ff">
-      <button id="nextBtn" onclick="nextScreen()">Next Screen</button>
-      <button id="prevBtn" onclick="prevScreen()">Prev Screen</button>
-      </span>
-      <span id ="overlaySpan">
-
-      </span>
-      <!-- <span id="greeting"> -->
-        <!-- <div class="scrollboxholder"></div> -->
-		<!-- <textarea class="scrollabletextbox" name="note" readonly>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
-
-Sed ipsum augue, scelerisque sed sollicitudin vel, dictum in velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc lacinia feugiat neque, id cursus elit condimentum non. Pellentesque eget iaculis enim, sit amet maximus turpis. Quisque rhoncus quam quis finibus condimentum. Fusce nec posuere turpis, at luctus urna. Donec sed velit in purus hendrerit feugiat. In gravida massa nulla, sed consectetur sapien hendrerit vel. Aliquam mollis mattis varius. Aliquam erat volutpat. Integer finibus, nibh lobortis imperdiet hendrerit, augue felis lacinia felis, vel facilisis nibh lorem ac neque. Mauris mollis diam at purus commodo hendrerit. In hac habitasse platea dictumst. Cras in orci lacus.
-
-Donec non magna mi. In ultricies, urna ullamcorper tincidunt dapibus, leo nisl hendrerit nulla, id bibendum neque erat eu mauris. Phasellus tincidunt ante sit amet venenatis dapibus. Aenean rhoncus lectus vel mauris iaculis molestie. Fusce vel dignissim nibh, quis pellentesque enim. Phasellus eget consectetur sem. Etiam euismod porttitor tortor a sollicitudin. Aenean eu iaculis nulla, eu rutrum dui. Sed hendrerit quis enim ac tincidunt. Sed malesuada facilisis arcu quis tincidunt. Suspendisse nec condimentum dolor. Aenean sit amet posuere odio. 
-		</textarea> -->
-      <!-- </span> -->
-    </div>
  <a-scene id="aFrameScene"">
   <a-sky src="#space" rotation="0 -130 0" material="color: #353842; repeat: 10 10 1;"></a-sky>
   <a-entity light="type:ambient; color: #c4d2da" position="3 1 1"></a-entity>
   <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
   <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2"></a-entity>
+      <a-plane position="1 0.5 -2" scale="1 1 1" color="#4700b2" click-event></a-plane>
       <a-assets>
         <img id="scientist" src="elkins-tanton.png"  "/>
         <img id="space" src="tiles.jpg" />
         <img id="boxHolder" src="border.png" />
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
       </a-assets>
+      <a-camera><a-cursor></a-cursor></a-camera>
     </a-scene>
   </body>
 </html>
