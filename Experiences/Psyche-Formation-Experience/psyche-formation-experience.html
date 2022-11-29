@@ -9,9 +9,20 @@
 		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     	<!-- we import arjs version without NFT but with marker + location based support -->
     	<script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-		<script src="../../js/aframe-environment-component.js"></script>
-		<script src="../../js/aframe-spe-particles-component.js"></script>
-		<script src="../../js/extended-wasd-controls.js"></script>
+		
+		<script>
+			AFRAME.registerComponent('playExplosionSounds', {
+				schema: {
+					autoplay: {default: 'false'}
+			  	},
+		  
+			 	init: function () {
+					var data = this.data;
+					var el = this.el;  					
+					el.setAttribute('autoplay', true);
+			  	}
+			});
+		</script>
 		
 		<!-- Beginning of A-Scene -->
 		<a-scene>
@@ -27,13 +38,15 @@
                     src="../../models/gltf/planetesimal/scene.gltf">
                 </a-asset-item>
 				<a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+				<audio id="impact" src="./sounds/impact.mp3" preload="auto"></audio>
+				<a-sound src="src: url(./sounds/explosion.mp3)" autoplay="true" position="0 2 5"></a-sound>
 			</a-assets>
 
 			<!--Marker -->
-			<a-marker preset="hiro">
- 
+			<a-marker preset="hiro"> 
                 <!-- Intro Text -->
 				<a-box 
+					playExplosionSound
                     color="#666666" 
                     depth="1" 
                     height="0.25" 
@@ -57,7 +70,7 @@
                 </a-box>
 
                 <!-- Planetesimal -->
-				<a-gltf-model 
+				<a-gltf-model
 					id="Planetesimal" 
 					src="#planetesimal-model"
 					position="0 0 0"
