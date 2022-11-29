@@ -11,11 +11,14 @@ AFRAME.registerComponent('begin', {
             document.querySelector('a-scene').appendChild(newBG);
 
             //Add central asset
-            var asteroidEl = document.createElement('a-box');
+            var asteroidEl = document.createElement('a-image');
+            asteroidEl.setAttribute('src','../../src/img/psyche-asteroid.png');
+            asteroidEl.setAttribute('height','3');
+            asteroidEl.setAttribute('width','3');
             asteroidEl.setAttribute('position',{x:0,y:0,z:-15});
             asteroidEl.setAttribute('rotation','0 0 0');
             asteroidEl.setAttribute('id','main-asset');
-            asteroidEl.setAttribute('animation','property: rotation; to: 360 360 0; loop: true; dur: 7500; easing: linear');
+            asteroidEl.setAttribute('animation','property: rotation; to: 0 0 360; loop: true; dur: 7500; easing: linear');
             document.querySelector('a-scene').appendChild(asteroidEl);
 
             //Add spacecraft
@@ -23,7 +26,7 @@ AFRAME.registerComponent('begin', {
             spacecraftEl.setAttribute('src','../../src/img/spacecraft.png');
             spacecraftEl.setAttribute('position',{x:10, y:0, z:-15});
             spacecraftEl.setAttribute('id','spacecraft');
-            spacecraftEl.setAttribute('animation','property: position; to: 1.5 0 -15; loop: false; dur: 5000; easing: linear');
+            spacecraftEl.setAttribute('animation','property: position; to: 2.5 0 -15; loop: false; dur: 5000; easing: linear');
             document.querySelector('a-scene').appendChild(spacecraftEl);
 
             //Add information planes and text after ship arrives

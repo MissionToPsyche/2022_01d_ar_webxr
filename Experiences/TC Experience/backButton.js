@@ -10,7 +10,7 @@ AFRAME.registerComponent('back', {
             spacecraftEl.setAttribute('src','../../src/img/spacecraft.png');
             spacecraftEl.setAttribute('position',{x:10, y:0, z:-15});
             spacecraftEl.setAttribute('id','spacecraft');
-            spacecraftEl.setAttribute('animation','property: position; to: 1.5 0 -15; loop: false; dur: 5000; easing: linear');
+            spacecraftEl.setAttribute('animation','property: position; to: 2.5 0 -15; loop: false; dur: 5000; easing: linear');
             document.querySelector('a-scene').appendChild(spacecraftEl);
 
             //Add information planes and text after ship arrives

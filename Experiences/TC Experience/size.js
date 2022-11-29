@@ -42,9 +42,18 @@ AFRAME.registerComponent('size', {
             document.querySelector('a-scene').appendChild(infoPlane);
             var infoText = document.createElement('a-text');
             infoText.setAttribute('id', 'info-text');
-            infoText.setAttribute('value', 'jfnwofjwodnw  cowojnjcwoc wecjwj cwo c');
+            infoText.setAttribute('value', 'The average diameter is approximately 223km \n which is about the length of Florida');
             infoText.setAttribute('position',{x:-.25,y:5,z:-14.7});
             document.querySelector('a-scene').appendChild(infoText);
+            var item = document.createElement('a-entity');
+            item.setAttribute('gltf-model', '#item');
+            item.setAttribute('position',{x:-3,y:5,z:-15}); 
+            document.querySelector('a-scene').appendChild(item);
+            var florida = document.createElement('a-image');
+            florida.setAttribute('id', 'florida');
+            florida.setAttribute('src', '../../src/img/florida.png');
+            florida.setAttribute('position',{x:-5,y:0,z:-15}); 
+            document.querySelector('a-scene').appendChild(florida);
 
         }
         this.el.addEventListener('click',this.sizeAdventure);
