@@ -89,11 +89,44 @@
 						// change state
 						state = 1;
 					}
+				});
+			}
+
+		});
+
+		AFRAME.registerComponent('component-select', {
+			init: function () {
+				var el = this.el;
+				el.addEventListener('click', function() {
+					if (state == 2) {
+						// move component to center
+						el.removeAttribute('animation');
+						el.removeAttribute('animation__2');
+						el.setAttribute('animation', 'property: position; to: 0 1 -7.5; loop: false; dur: 300; easing: linear');
+						el.setAttribute('animation__2', 'property: scale; to: 2 2 2; loop: false; dur: 300; easing: linear');
+						// hide spacecraft
+						const craft = document.querySelector("a-box.spacecraft");
+						craft.setAttribute('scale', '0 0 0');
+						// hide other components
+						const components = document.querySelectorAll("a-box.component");
+						components.forEach((item) => {
+							if (item != el) {
+								item.setAttribute('scale', '0 0 0');
+							}
+						});
+						// hide component text
+						const componentText = document.querySelectorAll("a-text.componentText");
+						componentText.forEach((item) => {
+							item.setAttribute('scale', '0 0 0');
+						});
+
+						// change state
+						state = 3;
 					}
 				});
 			}
-			
 		});
+
 	</script>
 </head>
 
