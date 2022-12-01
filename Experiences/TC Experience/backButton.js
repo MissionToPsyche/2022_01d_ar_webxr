@@ -81,7 +81,8 @@ AFRAME.registerComponent('back', {
             infoPlane.parentNode.removeChild(infoPlane);
             var infoText = document.getElementById('info-text');
             infoText.parentNode.removeChild(infoText);
-
+            var florida = document.getElementById('florida');
+            florida.parentNode.removeChild(florida);
         }
         this.el.addEventListener('click',this.backButton);
     },

@@ -38,12 +38,14 @@ AFRAME.registerComponent('size', {
             //scene elements
             var infoPlane = document.createElement('a-plane');
             infoPlane.setAttribute('id','info-plane');
-            infoPlane.setAttribute('position',{x:0,y:5,z:-15}); 
+            infoPlane.setAttribute('width','4');
+            infoPlane.setAttribute('height','1.5');
+            infoPlane.setAttribute('position',{x:-.2,y:3.5,z:-15}); 
             document.querySelector('a-scene').appendChild(infoPlane);
             var infoText = document.createElement('a-text');
             infoText.setAttribute('id', 'info-text');
-            infoText.setAttribute('value', 'The average diameter is approximately 223km \n which is about the length of Florida');
-            infoText.setAttribute('position',{x:-.25,y:5,z:-14.7});
+            infoText.setAttribute('value', 'The estimated average diameter of \n Psyche is approximately 223km. \n Walking around the asteroid would be approximately the same as walking \n the length of Florida.');
+            infoText.setAttribute('position',{x:-2,y:3.5,z:-14.7});
             document.querySelector('a-scene').appendChild(infoText);
             var item = document.createElement('a-entity');
             item.setAttribute('gltf-model', '#item');
@@ -51,8 +53,10 @@ AFRAME.registerComponent('size', {
             document.querySelector('a-scene').appendChild(item);
             var florida = document.createElement('a-image');
             florida.setAttribute('id', 'florida');
+            florida.setAttribute('height', '3');
+            florida.setAttribute('width', '3');
             florida.setAttribute('src', '../../src/img/florida.png');
-            florida.setAttribute('position',{x:-5,y:0,z:-15}); 
+            florida.setAttribute('position',{x:-4,y:0,z:-15}); 
             document.querySelector('a-scene').appendChild(florida);
 
         }
