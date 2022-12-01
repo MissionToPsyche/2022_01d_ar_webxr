@@ -122,6 +122,27 @@
 
 						// change state
 						state = 3;
+					} else if (state == 3) {
+						// restore spacecraft visibility
+						const craft = document.querySelector("a-box.spacecraft");
+						craft.setAttribute('scale', '1 1 1');
+
+						// make other components visible
+						const components = document.querySelectorAll("a-box.component");
+						components.forEach((item) => {
+							item.setAttribute('scale', '1.5 1.5 1.5');
+							const id = item.getAttribute('id');
+							item.setAttribute('position', componentPositions[id]);
+						});
+
+						// resore component texts
+						const componentText = document.querySelectorAll("a-text.componentText");
+						componentText.forEach((item) => {
+							item.setAttribute('scale', '1 1 1');
+						});
+
+						// change state
+						state = 2;
 					}
 				});
 			}
