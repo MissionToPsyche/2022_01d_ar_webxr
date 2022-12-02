@@ -42,9 +42,14 @@ AFRAME.registerComponent('location', {
             document.querySelector('a-scene').appendChild(infoPlane);
             var infoText = document.createElement('a-text');
             infoText.setAttribute('id', 'info-text');
-            infoText.setAttribute('value', 'jfnwofjwodnw  cowojnjcwoc wecjwj cwo c');
+            infoText.setAttribute('value', 'Psyche is located in the asteroid belt.');
             infoText.setAttribute('position',{x:-.25,y:5,z:-14.7});
             document.querySelector('a-scene').appendChild(infoText);
+            var earth = document.createElement('a-entity');
+            earth.setAttribute('gltf-model', '#earth');
+            earth.setAttribute('size', '10');
+            earth.setAttribute('position',{x:0,y:0,z:-5}); 
+            document.querySelector('a-scene').appendChild(earth);
 
         }
         this.el.addEventListener('click',this.locationAdventure);
