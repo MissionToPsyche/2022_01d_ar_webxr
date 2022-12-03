@@ -13,13 +13,13 @@
 		<script>
 			AFRAME.registerComponent('playExplosionSounds', {
 				schema: {
-					autoplay: {default: 'false'}
+					autoplay: {default: 'false'},
+					on: {default: null}
 			  	},
 		  
 			 	init: function () {
-					var data = this.data;
-					var el = this.el;  					
-					el.setAttribute('autoplay', true);
+					var entity = document.querySelector('#explosion');
+					entity.components.sound.playSound();		
 			  	}
 			});
 		</script>
@@ -39,14 +39,13 @@
                 </a-asset-item>
 				<a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 				<audio id="impact" src="./sounds/impact.mp3" preload="auto"></audio>
-				<a-sound src="src: url(./sounds/explosion.mp3)" autoplay="true" position="0 2 5"></a-sound>
+				<audio id="explosion" src="./sounds/explosion.mp3" preload="auto"></audio>
 			</a-assets>
 
 			<!--Marker -->
 			<a-marker preset="hiro"> 
                 <!-- Intro Text -->
 				<a-box 
-					playExplosionSound
                     color="#666666" 
                     depth="1" 
                     height="0.25" 
@@ -71,6 +70,7 @@
 
                 <!-- Planetesimal -->
 				<a-gltf-model
+					sound = "src: url(./sounds/explosion.mp3); on: click",
 					id="Planetesimal" 
 					src="#planetesimal-model"
 					position="0 0 0"
