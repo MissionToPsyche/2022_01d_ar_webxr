@@ -9,27 +9,30 @@
             <script src="beginButton.js"></script>
             <script src="weight.js"></script>
             <script src="size.js"></script>
-            <script src="location.js"></script>
+            <script src="orbit.js"></script>
             <script src="backButton.js"></script>
 
             <a-scene cursor="rayOrigin: mouse">
                 <a-assets>
-                    <a-asset-item id="earth" src="../../models/gltf/planets/EarthWithClouds.gltf"></a-asset-item>
+                    <a-asset-item id="sun" src="../../models/gltf/planets/sun.glb"></a-asset-item>
+                    <a-asset-item id="mercury" src="../../models/gltf/planets/mercury.glb"></a-asset-item>
+                    <a-asset-item id="venus" src="../../models/gltf/planets/venus.glb"></a-asset-item>
+                    <a-asset-item id="earth" src="../../models/gltf/planets/earth.glb"></a-asset-item>
+                    <a-asset-item id="mars" src="../../models/gltf/planets/mars.glb"></a-asset-item>
+                    <a-asset-item id="jupiter" src="../../models/gltf/planets/jupiter.glb"></a-asset-item>
+                    <a-asset-item id="saturn" src="../../models/gltf/planets/saturn.glb"></a-asset-item>
+                    <a-asset-item id="uranus" src="../../models/gltf/planets/uranus.glb"></a-asset-item>
+                    <a-asset-item id="neptune" src="../../models/gltf/planets/neptune.glb"></a-asset-item>
+
                 </a-assets>
                 <a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 2"></a-light>
                 <a-text value="Instructions:\n Shoot the box to begin!" position="-1 4 -15"></a-text>
                 <a-entity id="button" geometry="primitive: box" material="color: red" position="0 0 -15" begin></a-entity>
                 <a-entity id="'rig">
-                    <a-entity camera position="0 2 0" look-controls>
+                    <a-entity camera position="0 2 0" look-controls wasd-controls>
                         <a-cursor id="cursor" raycaster fuse="true" fusetimeout=""></a-cursor>
                     </a-entity>
                 </a-entity>
-                
             </a-scene>
-
-            <script>
-
-            </script>
-
         </body>
 </html>

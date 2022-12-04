@@ -61,7 +61,7 @@ AFRAME.registerComponent('begin', {
             factElplane2.setAttribute('location','');
             factElplane2.setAttribute('id','fact-plane2');
             var factEltext2 = document.createElement('a-text');
-            factEltext2.setAttribute('value','Where is it at?');
+            factEltext2.setAttribute('value','What\'s its trajectory?');
             factEltext2.setAttribute('position',{x:-0.75, y:-3, z:-14.8});
             factEltext2.setAttribute('id','fact-text2');
 

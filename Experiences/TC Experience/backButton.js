@@ -45,7 +45,7 @@ AFRAME.registerComponent('back', {
             factElplane2.setAttribute('location','');
             factElplane2.setAttribute('id','fact-plane2');
             var factEltext2 = document.createElement('a-text');
-            factEltext2.setAttribute('value','Where is it at?');
+            factEltext2.setAttribute('value','What\'s its trajectory?');
             factEltext2.setAttribute('position',{x:-0.75, y:-3, z:-14.8});
             factEltext2.setAttribute('id','fact-text2');
 
@@ -71,6 +71,26 @@ AFRAME.registerComponent('back', {
                 document.querySelector('a-scene').appendChild(factElplane3);
                 document.querySelector('a-scene').appendChild(factEltext3);
             }, 5500);
+
+            //remove planets
+            var planet1 = document.getElementById('planet-sun');
+            planet1.parentNode.removeChild(planet1);
+            var planet2 = document.getElementById('planet-mercury');
+            planet2.parentNode.removeChild(planet2);
+            var planet3 = document.getElementById('planet-venus');
+            planet3.parentNode.removeChild(planet3);
+            var planet4 = document.getElementById('planet-earth');
+            planet4.parentNode.removeChild(planet4);
+            var planet5 = document.getElementById('planet-mars');
+            planet5.parentNode.removeChild(planet5);
+            var planet6 = document.getElementById('planet-jupiter');
+            planet6.parentNode.removeChild(planet6);
+            var planet7 = document.getElementById('planet-saturn');
+            planet7.parentNode.removeChild(planet7);
+            var planet8 = document.getElementById('planet-uranus');
+            planet8.parentNode.removeChild(planet8);
+            var planet9 = document.getElementById('planet-neptune');
+            planet9.parentNode.removeChild(planet9);
 
             //remove back button
             var backElPlane = document.getElementById('back-plane');
