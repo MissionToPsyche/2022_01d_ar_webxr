@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Scrollable Text Box Test</title>
+    <title>Psyche Materials Experience</title>
     <meta name="description">
     <!-- <script src="aframe-master.js"></script> -->
 
@@ -114,47 +114,37 @@
     <script>
 
       window.onload = function() {
-        var planeShape = document.createElement('a-plane');
-        planeShape.setAttribute('material', 'color:white; transparent: true; src:#scientist;repeat: 1;');
-        planeShape.setAttribute('scale', '1 2 1');
-        planeShape.setAttribute('id', 'scientist');
-        planeShape.setAttribute('color', 'white')
+        placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
+        'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
+        'color:white; transparent: true; src:#scientist;repeat: 1;');
 
-        planeShape.setAttribute('position', {x:-4,y:2,z:-3});
-        planeShape.setAttribute('animation', 'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
-        document.querySelector('a-scene').appendChild(planeShape);
+        placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
+        'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#boxHolder;repeat: 1;');
 
-        var instrShape = document.createElement('a-plane');
-        instrShape.setAttribute('position', {x:0.3,y:2,z:-2});
-        instrShape.setAttribute('scale', '40 0.001 1');
-        instrShape.setAttribute('id', 'instructions');
-        instrShape.setAttribute('animation', 'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear');
-        instrShape.setAttribute('rotation', '0 0 0');
-        instrShape.setAttribute('color', '#ffffff');
-        instrShape.setAttribute('material', 'color: white; src:#boxHolder; transparent:true; repeat: 1;');
-
-        var arrowShape = document.createElement('a-plane');
-        arrowShape.setAttribute('position', {x:-5.5, y:0.8, z:-2});
-        arrowShape.setAttribute('scale', '0.8 0.5 1');
-        arrowShape.setAttribute('id', 'arrow');
-        arrowShape.setAttribute('animation', 'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear');
-        arrowShape.setAttribute('rotation', '0 0 0');
-        arrowShape.setAttribute('color', '#ffffff');
-        arrowShape.setAttribute('material', 'color: white; src:#arrow; transparent:true; repeat: 1;');
+        var arrowShape = placeElement('a-plane', {x:-5.5, y:0.8, z:-2}, '0.8 0.5 1', 'arrow',
+        'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#arrow;repeat: 1;');
         arrowShape.setAttribute('click-event', '');
-
-        document.querySelector('a-scene').appendChild(arrowShape);
-  
-        document.querySelector('a-scene').appendChild(instrShape);
-        var textTest = document.createElement('a-text');
-        textTest.setAttribute('id', 'text');
-        textTest.setAttribute('value','Instructions Test');
-        textTest.setAttribute('position',{x:-0.1, y:2, z:-1});
-        textTest.setAttribute('scale', '0.3 0.3 0.3');
-        document.querySelector('a-scene').appendChild(textTest);
+        
+        var instructionsText = placeElement('a-text', {x:-0.1, y:2, z:-1}, '0.3 0.3 0.3', 'text',
+        'property: position; to: -0.1 2 -1; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#text;repeat: 1;');
+        instructionsText.setAttribute('value', 'Instructions Test');
       }
 
-      AFRAME.registerComponent('click-event', {
+      function placeElement(elementType, position, scale, id, animation, material) {
+        var shape = document.createElement(elementType);
+        shape.setAttribute('position', position);
+        shape.setAttribute('scale', scale);
+        shape.setAttribute('id', id);
+        shape.setAttribute('animation', animation);
+        shape.setAttribute('material', material);
+        document.querySelector('a-scene').appendChild(shape);
+        return shape;
+      }
+
+      var thing = AFRAME.registerComponent('click-event', {
 			init: function () {
 				var el = this.el; 
 				el.addEventListener('click', function () {
@@ -185,7 +175,6 @@
               scene.appendChild(spaceSky);
             }
           }
-          console.log('click');
         });
       }
     });
