@@ -40,10 +40,14 @@
 				<a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 				<audio id="impact" src="./sounds/impact.mp3" preload="auto"></audio>
 				<audio id="explosion" src="./sounds/explosion.mp3" preload="auto"></audio>
+				<img id="skyTexture"
+      				src="./images/stars background.jpg">
 			</a-assets>
 
 			<!--Marker -->
-			<a-marker preset="hiro"> 
+			<!--<a-marker preset="hiro">  -->
+				<a-sky src="#skyTexture"></a-sky>
+
                 <!-- Intro Text -->
 				<a-box 
                     color="#666666" 
@@ -68,16 +72,7 @@
                     </a-text>
                 </a-box>
 
-                <!-- Planetesimal -->
-				<a-gltf-model
-					sound = "src: url(./sounds/explosion.mp3); on: click",
-					id="Planetesimal" 
-					src="#planetesimal-model"
-					position="0 0 0"
-					rotation="-90 0 0"
-					animation__rotate="property: rotation; to: 360 0 0; loop: true; dur: 50000"
-					scale="0.005 0.005 0.005">
-				</a-gltf-model>
+
 
 				<!-- Other Asteroid -->
 				<a-gltf-model 
@@ -222,7 +217,7 @@
 					animation__rotate="property: rotation; to: 360 0 0; loop: true; dur: 50000"  
 					scale="0.001 0.001 0.001">
 				</a-gltf-model>
-			</a-marker>		  
+			<!-- </a-marker> -->		  
 
 			<a-light type="ambient" color="#fff"></a-light>
 			<a-light type="directional" color="#fff" intensity="0.3" position="-0.5 1 1"></a-light>
