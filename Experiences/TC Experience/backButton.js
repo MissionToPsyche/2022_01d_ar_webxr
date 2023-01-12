@@ -73,24 +73,54 @@ AFRAME.registerComponent('back', {
             }, 5500);
 
             //remove planets
+
             var planet1 = document.getElementById('planet-sun');
-            planet1.parentNode.removeChild(planet1);
+            if (planet1){
+                planet1.setAttribute('visible',"false");
+            }
+            // planet1.parentNode.removeChild(planet1);
+
+
             var planet2 = document.getElementById('planet-mercury');
-            planet2.parentNode.removeChild(planet2);
+            if (planet2){
+                planet2.setAttribute('visible',"false");
+            }
+            // planet2.parentNode.removeChild(planet2);
             var planet3 = document.getElementById('planet-venus');
-            planet3.parentNode.removeChild(planet3);
+            if (planet3){
+                planet3.setAttribute('visible',"false");
+            }
+            // planet3.parentNode.removeChild(planet3);
             var planet4 = document.getElementById('planet-earth');
-            planet4.parentNode.removeChild(planet4);
+            if (planet4){
+                planet4.setAttribute('visible',"false");
+            }
+            // planet4.parentNode.removeChild(planet4);
             var planet5 = document.getElementById('planet-mars');
-            planet5.parentNode.removeChild(planet5);
+            if (planet5){
+                planet5.setAttribute('visible',"false");
+            }
+            // planet5.parentNode.removeChild(planet5);
             var planet6 = document.getElementById('planet-jupiter');
-            planet6.parentNode.removeChild(planet6);
+            if (planet6){
+                planet6.setAttribute('visible',"false");
+            }
+            // planet6.parentNode.removeChild(planet6);
             var planet7 = document.getElementById('planet-saturn');
-            planet7.parentNode.removeChild(planet7);
+            if (planet7){
+                planet7.setAttribute('visible',"false");
+            }
+            // planet7.parentNode.removeChild(planet7);
             var planet8 = document.getElementById('planet-uranus');
-            planet8.parentNode.removeChild(planet8);
+            if (planet8){
+                planet8.setAttribute('visible',"false");
+            }
+            // planet8.parentNode.removeChild(planet8);
             var planet9 = document.getElementById('planet-neptune');
-            planet9.parentNode.removeChild(planet9);
+            if (planet9){
+                planet9.setAttribute('visible',"false");
+            }
+            // planet9.parentNode.removeChild(planet9);
 
             //remove back button
             var backElPlane = document.getElementById('back-plane');
