@@ -54,8 +54,8 @@
                     depth="1" 
                     height="0.25" 
                     width="3"
-                    position="0 3 0"
-                    rotation="0 0 0"
+                    position="0 0 3"
+                    rotation="90 0 0"
                     opacity="0"
                     animation="property: opacity; to: 1; loop: 1; dur:5000"
                     animation__fade_out="property: opacity; from:1; to: 0; loop: 1; delay:5000; dur:5000">
@@ -72,7 +72,15 @@
                     </a-text>
                 </a-box>
 
-
+                <!-- Planetesimal -->
+				<a-gltf-model
+					id="Planetesimal" 
+					src="#planetesimal-model"
+					position="0 0 0"
+					rotation="-90 0 0"
+					animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 50000"
+					scale="0.005 0.005 0.005">
+				</a-gltf-model>
 
 				<!-- Other Asteroid -->
 				<a-gltf-model 
@@ -222,7 +230,7 @@
 			<a-light type="ambient" color="#fff"></a-light>
 			<a-light type="directional" color="#fff" intensity="0.3" position="-0.5 1 1"></a-light>
 
-			<a-camera><a-cursor></a-cursor></a-camera>
+			<a-camera position="0 0 20"><a-cursor></a-cursor></a-camera>
 		</a-scene>
 	</body>
 </html>
