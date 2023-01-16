@@ -5,6 +5,16 @@ AFRAME.registerComponent('back', {
         this.backButton = function() {
             console.log('Back pressed!');
             
+            //change backgroud
+            var asteroidBG = document.getElementById('background');
+            asteroidBG.setAttribute('visible',"true");
+            var blackBG = document.getElementById('background2');
+            blackBG.setAttribute('visible',"false");
+
+            //reset asteroid position
+            var asteroidEl = document.getElementById('main-asset');
+            asteroidEl.setAttribute('position',{x:0,y:0,z:-15});
+
             //Add spacecraft
             var spacecraftEl = document.createElement('a-image');
             spacecraftEl.setAttribute('src','../../src/img/spacecraft.png');
@@ -18,7 +28,7 @@ AFRAME.registerComponent('back', {
             instructionElplane.setAttribute('position',{x:0, y:2.5, z:-15});
             instructionElplane.setAttribute('height','1');
             instructionElplane.setAttribute('width','2.5');
-            instructionElplane.setAttribute('color','#ffffff');
+            instructionElplane.setAttribute('color','#5b5b5b');
             instructionElplane.setAttribute('id','instruction-plane');
             var instructionEltext = document.createElement('a-text');
             instructionEltext.setAttribute('value','Choose your adventure.');
@@ -29,7 +39,7 @@ AFRAME.registerComponent('back', {
             factElplane.setAttribute('position',{x:-2.95, y:-3, z:-15});
             factElplane.setAttribute('height','1');
             factElplane.setAttribute('width','2');
-            factElplane.setAttribute('color','#ffffff');
+            factElplane.setAttribute('color','#5b5b5b');
             factElplane.setAttribute('weight','');
             factElplane.setAttribute('id','fact-plane');
             var factEltext = document.createElement('a-text');
@@ -41,7 +51,7 @@ AFRAME.registerComponent('back', {
             factElplane2.setAttribute('position',{x:0, y:-3, z:-15});
             factElplane2.setAttribute('height','1');
             factElplane2.setAttribute('width','2');
-            factElplane2.setAttribute('color','#ffffff');
+            factElplane2.setAttribute('color','#5b5b5b');
             factElplane2.setAttribute('location','');
             factElplane2.setAttribute('id','fact-plane2');
             var factEltext2 = document.createElement('a-text');
@@ -53,7 +63,7 @@ AFRAME.registerComponent('back', {
             factElplane3.setAttribute('position',{x:2.95, y:-3, z:-15});
             factElplane3.setAttribute('height','1');
             factElplane3.setAttribute('width','2');
-            factElplane3.setAttribute('color','#ffffff');
+            factElplane3.setAttribute('color','#5b5b5b');
             factElplane3.setAttribute('size','');
             factElplane3.setAttribute('id','fact-plane3');
             var factEltext3 = document.createElement('a-text');
