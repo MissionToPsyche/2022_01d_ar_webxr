@@ -8,7 +8,10 @@
 			multi:{x:-2, y:3, z:-7.5},
 			gamma:{x:2, y:3, z:-7.5},
 			magnet:{x:2, y:-1, z:-7.5},
-			xband:{x:-2, y:-1, z:-7.5}
+			xband:{x:-2, y:-1, z:-7.5},
+			multi2:{x:-2, y:3, z:-7.5},
+			gamma2:{x:2, y:3, z:-7.5},
+			magnet2:{x:2, y:-1, z:-7.5}
 		};
 		let boxes = [
 			boxDefaults, boxDefaults
@@ -36,7 +39,14 @@
 						var componentText = document.querySelector('a-text#multiText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:-3, y:3, z:-4.5});
-
+						// ...and for models
+						var component = document.querySelector('a-entity#multi2');
+						component.setAttribute('material', "wireframe: true");
+						component.removeAttribute('animation');
+						component.removeAttribute('animation__2');
+						component.setAttribute('animation', 'property: position; to: -2 3 -7.5; loop: false; dur: 300; easing: linear');
+						component.setAttribute('animation__2', 'property: scale; to: 0.5 0.5 0.5; loop: false; dur: 300; easing: linear');
+						
 						var component = document.querySelector('a-box#gamma');
 						component.setAttribute('material', "wireframe: true");
 						component.removeAttribute('animation');
@@ -46,6 +56,13 @@
 						var componentText = document.querySelector('a-text#gammaText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:1.5, y:3, z:-4.5});
+						// ...and for models
+						var component = document.querySelector('a-entity#gamma2');
+						component.setAttribute('material', "wireframe: true");
+						component.removeAttribute('animation');
+						component.removeAttribute('animation__2');
+						component.setAttribute('animation', 'property: position; to: 2 3 -7.5; loop: false; dur: 300; easing: linear');
+						component.setAttribute('animation__2', 'property: scale; to: 0.5 0.5 0.5; loop: false; dur: 300; easing: linear');
 
 						var component = document.querySelector('a-box#magnet');
 						component.setAttribute('material', "wireframe: true");
@@ -56,6 +73,13 @@
 						var componentText = document.querySelector('a-text#magnetText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:1.5, y:-1, z:-4.5});
+						// ...and for models
+						var component = document.querySelector('a-entity#magnet2');
+						component.setAttribute('material', 'wireframe: true');
+						component.removeAttribute('animation');
+						component.removeAttribute('animation__2');
+						component.setAttribute('animation', 'property: position; to: 2 -1 -7.5; loop: false; dur: 300; easing: linear');
+						component.setAttribute('animation__2', 'property: scale; to: 0.5 0.5 0.5; loop: false; dur: 300; easing: linear');
 
 						var component = document.querySelector('a-box#xband');
 						component.setAttribute('material', "wireframe: true");
@@ -88,6 +112,14 @@
 						const texts = document.querySelectorAll("a-text.componentText");
 						texts.forEach((item) => {
 							item.setAttribute('scale', '0 0 0')
+						});
+						// ...and for models
+						const componentModels = document.querySelectorAll("a-entity.component");
+						componentModels.forEach((item) => {
+							item.removeAttribute('animation');
+							item.removeAttribute('animation__2');
+							item.setAttribute('animation', 'property: position; to: 0 1 -7.5; loop: false; dur: 300; easing: linear');
+							item.setAttribute('animation__2', 'property: scale; to: 0 0 0; loop: false; dur: 300; easing: linear');
 						});
 
 						// change state
@@ -131,13 +163,22 @@
 						el.removeAttribute('animation');
 						el.removeAttribute('animation__2');
 						el.setAttribute('animation', 'property: position; to: 0 1 -7.5; loop: false; dur: 300; easing: linear');
-						el.setAttribute('animation__2', 'property: scale; to: 2 2 2; loop: false; dur: 300; easing: linear');
+						//el.setAttribute('animation__2', 'property: scale; to: 2 2 2; loop: false; dur: 300; easing: linear');
+						// ...and for models a different scale
+						el.setAttribute('animation__2', 'property: scale; to: 1 1 1; loop: false; dur: 300; easing: linear');
 						// hide spacecraft
 						const craft = document.querySelector("a-box.spacecraft");
 						craft.setAttribute('scale', '0 0 0');
 						// hide other components
 						const components = document.querySelectorAll("a-box.component");
 						components.forEach((item) => {
+							if (item != el) {
+								item.setAttribute('scale', '0 0 0');
+							}
+						});
+						// ...and for models
+						const componentModels = document.querySelectorAll("a-entity.component");
+						componentModels.forEach((item) => {
 							if (item != el) {
 								item.setAttribute('scale', '0 0 0');
 							}
@@ -163,8 +204,16 @@
 							const id = item.getAttribute('id');
 							item.setAttribute('position', componentPositions[id]);
 						});
+						// ...and for models
+						const componentModels = document.querySelectorAll("a-entity.component");
+						componentModels.forEach((item) => {
+							item.setAttribute('material', "wireframe: true");
+							item.setAttribute('scale', '0.5 0.5 0.5');
+							const id = item.getAttribute('id');
+							item.setAttribute('position', componentPositions[id]);
+						});
 
-						// resore component texts
+						// restore component texts
 						const componentText = document.querySelectorAll("a-text.componentText");
 						componentText.forEach((item) => {
 							item.setAttribute('scale', '1 1 1');
@@ -188,6 +237,16 @@
 		material="src: ../../../src/img/spacecraft.png; color: #696969; roughness: 1; metalness: 0"
 		separate-event></a-box>
 		<!-- components -->
+		<!--<a-assets>
+			<a-asset-item id="multipectral" src="../../../models/gltf/spacecraft/multispectral_imager.glb"></a-asset-item>
+		</a-assets>
+		-->
+		<a-entity class="component" id="multi2" gltf-model="url(../../../models/gltf/spacecraft/multispectral_imager.gltf)"
+				position="0 1 -7.5" rotation="-20 60 0" scale="0 0 0" component-select></a-entity>
+		<a-entity class="component" id="gamma2" gltf-model="url(../../../models/gltf/spacecraft/gamma_ray_and_neutron_spectrometer.gltf)"
+				position="0 1 '7.5" rotation="0 -30 0" scale="0 0 0" component-select></a-entity>
+		<a-entity class="component" id="magnet2" gltf-model="url(../../../models/gltf/spacecraft/magnetometer.gltf)"
+				position="0 1 '7.5" rotation="0 -40 0" scale="0 0 0" component-select></a-entity>
 		<a-box class="component" id="multi" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="blue" component-select></a-box>
 		<a-box class="component" id="gamma" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="red" component-select></a-box>
 		<a-box class="component" id="magnet" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="green" component-select></a-box>
