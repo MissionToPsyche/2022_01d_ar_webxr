@@ -5,7 +5,7 @@
 <html>
 
     <head>
-        <title>A-Frame Starter Kit - Mini Animated Planetarium</title>
+        <title>Where is Psyche in Solar System</title>
         <meta name="description" content="Build your own planetarium with A-frame">
         <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
@@ -50,6 +50,7 @@
                 <img id="moon-texture" src="https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2FMoonmap_from_clementine_data.png?1541102132708"
                     crossorigin="anonymous">
                 <a-asset-item id="asteroids" response-type="arraybuffer" src="https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2Fasteroides.glb?1541106805090"></a-asset-item>
+                <a-asset-item id="asteroidgltf" src="../models/psyche.gltf"></a-asset-item>
             </a-assets>
 
             <!-- Give some basic lighting here. Ambient lighting lights the
@@ -102,6 +103,19 @@
 
             <a-entity id="orbit-mars" mixin="orbit">
                 <a-sphere id="mars" position="0 0 12.5" radius=".4" src="#mars-texture" mixin="rotation"></a-sphere>
+            </a-entity>
+
+            <!-- PSYCHE ASTEROID -->
+            <a-entity id="orbit-psyche" mixin="orbit" animation="dur: 40000;">
+
+                <a-entity gltf-model="#asteroidgltf" 
+                    material="shader:standard"
+                    position="-3 0.2 15"
+                    color="#FFFFFF" 
+                    scale="0.01 0.01 0.01"
+                    animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true" 
+                    roughness="0.7"
+                    play-all-model-animations modify-materials></a-entity>
             </a-entity>
 
             <a-entity id="orbit-jupiter" mixin="orbit" animation="dur: 90000;">
