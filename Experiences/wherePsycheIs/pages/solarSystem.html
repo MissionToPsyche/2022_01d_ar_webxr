@@ -107,7 +107,8 @@
 
             <!-- PSYCHE ASTEROID -->
             <a-entity id="orbit-psyche" mixin="orbit" animation="dur: 40000;">
-
+                <a-entity light="type: directional; color: #BBB; intensity: 1" position="0 0 13"></a-entity>
+                
                 <a-entity gltf-model="#asteroidgltf" 
                     material="shader:standard"
                     position="-3 0.2 15"
