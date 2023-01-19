@@ -24,16 +24,12 @@ AFRAME.registerComponent('size', {
             instructionText.parentNode.removeChild(instructionText);
 
             //add back button
-            var backPlane = document.createElement('a-plane');
+            var backPlane = document.createElement('a-image');
             backPlane.setAttribute('id','back-plane');
             backPlane.setAttribute('back','');
-            backPlane.setAttribute('position',{x:0,y:-5,z:-15});
+            backPlane.setAttribute('src','../../../src/img/back-button.png');
+            backPlane.setAttribute('position',{x:0,y:-3.0,z:-10});
             document.querySelector('a-scene').appendChild(backPlane);
-            var backText = document.createElement('a-text');
-            backText.setAttribute('id', 'back-text');
-            backText.setAttribute('value', 'Back');
-            backText.setAttribute('position',{x:-.25,y:-5,z:-14.7});
-            document.querySelector('a-scene').appendChild(backText);
 
             //scene elements
             var infoPlane = document.createElement('a-plane');

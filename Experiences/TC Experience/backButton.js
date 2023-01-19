@@ -83,66 +83,59 @@ AFRAME.registerComponent('back', {
             }, 5500);
 
             //remove planets
-
             var planet1 = document.getElementById('planet-sun');
             if (planet1){
                 planet1.setAttribute('visible',"false");
             }
-            // planet1.parentNode.removeChild(planet1);
-
-
             var planet2 = document.getElementById('planet-mercury');
             if (planet2){
                 planet2.setAttribute('visible',"false");
             }
-            // planet2.parentNode.removeChild(planet2);
             var planet3 = document.getElementById('planet-venus');
             if (planet3){
                 planet3.setAttribute('visible',"false");
             }
-            // planet3.parentNode.removeChild(planet3);
             var planet4 = document.getElementById('planet-earth');
             if (planet4){
                 planet4.setAttribute('visible',"false");
             }
-            // planet4.parentNode.removeChild(planet4);
             var planet5 = document.getElementById('planet-mars');
             if (planet5){
                 planet5.setAttribute('visible',"false");
             }
-            // planet5.parentNode.removeChild(planet5);
             var planet6 = document.getElementById('planet-jupiter');
             if (planet6){
                 planet6.setAttribute('visible',"false");
             }
-            // planet6.parentNode.removeChild(planet6);
             var planet7 = document.getElementById('planet-saturn');
             if (planet7){
                 planet7.setAttribute('visible',"false");
             }
-            // planet7.parentNode.removeChild(planet7);
             var planet8 = document.getElementById('planet-uranus');
             if (planet8){
                 planet8.setAttribute('visible',"false");
             }
-            // planet8.parentNode.removeChild(planet8);
             var planet9 = document.getElementById('planet-neptune');
             if (planet9){
                 planet9.setAttribute('visible',"false");
             }
-            // planet9.parentNode.removeChild(planet9);
 
             //remove back button
             var backElPlane = document.getElementById('back-plane');
             backElPlane.parentNode.removeChild(backElPlane);
-            var backElText = document.getElementById('back-text');
-            backElText.parentNode.removeChild(backElText);
             var infoPlane = document.getElementById('info-plane');
-            infoPlane.parentNode.removeChild(infoPlane);
+            if (infoPlane){
+                infoPlane.parentNode.removeChild(infoPlane);
+            }
             var infoText = document.getElementById('info-text');
-            infoText.parentNode.removeChild(infoText);
+            if (infoText){
+                infoText.parentNode.removeChild(infoText);
+            }
             var florida = document.getElementById('florida');
-            florida.parentNode.removeChild(florida);
+            if (florida){
+                florida.parentNode.removeChild(florida);
+            }
+            
         }
         this.el.addEventListener('click',this.backButton);
     },

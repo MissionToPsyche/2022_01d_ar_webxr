@@ -6,6 +6,7 @@
     </head>
         <body>
             <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+            <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script> 
             <script src="beginButton.js"></script>
             <script src="weight.js"></script>
             <script src="size.js"></script>
@@ -13,6 +14,9 @@
             <script src="backButton.js"></script>
 
             <a-scene cursor="rayOrigin: mouse">
+                <a-camera look-controls>
+                    <a-cursor></a-cursor>
+                </a-camera>
                 <a-assets>
                     <a-asset-item id="sun" src="../../models/gltf/planets/sun.glb"></a-asset-item>
                     <a-asset-item id="mercury" src="../../models/gltf/planets/mercury.glb"></a-asset-item>
@@ -23,16 +27,11 @@
                     <a-asset-item id="saturn" src="../../models/gltf/planets/saturn.glb"></a-asset-item>
                     <a-asset-item id="uranus" src="../../models/gltf/planets/uranus.glb"></a-asset-item>
                     <a-asset-item id="neptune" src="../../models/gltf/planets/neptune.glb"></a-asset-item>
-
                 </a-assets>
+
                 <a-light type="directional" color="#FFF" intensity="1.5" position="-1 1 2"></a-light>
                 <a-text value="Instructions:\n Shoot the box to begin!" position="-1 4 -15"></a-text>
                 <a-entity id="button" geometry="primitive: box" material="color: red" position="0 0 -15" begin></a-entity>
-                <a-entity id="'rig">
-                    <a-entity camera position="0 2 0" look-controls wasd-controls>
-                        <a-cursor id="cursor" raycaster fuse="true" fusetimeout=""></a-cursor>
-                    </a-entity>
-                </a-entity>
             </a-scene>
         </body>
 </html>
