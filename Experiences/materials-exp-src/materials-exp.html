@@ -156,18 +156,22 @@
             var child = scene.children[i];
             if (child.id == 'scientist') {
               child.setAttribute('animation', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
             }
             if (child.id == 'instructions') {
               child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
             }
             if (child.id == 'arrow') {
               child.setAttribute('animation', 'property: position; to: 5.5 0.8 -2; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
             }
             if (child.id == 'text') {
               child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 1900; easing: linear');
             }
             if (child.id == 'labModel') {
-              child.setAttribute('animation', 'property: position; to: 0.5 -35.0 -2; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 9000; easing: linear');
+
             }
             if (child.id == 'tilesBG') {
               scene.removeChild(child);
@@ -176,6 +180,13 @@
               spaceSky.setAttribute('id', 'spaceBG');
               spaceSky.setAttribute('material', 'color: #ffffff; repeat: 10 10 1;');
               scene.appendChild(spaceSky);
+              var psyche = document.createElement('a-entity');
+              psyche.setAttribute('id', 'psyche');
+              psyche.setAttribute('gltf-model', '#psyche');
+              psyche.setAttribute('position', '0.03 1.7 -1.3');
+              psyche.setAttribute('scale', '0.01 0.01 0.01');
+              psyche.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
+              scene.appendChild(psyche);
             }
           }
         });
@@ -201,7 +212,6 @@
   <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2" id="labModel"></a-entity>
 
 
-      <a-box glow="enabled:true" position="0 0 0" rotation="0 45 0" color="#4CC3D9"></a-box>
       <!-- <a-plane position="0.5 0.7 -2" scale="0.8 0.5 1" color="#ffffff" material="white; src:#arrow; transparent:true; repeat: 1;" click-event></a-plane> -->
       <a-assets>
         <img id="scientist" src="elkins-tanton.png"  "/>
@@ -210,6 +220,7 @@
         <img id="boxHolder" src="border.png" />
         <img id="spaceBG" src="spaceBG.png" />
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
+        <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
 
         <a-asset-item id="tree-obj" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/tree.obj"></a-asset-item>
         <!-- <a-asset-item id="tree-mtl" src="https://rawgit.com/mrdoob/three.js/dev/examples/obj/cubes/cubes.mtl"></a-asset-item> -->
