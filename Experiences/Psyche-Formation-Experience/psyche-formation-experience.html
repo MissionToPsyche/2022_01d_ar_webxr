@@ -28,7 +28,13 @@
 				<a-timeline-animation select="#Asteroid" name="fadein"></a-timeline-animation>
 				<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
 				<a-timeline-animation select="#Asteroid" name="move_towards_planetesimal"></a-timeline-animation>
+
+				<a-timeline-animation select="#Debris1" name="togglevisible"></a-timeline-animation>
+				<a-timeline-animation select="#Debris1" name="move"></a-timeline-animation>
+
 				<a-timeline-animation select="#Asteroid" name="bounce_off"></a-timeline-animation>
+				<a-timeline-animation select="#Asteroid" name="fadeout"></a-timeline-animation>
+			
 			</a-timeline-group>
 		  </a-timeline>
 
@@ -45,18 +51,12 @@
 			src="../../models/gltf/otherAsteroid/scene.gltf">
 		  </a-asset-item>
 
-		  <a-mixin id="planetesimalMixin"
+		  <a-mixin id="spaceRockMixin"
 			animation__fadein="property: material.opacity; dur: 2000; from: 0; to: 1; autoplay: false"
-			animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false"
-			animation__rotate="property: rotation; to: 0 360 0; easing: easeInQuad; dur: 50000; autoplay: true; loop: true"
-		  ></a-mixin>
-
-		  <a-mixin id="asteroidMixin"
-			animation__fadein="property: material.opacity; dur: 2000; from: 0; to: 1; autoplay: false"
-			animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
-			animation__move_towards_planetesimal="property: position; to: 1 0 -9; easing:linear; loop: 1; dur: 5000"
-			animation__bounce_off="property: position; from: 1 0 -9; to: 20 0 -21; easing:linear; loop: 1; dur: 10000"
-			animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 10000"  	
+			animation__fadeout="property: material.opacity; dur: 2000; from: 1; to: 0.0; autoplay: false"
+			animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
+			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
+			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
 		  ></a-mixin>
 
 		  <a-mixin id="text"
@@ -66,7 +66,8 @@
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
 			position="0 2 -3"
-			visible="false"></a-mixin>
+			visible="false">
+		  </a-mixin>
 		</a-assets>
 
 		<!-- Background -->
@@ -77,22 +78,40 @@
 		<!-- Planetesimal -->
 		<a-gltf-model
 			id="Planetesimal" 
-			mixin="planetesimalMixin"
+			mixin="spaceRockMixin"
 			src="#planetesimal-model"
 			position="0 0 -10"
-			rotation="0 -90 0"
+			rotation="0 0 0"
 			scale="0 0 0"
 			opacity="0"
+			animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false"
 		></a-gltf-model>
 
 		<!-- Other Asteroid -->
 		<a-gltf-model 
 			id="Asteroid" 
-			mixin="asteroidMixin"
+			mixin="spaceRockMixin"
 			src="#asteroid-model"
 			position="10 0 -1"
 			rotation="0 0 0"
-			scale="0 0 0">
+			scale="0 0 0"
+			animation__rotate="property: rotation; to: 0 360 0; autoplay: true; loop: true; dur: 10000"
+			animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
+			animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 5000"
+			animation__bounce_off="property: position; from: 2 0 -7; to: 20 0 -21; easing:linear; autoplay:false; dur: 10000">
+		</a-gltf-model>
+
+		<!-- Debris 1-->
+		<a-gltf-model 
+			id="Debris1" 
+			mixin="spaceRockMixin"
+			src="#asteroid-model"
+			position="1 0 -7"
+			rotation="0 0 0"
+			visible="false"
+			animation__move="property: position; to: 3 10 -21; easing:linear; loop: 1; dur: 10000; autoplay: false"
+			animation__rotate="property: rotation; to: 360 0 0; loop: true; dur: 50000; autoplay:true"  
+			scale="0.001 0.001 0.001">
 		</a-gltf-model>
 	</a-scene>
   </body>
