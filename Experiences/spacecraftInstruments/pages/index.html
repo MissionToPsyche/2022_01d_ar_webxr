@@ -5,9 +5,9 @@
 	<script>
 		const boxDefaults = {scale:{x:1, y:1, z:1}, rotation:"0 45 0", enlarged:false, animating:false};
 		const componentPositions = {
-			multi:{x:-2, y:3, z:-7.5},
-			gamma:{x:2, y:3, z:-7.5},
-			magnet:{x:2, y:-1, z:-7.5},
+			//multi:{x:-2, y:3, z:-7.5},
+			//gamma:{x:2, y:3, z:-7.5},
+			//magnet:{x:2, y:-1, z:-7.5},
 			xband:{x:-2, y:-1, z:-7.5},
 			multi2:{x:-2, y:3, z:-7.5},
 			gamma2:{x:2, y:3, z:-7.5},
@@ -30,12 +30,14 @@
 						el.setAttribute('scale', "1.5 1.5 1.5");
 
 						// make instruments visible
+						/*
 						var component = document.querySelector('a-box#multi');
 						component.setAttribute('material', "wireframe: true");
 						component.removeAttribute('animation');
 						component.removeAttribute('animation__2');
 						component.setAttribute('animation', 'property: position; to: -2 3 -7.5; loop: false; dur: 300; easing: linear');
 						component.setAttribute('animation__2', 'property: scale; to: 1 1 1; loop: false; dur: 300; easing: linear');
+						*/
 						var componentText = document.querySelector('a-text#multiText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:-3, y:3, z:-4.5});
@@ -47,12 +49,14 @@
 						component.setAttribute('animation', 'property: position; to: -2 3 -7.5; loop: false; dur: 300; easing: linear');
 						component.setAttribute('animation__2', 'property: scale; to: 0.5 0.5 0.5; loop: false; dur: 300; easing: linear');
 						
+						/*
 						var component = document.querySelector('a-box#gamma');
 						component.setAttribute('material', "wireframe: true");
 						component.removeAttribute('animation');
 						component.removeAttribute('animation__2');
 						component.setAttribute('animation', 'property: position; to: 2 3 -7.5; loop: false; dur: 300; easing: linear');
 						component.setAttribute('animation__2', 'property: scale; to: 1 1 1; loop: false; dur: 300; easing: linear');
+						*/
 						var componentText = document.querySelector('a-text#gammaText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:1.5, y:3, z:-4.5});
@@ -64,12 +68,14 @@
 						component.setAttribute('animation', 'property: position; to: 2 3 -7.5; loop: false; dur: 300; easing: linear');
 						component.setAttribute('animation__2', 'property: scale; to: 0.5 0.5 0.5; loop: false; dur: 300; easing: linear');
 
+						/*
 						var component = document.querySelector('a-box#magnet');
 						component.setAttribute('material', "wireframe: true");
 						component.removeAttribute('animation');
 						component.removeAttribute('animation__2');
 						component.setAttribute('animation', 'property: position; to: 2 -1 -7.5; loop: false; dur: 300; easing: linear');
 						component.setAttribute('animation__2', 'property: scale; to: 1 1 1; loop: false; dur: 300; easing: linear');
+						*/
 						var componentText = document.querySelector('a-text#magnetText');
 						componentText.setAttribute('scale', '1 1 1');
 						componentText.setAttribute('position',{x:1.5, y:-1, z:-4.5});
@@ -247,10 +253,13 @@
 				position="0 1 '7.5" rotation="0 -30 0" scale="0 0 0" component-select></a-entity>
 		<a-entity class="component" id="magnet2" gltf-model="url(../../../models/gltf/spacecraft/magnetometer.gltf)"
 				position="0 1 '7.5" rotation="0 -40 0" scale="0 0 0" component-select></a-entity>
+
 		<a-box class="component" id="multi" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="blue" component-select></a-box>
 		<a-box class="component" id="gamma" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="red" component-select></a-box>
 		<a-box class="component" id="magnet" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="green" component-select></a-box>
+
 		<a-box class="component" id="xband" position="0 1 -7.5" scale="0 0 0" rotation="0 0 0" color="yellow" component-select></a-box>
+		
 		<!-- component text -->
 		<a-text class="componentText" id="multiText" value="Multispectral Imager"></a-text>
 		<a-text class="componentText" id="gammaText" value="Gamma Ray and\nNeutron Spectrometer"></a-text>
