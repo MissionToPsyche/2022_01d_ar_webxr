@@ -187,6 +187,11 @@
               psyche.setAttribute('scale', '0.01 0.01 0.01');
               psyche.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
               scene.appendChild(psyche);
+              var dish = document.createElement('a-plane');
+              dish.setAttribute('id', 'dish');
+              dish.setAttribute('position', '0 0 0');
+              dish.setAttribute('material', 'color:white; transparent: true; src:#dish;repeat: 1;');
+              scene.appendChild(dish);
             }
           }
         });
@@ -219,6 +224,7 @@
         <img id="arrow" src="arrow.png" />
         <img id="boxHolder" src="border.png" />
         <img id="spaceBG" src="spaceBG.png" />
+        <img id="dish" src="dish.png" />
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
         <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
 
