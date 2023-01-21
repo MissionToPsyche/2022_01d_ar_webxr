@@ -1,37 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <title>Psyche</title>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
     </head>
         <body>
-            <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-            <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script> 
-            <script src="beginButton.js"></script>
-            <script src="weight.js"></script>
-            <script src="size.js"></script>
-            <script src="orbit.js"></script>
-            <script src="backButton.js"></script>
+            <script>
+                AFRAME.registerComponent("link", {
+                  init: function() {
+                    this.el.addEventListener("click", (e) => {
+                      window.location = this.data.href;
+                    })
+                  },
+                  remove: function() {
+                    this.el.removeEventListener("click",(e));
+                  }
+                });
+              </script>
+              
+              <a-scene cursor="rayOrigin: mouse">
+                <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
+                <a-text color="black" position="0 3 -10" value="Click the ship to \nlaunch the mission!" z-offset="0.15" 
+                    height="5" width="5" align="center" geometry="primitive: plane; width: 2; height: auto"   material="color: yellow"></a-text>
+                <a-image id="spacecraft" position="0 1.5 -10" src="../../src/img/spacecraft.png"  link="href: adventure.html"></a-image>
 
-            <a-scene cursor="rayOrigin: mouse">
-                <a-camera look-controls>
-                    <a-cursor></a-cursor>
-                </a-camera>
-                <a-assets>
-                    <a-asset-item id="sun" src="../../models/gltf/planets/sun.glb"></a-asset-item>
-                    <a-asset-item id="mercury" src="../../models/gltf/planets/mercury.glb"></a-asset-item>
-                    <a-asset-item id="venus" src="../../models/gltf/planets/venus.glb"></a-asset-item>
-                    <a-asset-item id="earth" src="../../models/gltf/planets/earth.glb"></a-asset-item>
-                    <a-asset-item id="mars" src="../../models/gltf/planets/mars.glb"></a-asset-item>
-                    <a-asset-item id="jupiter" src="../../models/gltf/planets/jupiter.glb"></a-asset-item>
-                    <a-asset-item id="saturn" src="../../models/gltf/planets/saturn.glb"></a-asset-item>
-                    <a-asset-item id="uranus" src="../../models/gltf/planets/uranus.glb"></a-asset-item>
-                    <a-asset-item id="neptune" src="../../models/gltf/planets/neptune.glb"></a-asset-item>
-                </a-assets>
-
-                <a-light type="directional" color="#FFF" intensity="1.5" position="-1 1 2"></a-light>
-                <a-text value="Instructions:\n Shoot the box to begin!" position="-1 4 -15"></a-text>
-                <a-entity id="button" geometry="primitive: box" material="color: red" position="0 0 -15" begin></a-entity>
-            </a-scene>
+              </a-scene> 
         </body>
 </html>
