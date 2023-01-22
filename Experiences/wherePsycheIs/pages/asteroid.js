@@ -10,5 +10,7 @@ function asteroidExploreBtnClick() {
     document.getElementById("asteroidExploreBtn").style.display = "none"
 
     // Show the earth button
-    document.getElementById("earthBtn").style.display = "block"
+    // document.getElementById("earthBtn").style.display = "block"
+    document.getElementById("findPsyche").style.display = "block"
+
 }
