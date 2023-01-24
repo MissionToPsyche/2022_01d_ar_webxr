@@ -1,9 +1,12 @@
 <head>
 	<title>My A-Frame Scene</title>
 	<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+	<!-- A-timeline scripts -->
 	<script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> 
-	<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script> 
-  </head>
+	<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
+	<!-- Particle scripts--> 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
+</head>
 
   <body>
 	<a-scene animation-timeline__1="timeline: #myTimeline; loop: true">
@@ -18,23 +21,15 @@
 			<a-timeline-animation select="#text1" name="togglevisibleoff"></a-timeline-animation>
 
 			<!-- Planetesimal appearing animation -->
-			<a-timeline-group>
-				<a-timeline-animation select="#Planetesimal" name="fadein"></a-timeline-animation>
-				<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
-			</a-timeline-group>
+			<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
 
-			<!-- Asteroid appearing animation -->
-			<a-timeline-group>
-				<a-timeline-animation select="#Asteroid" name="fadein"></a-timeline-animation>
-				<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
-				<a-timeline-animation select="#Asteroid" name="move_towards_planetesimal"></a-timeline-animation>
-
-				<a-timeline-animation select="#Debris1" name="togglevisible"></a-timeline-animation>
-				<a-timeline-animation select="#Debris1" name="move"></a-timeline-animation>
-
-				<a-timeline-animation select="#Asteroid" name="bounce_off"></a-timeline-animation>
-				<a-timeline-animation select="#Asteroid" name="fadeout"></a-timeline-animation>
+			<!-- Asteroid appearing animations -->
+			<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
+			<a-timeline-animation select="#Asteroid" name="move_towards_planetesimal"></a-timeline-animation>
 			
+			<a-timeline-group>
+				<a-timeline-animation select="#Particles" name="enable"></a-timeline-animation>
+				<a-timeline-animation select="#Asteroid" name="bounce_off"></a-timeline-animation>
 			</a-timeline-group>
 		  </a-timeline>
 
@@ -52,11 +47,7 @@
 		  </a-asset-item>
 
 		  <a-mixin id="spaceRockMixin"
-			animation__fadein="property: material.opacity; dur: 2000; from: 0; to: 1; autoplay: false"
-			animation__fadeout="property: material.opacity; dur: 2000; from: 1; to: 0.0; autoplay: false"
 			animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
-			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
-			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
 		  ></a-mixin>
 
 		  <a-mixin id="text"
@@ -69,6 +60,13 @@
 			visible="false">
 		  </a-mixin>
 		</a-assets>
+
+		<!-- Particle system uses 'default' preset, setting custom colors. -->
+		<a-entity id="Particles" 
+			position="0 0 -7"
+			animation__enable="property: particle-system.enabled; from: false; to: true; dur:1; autoplay: false"
+			animation__disable="property: particle-system.enabled; from: true; to: false; dur:1; autoplay: false"
+			particle-system="enabled:false; texture: images/smokeparticle.png; particleCount:10000; color: #FF0000,#444400; velocityValue: 0 0 0; accelerationSpread: 0 0 0; accelerationValue: 0 0 0; maxAge: 1.5"></a-entity>
 
 		<!-- Background -->
 		<a-sky src="#skyTexture"></a-sky>
@@ -83,7 +81,6 @@
 			position="0 0 -10"
 			rotation="0 0 0"
 			scale="0 0 0"
-			opacity="0"
 			animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false"
 		></a-gltf-model>
 
@@ -99,19 +96,6 @@
 			animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
 			animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 5000"
 			animation__bounce_off="property: position; from: 2 0 -7; to: 20 0 -21; easing:linear; autoplay:false; dur: 10000">
-		</a-gltf-model>
-
-		<!-- Debris 1-->
-		<a-gltf-model 
-			id="Debris1" 
-			mixin="spaceRockMixin"
-			src="#asteroid-model"
-			position="1 0 -7"
-			rotation="0 0 0"
-			visible="false"
-			animation__move="property: position; to: 3 10 -21; easing:linear; loop: 1; dur: 10000; autoplay: false"
-			animation__rotate="property: rotation; to: 360 0 0; loop: true; dur: 50000; autoplay:true"  
-			scale="0.001 0.001 0.001">
 		</a-gltf-model>
 	</a-scene>
   </body>
