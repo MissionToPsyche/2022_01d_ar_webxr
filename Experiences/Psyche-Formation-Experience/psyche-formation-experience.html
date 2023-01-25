@@ -15,13 +15,19 @@
 
 		  <a-timeline id="myTimeline">
 			<!-- Intro text animation-->
+			<a-timeline-animation select="#introText" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#introText" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#introText" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#introText" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- Planetesimal appearing animation -->
+			<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
+
+			<!-- Text about asteroid impact animation-->
 			<a-timeline-animation select="#text1" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="fadein"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="togglevisibleoff"></a-timeline-animation>
-
-			<!-- Planetesimal appearing animation -->
-			<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
 
 			<!-- Asteroid appearing animations -->
 			<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
@@ -31,6 +37,31 @@
 				<a-timeline-animation select="#Particles" name="enable"></a-timeline-animation>
 				<a-timeline-animation select="#Asteroid" name="bounce_off"></a-timeline-animation>
 			</a-timeline-group>
+
+			<!-- Crust stripped text animations-->
+			<a-timeline-animation select="#text2" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- Core hardening text animations-->
+			<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- Smaller asteroid impacts text animations-->
+			<a-timeline-animation select="#text4" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text4" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text4" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- How psyche looks today text animations-->
+			<a-timeline-animation select="#text5" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text5" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text5" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
+
 		  </a-timeline>
 
 		  <img id="skyTexture"
@@ -56,7 +87,7 @@
 			animation__fadeout="property: text.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false"
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
-			position="0 2 -3"
+			position="0 3 -3"
 			visible="false">
 		  </a-mixin>
 		</a-assets>
@@ -71,7 +102,12 @@
 		<!-- Background -->
 		<a-sky src="#skyTexture"></a-sky>
 
-		<a-entity id="text1" mixin="text" text="value: How was Psyche formed?"></a-entity>
+		<a-entity id="introText" mixin="text" text="value: How do scienctists think Psyche formed?"></a-entity>
+		<a-entity id="text1" mixin="text" text="value: It is theorized that an outside body, or bodies, impacted Psyche"></a-entity>
+		<a-entity id="text2" mixin="text" text="value: These impacts stripped the mantle and crust off of psyche"></a-entity>
+		<a-entity id="text3" mixin="text" text="value: The remaining molten core began to harden"></a-entity>
+		<a-entity id="text4" mixin="text" text="value: Smaller objects continued to impact Psyche"></a-entity>
+		<a-entity id="text5" mixin="text" text="value: And this is how Psyche looks today"></a-entity>
 
 		<!-- Planetesimal -->
 		<a-gltf-model
@@ -95,7 +131,7 @@
 			animation__rotate="property: rotation; to: 0 360 0; autoplay: true; loop: true; dur: 10000"
 			animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
 			animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 5000"
-			animation__bounce_off="property: position; from: 2 0 -7; to: 20 0 -21; easing:linear; autoplay:false; dur: 10000">
+			animation__bounce_off="property: position; from: 2 0 -7; to: 0 20 -11; easing:linear; autoplay:false; dur: 7500">
 		</a-gltf-model>
 	</a-scene>
   </body>
