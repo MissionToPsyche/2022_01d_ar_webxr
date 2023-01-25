@@ -18,48 +18,26 @@
                 <a-asset-item id="venus" src="../../models/gltf/planets/venus.glb"></a-asset-item>
                 <a-asset-item id="earth" src="../../models/gltf/planets/earth.glb"></a-asset-item>
                 <a-asset-item id="mars" src="../../models/gltf/planets/mars.glb"></a-asset-item>
-                <a-asset-item id="jupiter" src="../../models/gltf/planets/jupiter.glb"></a-asset-item>
+                <!-- <a-asset-item id="jupiter" src="../../models/gltf/planets/jupiter.glb"></a-asset-item>
                 <a-asset-item id="saturn" src="../../models/gltf/planets/saturn.glb"></a-asset-item>
                 <a-asset-item id="uranus" src="../../models/gltf/planets/uranus.glb"></a-asset-item>
-                <a-asset-item id="neptune" src="../../models/gltf/planets/neptune.glb"></a-asset-item>
+                <a-asset-item id="neptune" src="../../models/gltf/planets/neptune.glb"></a-asset-item> -->
             </a-assets>
 
             <a-gltf-model
                 src="#sun"
                 id="planet-sun"
-                position="0 -25 -100"
-                scale="30 30 30"
+                position="0 2 -20"
+                scale="6 6 6"
             ></a-gltf-model>
-            <a-gltf-model
-                src="#mercury"
-                id="planet-mercury"
-                position="0 -19 -100"
-                scale="5 5 5"
-            ></a-gltf-model>
-            <a-gltf-model
-                src="#venus"
-                id="planet-venus"
-                position="0 -14 -100"
-                scale="8 8 8"
-            ></a-gltf-model>
-            <a-gltf-model
-                src="#earth"
-                id="planet-earth"
-                position="0 -9 -100"
-                scale="10 10 10"
-            ></a-gltf-model>
+            <!-- 
+            
             <a-gltf-model
                 src="#mars"
                 id="planet-mars"
                 position="0 -4 -100"
                 scale="10 10 10"
             ></a-gltf-model>
-            <a-image
-                id="asteroid" 
-                position="0 1 -100"
-                scale="2 2 2" 
-                src="../../src/img/psyche-asteroid.png"
-            ></a-image>
             <a-gltf-model
                 src="#jupiter"
                 id="planet-jupiter"
@@ -83,7 +61,51 @@
                 id="planet-neptune"
                 position="0 31 -100"
                 scale="20 20 20"
-            ></a-gltf-model>
+            ></a-gltf-model> -->
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 10000; easing: linear">
+                <a-gltf-model
+                    src="#mercury"
+                    id="planet-mercury"
+                    position="0 1.66 0"
+                    scale="2 2 2"
+                ></a-gltf-model>
+            </a-entity>
+            
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 20000; easing: linear">
+                <a-gltf-model
+                    src="#venus"
+                    id="planet-venus"
+                    position="0 3 0"
+                    scale="2 2 2"
+                ></a-gltf-model>
+            </a-entity>
+            
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 30000; easing: linear">
+                <a-gltf-model
+                    src="#earth"
+                    id="planet-earth"
+                    position="0 4.33 0"
+                    scale="2 2 2"
+                ></a-gltf-model>
+            </a-entity>
+
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 40000; easing: linear">
+                <a-gltf-model
+                    src="#mars"
+                    id="planet-mars"
+                    position="0 5.66 0"
+                    scale="2 2 2"
+                ></a-gltf-model>
+            </a-entity>
+                
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 50000; easing: linear">
+                <a-image
+                id="asteroid" 
+                position="0 7 0"
+                scale="1 1 1" 
+                src="../../src/img/psyche-asteroid.png"
+                ></a-image>
+            </a-entity>
 
             <a-text 
                 id="location-button"
