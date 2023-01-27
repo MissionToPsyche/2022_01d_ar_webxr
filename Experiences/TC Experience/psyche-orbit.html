@@ -28,7 +28,7 @@
                 src="#sun"
                 id="planet-sun"
                 position="0 2 -20"
-                scale="6 6 6"
+                scale="7.5 7.5 7.5"
             ></a-gltf-model>
             <!-- 
             
@@ -62,63 +62,78 @@
                 position="0 31 -100"
                 scale="20 20 20"
             ></a-gltf-model> -->
-            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 10000; easing: linear">
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 8800; easing: linear">
                 <a-gltf-model
                     src="#mercury"
                     id="planet-mercury"
-                    position="0 1.66 0"
-                    scale="2 2 2"
-                ></a-gltf-model>
+                    position="0 -1.66 0"
+                    scale="2.2 2.2 2.2"
+                >
+                <a-text position="0 0 0" value="\n\nMercury" align="center" animation = "property: rotation; to: 0 0 -360; loop: true; dur: 8800; easing: linear"
+                    ></a-text>
+                </a-gltf-model>
             </a-entity>
             
-            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 20000; easing: linear">
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 22500; easing: linear">
                 <a-gltf-model
                     src="#venus"
                     id="planet-venus"
-                    position="0 3 0"
-                    scale="2 2 2"
-                ></a-gltf-model>
+                    position="3 0 0"
+                    scale="2.2 2.2 2.2"
+                >
+                <a-text position="0 0 0" value="\n\nVenus" align="center" animation = "property: rotation; to: 0 0 -360; loop: true; dur: 22500; easing: linear"
+                ></a-text>
+            </a-gltf-model>
             </a-entity>
             
-            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 30000; easing: linear">
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 36500; easing: linear">
                 <a-gltf-model
                     src="#earth"
                     id="planet-earth"
-                    position="0 4.33 0"
-                    scale="2 2 2"
-                ></a-gltf-model>
+                    position="-4.33 0 0"
+                    scale="2.2 2.2 2.2"
+                >
+                <a-text position="0 0 0" value="\n\nEarth" align="center" animation = "property: rotation; to: 0 0 -360; loop: true; dur: 36500; easing: linear"
+                ></a-text>
+            </a-gltf-model>
             </a-entity>
 
-            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 40000; easing: linear">
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 68700; easing: linear">
                 <a-gltf-model
                     src="#mars"
                     id="planet-mars"
-                    position="0 5.66 0"
-                    scale="2 2 2"
-                ></a-gltf-model>
+                    position="0 -5.66 0"
+                    scale="2.2 2.2 2.2"
+                >
+                <a-text position="0 0 0" value="\n\nMars" align="center" animation = "property: rotation; to: 0 0 -360; loop: true; dur: 68700; easing: linear"
+                ></a-text>
+            </a-gltf-model>
             </a-entity>
                 
-            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 50000; easing: linear">
+            <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 182700; easing: linear">
                 <a-image
                 id="asteroid" 
                 position="0 7 0"
-                scale="1 1 1" 
+                scale="0.5 0.5 0.5" 
                 src="../../src/img/psyche-asteroid.png"
-                ></a-image>
+                >
+                <a-text position="0 0 0" value="\n\nPsyche" color="yellow" align="center" height="20" width="20" animation = "property: rotation; to: 0 0 -360; loop: true; dur: 182700; easing: linear"
+                ></a-text>
+            </a-image>
             </a-entity>
 
             <a-text 
-                id="location-button"
+                id="back-button"
                 color="black" 
-                position="0 -2 -10" 
-                value="Back To Main"
+                position="0 -2.2 -10" 
+                value="Return"
                 z-offset="0.15" 
                 height="5" 
                 width="5" 
                 align="center" 
-                geometry="primitive: plane; width: 1.8; height: 0.5"   
-                material="color: grey"></a-text>
-                <a-entity id="button" visible="false" geometry="primitive: box; width:3.5; height:.45" position="0.1 -6 -10" link="href:adventure.html"></a-entity>
+                geometry="primitive: plane; width: 1.8; height: 0.35"   
+                material="color: "></a-text>
+                <a-entity id="button" visible="false" geometry="primitive: box; width:3.5; height:.45" position="0.1 -6.5 -10" link="href:adventure.html"></a-entity>
         </a-scene> 
     </body>    
 </html>
