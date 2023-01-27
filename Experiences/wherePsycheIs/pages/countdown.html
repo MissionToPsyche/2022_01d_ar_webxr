@@ -28,10 +28,14 @@
     </div>
     <iframe src="../sound/swoosh-sound.wav" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe> 
-    <audio controls autoplay loop>
+    <audio controls autoplay loop id="countdown-audio">
       <source src="../sound/swoosh-sound.wav" type="audio/wav">
       Your browser does not support the audio element.
     </audio>
+    <script>
+      var audio = document.getElementById("countdown-audio");
+      audio.volume = 0.2;
+    </script>
     <script src="countdown.js"></script>
 </body>
 </html>
