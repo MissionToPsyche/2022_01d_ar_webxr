@@ -8,6 +8,7 @@
     <title>Psyche Mission</title>
     <link rel="stylesheet" href="../style.css">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
 </head>
 <body>
     <div class="mainDiv">
@@ -49,7 +50,9 @@
         color="#FFFFFF" 
         radius="3"></a-sphere>
       
-        <a-sky id="image-360" src="#galaxy"></a-sky>
+       <!--  <a-sky id="image-360" src="#galaxy"></a-sky> -->
+       <a-sky color="black"></a-sky>
+       <a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
         <a-camera>
             <!-- <a-image src="#border" height="2.5" width="1.5" position="0 0 -1.5" transparent="true" alpha-test="0.5"></a-image> -->
             <!-- <a-image src="#welcomeToSpace" height="0.2" width="0.7" position="0 0.1 -1"></a-image>
