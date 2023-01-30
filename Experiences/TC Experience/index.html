@@ -21,7 +21,10 @@
                 });
               </script>
               
-              <a-scene cursor="rayOrigin: mouse">
+              <a-scene>
+                <a-camera wasd-controls-enabled="false">
+                  <a-cursor></a-cursor>
+                </a-camera>
                 <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
                 <a-text color="black" position="0 3 -10" value="Click the ship to \nlaunch the mission!" z-offset="0.15" 
                     height="5" width="5" align="center" geometry="primitive: plane; width: 2; height: auto"   material="color: yellow"></a-text>
