@@ -28,7 +28,13 @@
 			<a-timeline-animation select="#text1" name="fadein"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="togglevisibleoff"></a-timeline-animation>
-
+			
+			<!-- Crust stripped text animations-->
+			<a-timeline-animation select="#text2" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="togglevisibleoff"></a-timeline-animation>
+			
 			<!-- Asteroid appearing animations -->
 			<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
 			<a-timeline-animation select="#Asteroid" name="move_towards_planetesimal"></a-timeline-animation>
@@ -39,18 +45,17 @@
 			<a-timeline-animation select="#Planetesimal" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#Molten" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#Asteroid" name="bounce_off2"></a-timeline-animation>	
-
-			<!-- Crust stripped text animations-->
-			<a-timeline-animation select="#text2" name="togglevisible"></a-timeline-animation>
-			<a-timeline-animation select="#text2" name="fadein"></a-timeline-animation>
-			<a-timeline-animation select="#text2" name="fadeout"></a-timeline-animation>
-			<a-timeline-animation select="#text2" name="togglevisibleoff"></a-timeline-animation>
+			<a-timeline-animation select="#Asteroid" name="togglevisibleoff"></a-timeline-animation>
 
 			<!-- Core hardening text animations-->
 			<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- Core hardening animations -->
+			<a-timeline-animation select="#Molten" name="togglevisibleoff"></a-timeline-animation>
+			<a-timeline-animation select="#Hardened" name="togglevisible"></a-timeline-animation>
 
 			<!-- Smaller asteroid impacts text animations-->
 			<a-timeline-animation select="#text4" name="togglevisible"></a-timeline-animation>
@@ -106,11 +111,11 @@
 
 		<!-- Texts -->
 		<a-entity id="introText" mixin="text" text="value: How do scienctists think Psyche formed?"></a-entity>
-		<a-entity id="text1" mixin="text" text="value: It is theorized that an outside body, or bodies, impacted Psyche"></a-entity>
-		<a-entity id="text2" mixin="text" text="value: These impacts stripped the mantle and crust off of psyche"></a-entity>
-		<a-entity id="text3" mixin="text" text="value: The remaining molten core began to harden"></a-entity>
-		<a-entity id="text4" mixin="text" text="value: Smaller objects continued to impact Psyche"></a-entity>
-		<a-entity id="text5" mixin="text" text="value: And this is how Psyche looks today"></a-entity>
+		<a-entity id="text1" mixin="text" text="value: It is theorized that a large outside body, or bodies, impacted Psyche."></a-entity>
+		<a-entity id="text2" mixin="text" text="value: These impacts would strip the mantle and crust off of Psyche."></a-entity>
+		<a-entity id="text3" mixin="text" text="value: The remaining molten core began to harden."></a-entity>
+		<a-entity id="text4" mixin="text" text="value: Smaller objects continued to impact Psyche."></a-entity>
+		<a-entity id="text5" mixin="text" text="value: And this is how Psyche looks today."></a-entity>
 
 		<!-- Planetesimal -->
 		<a-gltf-model
@@ -146,6 +151,16 @@
 			radius="2"
 			visible="false"
 			src="./images/molten.png">
+		</a-sphere> 
+
+		<!-- Molten Planetesimal-->
+		<a-sphere 
+			id="Hardened"	
+			mixin="spaceRockMixin"
+			position="0 0 -10"
+			radius="2"
+			visible="false"
+			src="./images/asteroid.png">
 		</a-sphere> 
 	</a-scene>
   </body>
