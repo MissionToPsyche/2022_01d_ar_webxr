@@ -18,31 +18,56 @@
 
             <a-image
                 id="asteroid" 
-                position="1 1.5 -5" 
+                position="1 1 -5"
+                scale="1 1 1" 
                 src="../../src/img/psyche-asteroid.png"
             ></a-image>
-            <a-image
-                id="florida"
-                src="../../src/img/florida.png"
-                position="-1 1.5 -5"
-            ></a-image>
-
+            <a-gltf-model
+                id="moon"
+                scale="1 1 1"
+                src="../../models/gltf/planets/moon.glb"
+                position="-1 1 -5"
+            ></a-gltf-model>
+                
             <a-text
                 id="info"
                 color="#03cffc" 
-                position="0 5 -10" 
-                value="-- skjcnwkcwjxnwj \n\n -- owodwdkdmwddakmqm \n\n -- eijndwjidn2s"
+                position="-2.2 3.9 -10" 
+                value="-- Scientists estimate the mean diameter of Psyche is about 140 miles (226 km) 
+                    \n\n -- That is roughly the distance from Los Angeles to San Francisco 
+                    \n\n -- Psyche is in the shape of a 
+                    \n\n -- I's estimated to be 1/14 the size of Earth's Moon"
                 z-offset="0.15" 
                 height="5" 
-                width="5" 
-                align="" 
-                ></a-text>
+                width="5"
+                align=""
+            >
+                <a-text
+                id="jacobi"
+                color="yellow" 
+                position="2.82 -0.48 0" 
+                value="JACOBI ELLIPSOID"
+                z-offset="0.15" 
+                height="7" 
+                width="7"
+                align=""
+                >
+                    <a-entity 
+                        position="1.3 -0.05 0.5" 
+                        geometry="primitive: plane"
+                        visible="true" 
+                        scale="3 .5 0"
+                        material="color:blue;"
+                        event-set__enter="_event: click; _target: #asteroid; animation.property:scale; animation.to: 1.2 0.8 1; animation.dur: 5000; animation.easing: linear;"
+                    ></a-entity>
+                </a-text>    
+            </a-text>
 
             <a-text 
                 id="back-button"
                 color="black" 
                 position="0 -2 -10" 
-                value="Back To Main"
+                value="Return"
                 z-offset="0.15" 
                 height="5" 
                 width="5" 
