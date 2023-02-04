@@ -6,8 +6,10 @@
     <meta name="description">
     <!-- <script src="aframe-master.js"></script> -->
 
-	<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
+	<!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script> -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="dist/aframe-particle-system-component.min.js"></script>
 
     <!-- <script src="https://aframe.io/releases/0.9.0/aframe.js"></script> -->
     <!-- <script src="aframe-sprite-particles-component.js"></script> -->
@@ -45,7 +47,7 @@
       color: #ffca2c;
       border: 5px solid #0cfff7ff;
       border-radius: 20px;
-      scrollbar-color: #00ccff #7b00ff;
+      scrollbar-color: #47a6ff #7b00ff;
       top: -300px;
       bottom: 0;
       left: 0;
@@ -120,6 +122,8 @@
     <script>
 
       window.onload = function() {
+
+
         placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
         'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
         'color:white; transparent: true; src:#scientist;repeat: 1;');
@@ -138,9 +142,6 @@
         'color:white; transparent: true; src:#text;repeat: 1;');
         instructionsText.setAttribute('value', 'Instructions Test');
 
-        // var dish = placeElement('a-plane', {x:0, y:0, z:-2}, '3 3 3', 'dish',
-        // 'property: position; to: 0 0 -2; loop: false; dur: 1000; easing: linear',
-        // 'color:white; transparent: true; src:#dish;repeat: 1;');
 
       }
 
@@ -159,6 +160,17 @@
         init: function () {
           var el = this.el;
           el.addEventListener('click', function () {
+            if (document.getElementById('beam') != null) {
+              var beam = document.getElementById('beam');
+              beam.remove();
+            }
+            var beam = document.createElement('a-entity');
+            beam.setAttribute('id', 'beam');
+            beam.setAttribute('position', '0 -10 2');
+            // 0 -6 -5
+            // rotationAngle 120
+            beam.setAttribute('particle-system', 'accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.5; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00');
+            document.querySelector('a-scene').appendChild(beam);
             console.log("test");
           })
         }
@@ -169,28 +181,46 @@
 				var el = this.el; 
 				el.addEventListener('click', function () {
           var scene = document.querySelector('a-scene');
+
+              var objectsToDelete = [];
           for (var i = 0; i < scene.children.length; i++) {
             var child = scene.children[i];
             if (child.id == 'scientist') {
               child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
               child.setAttribute('animation__2', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
+              // scene.removeChild(child);
+              objectsToDelete.push(child);
             }
             if (child.id == 'instructions') {
-              child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 900; easing: linear');
-              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 900; easing: linear');
+              // child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              // scene.removeChild('instructions');
+              console.log("pushed instructions");
+              objectsToDelete.push(child);
+
             }
             if (child.id == 'arrow') {
               child.setAttribute('animation', 'property: position; to: 5.5 0.8 -2; loop: false; dur: 900; easing: linear');
               child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              // scene.removeChild(child);
+
+              objectsToDelete.push(child);
+
             }
             if (child.id == 'text') {
-              child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 1900; easing: linear');
+              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 1900; easing: linear');
+
+              objectsToDelete.push(child);
             }
             if (child.id == 'labModel') {
               child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 9000; easing: linear');
 
+
             }
+
+
             if (child.id == 'tilesBG') {
+
               scene.removeChild(child);
               var spaceSky = document.createElement('a-sky');
               spaceSky.setAttribute('src', '#spaceBG');
@@ -198,13 +228,20 @@
               spaceSky.setAttribute('material', 'color: #ffffff; repeat: 10 10 1;');
               scene.appendChild(spaceSky);
               var psyche = document.createElement('a-entity');
+              psyche.setAttribute('class', 'clickable');
               psyche.setAttribute('id', 'psyche');
               psyche.setAttribute('gltf-model', '#psyche');
-              psyche.setAttribute('position', '0.03 1.7 -1.3');
+              psyche.setAttribute('position', '0.03 1.7 -2');
               psyche.setAttribute('scale', '0.01 0.01 0.01');
               psyche.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
               psyche.setAttribute('click-event2', '');
               scene.appendChild(psyche);
+
+             
+              // var box = document.getElementById('psyche');
+              // box.addEventListener('click', function () {
+              //   alert('box clicked');
+              // });
               // var dish = document.createElement('a-plane');
               // dish.setAttribute('id', 'dish');
               // dish.setAttribute('position', '0 0 -2');
@@ -212,13 +249,23 @@
               // dish.setAttribute('material', 'color:white; transparent: true; src:#dish;repeat: 1;');
               // scene.appendChild(dish);
 
+
+
             }
           }
+
+              console.log(objectsToDelete.length);
+              for (var i = 0; i < objectsToDelete.length; i++) {
+                var obj = objectsToDelete[i];
+                obj.parentNode.removeChild(obj);
+              }
+
         });
       }
     });
 
-      
+
+
       function nextScreen() {
         getNextScreen();
       }
@@ -235,6 +282,16 @@
   <a-entity light="type:ambient; color: #c4d2da" position="3 1 1"></a-entity>
   <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
   <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2" id="labModel"></a-entity>
+        <!-- <a-entity position="0 0 -15" id="beam" particle-system="accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.3; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00"></a-entity> -->
+
+        <a-entity class="raycaster"
+                  position="0 0 -1"
+                  scale="0.02 0.02 0.02"
+                  cursor="fuse: true; fuseTimeout: 500"
+                  geometry="primitive: ring"
+                  material="color: black; shader: flat" 
+                  raycaster="interval:1000; objects: .clickable;">
+        </a-entity>
  
       <a-assets>
         <img id="scientist" src="elkins-tanton.png"  "/>
@@ -250,5 +307,9 @@
       </a-assets>
       <a-camera><a-cursor></a-cursor></a-camera>
     </a-scene>
+    <script>
+
+
+    </script>
   </body>
 </html>
