@@ -50,16 +50,22 @@
 			<!-- Core hardening text animations-->
 			<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
-			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
-			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
 
 			<!-- Core hardening animations -->
 			<a-timeline-animation select="#Molten" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#Hardened" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
 
 			<!-- Smaller asteroid impacts text animations-->
 			<a-timeline-animation select="#text4" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text4" name="fadein"></a-timeline-animation>
+
+			<!-- Impacts of smaller rocks-->
+			<a-timeline-animation select="#Debris1" name="move"></a-timeline-animation>
+			<a-timeline-animation select="#Debris1" name="togglevisibleoff"></a-timeline-animation>
+			<a-timeline-animation select="#Debris2" name="move"></a-timeline-animation>
+			<a-timeline-animation select="#Debris2" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#text4" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
 
@@ -68,6 +74,11 @@
 			<a-timeline-animation select="#text5" name="fadein"></a-timeline-animation>
 			<a-timeline-animation select="#text5" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
+
+			<!-- Psyche -->
+			<a-timeline-animation select="#Hardened" name="togglevisibleoff"></a-timeline-animation>
+			<a-timeline-animation select="#Psyche" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#Psyche" name="delay"></a-timeline-animation>
 		  </a-timeline>
 
 		  <img id="skyTexture"
@@ -81,12 +92,18 @@
 		  <a-asset-item
 			id="asteroid-model"
 			src="../../models/gltf/otherAsteroid/scene.gltf">
+		  </a-asset-item>		  
+		  
+		  <a-asset-item
+		  	id="psyche-model"
+		  	src="../../models/gltf/psycheAsteroid/psycheAlternate.gltf">
 		  </a-asset-item>
 
 		  <a-mixin id="spaceRockMixin"
 			animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
+			animation__delay="property: visible; from: true; to: true; dur: 5000; autoplay: false"
 		  ></a-mixin>
 
 		  <a-mixin id="text"
@@ -162,5 +179,40 @@
 			visible="false"
 			src="./images/asteroid.png">
 		</a-sphere> 
+
+		<!-- Debris 1-->
+		<a-gltf-model 
+			id="Debris1" 
+			mixin="spaceRockMixin"
+			src="#asteroid-model"
+			position="1.85 0 1"
+			rotation="0 0 0"
+			visible="true"
+			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false;; dur: 2000"
+			scale="0.001 0.001 0.001">
+		</a-gltf-model>		
+		
+		<!-- Debris 2-->
+		<a-gltf-model 
+			id="Debris2" 
+			mixin="spaceRockMixin"
+			src="#asteroid-model"
+			position="-1.85 0 1"
+			rotation="0 0 0"
+			visible="true"
+			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false;; dur: 2000"
+			scale="0.001 0.001 0.001">
+		</a-gltf-model>
+
+		<!-- Psyche -->
+		<a-gltf-model
+			id="Psyche" 
+			mixin="spaceRockMixin"
+			src="#psyche-model"
+			position="0 0 -10"
+			rotation="0 0 0"
+			scale="1 1 1"
+			visible="false"
+		></a-gltf-model>
 	</a-scene>
   </body>
