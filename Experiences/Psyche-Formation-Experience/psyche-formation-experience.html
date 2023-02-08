@@ -54,6 +54,7 @@
 			<!-- Core hardening animations -->
 			<a-timeline-animation select="#Molten" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#Hardened" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#Hardened" name="move"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
 
@@ -128,11 +129,11 @@
 
 		<!-- Texts -->
 		<a-entity id="introText" mixin="text" text="value: How do scienctists think Psyche formed?"></a-entity>
-		<a-entity id="text1" mixin="text" text="value: It is theorized that a large outside body, or bodies, impacted Psyche."></a-entity>
-		<a-entity id="text2" mixin="text" text="value: These impacts would strip the mantle and crust off of Psyche."></a-entity>
-		<a-entity id="text3" mixin="text" text="value: The remaining molten core began to harden."></a-entity>
-		<a-entity id="text4" mixin="text" text="value: Smaller objects continued to impact Psyche."></a-entity>
-		<a-entity id="text5" mixin="text" text="value: And this is how Psyche looks today."></a-entity>
+		<a-entity id="text1" mixin="text" text="value: It is theorized that long ago, a large outside body, or bodies, impacted Psyche."></a-entity>
+		<a-entity id="text2" mixin="text" text="value: Scientists think that these impacts could have stripped the mantle and crust off of Psyche."></a-entity>
+		<a-entity id="text3" mixin="text" text="value: Scientists speculate that this left behind a molten core, which they think then began to harden."></a-entity>
+		<a-entity id="text4" mixin="text" text="value: As smaller objects continued to impact Psyche, they would leave craters on the surface."></a-entity>
+		<a-entity id="text5" mixin="text" text="value: And this is how we think Psyche looks today."></a-entity>
 
 		<!-- Planetesimal -->
 		<a-gltf-model
@@ -177,7 +178,8 @@
 			position="0 0 -10"
 			radius="2"
 			visible="false"
-			src="./images/asteroid.png">
+			src="./images/asteroid.png"
+			animation__move="property: src; to: ./images/molten.png; easing:linear; autoplay:false;; dur: 2000">
 		</a-sphere> 
 
 		<!-- Debris 1-->
@@ -188,7 +190,7 @@
 			position="1.85 0 1"
 			rotation="0 0 0"
 			visible="true"
-			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false;; dur: 2000"
+			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 2000"
 			scale="0.001 0.001 0.001">
 		</a-gltf-model>		
 		
@@ -200,7 +202,7 @@
 			position="-1.85 0 1"
 			rotation="0 0 0"
 			visible="true"
-			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false;; dur: 2000"
+			animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 2000"
 			scale="0.001 0.001 0.001">
 		</a-gltf-model>
 
