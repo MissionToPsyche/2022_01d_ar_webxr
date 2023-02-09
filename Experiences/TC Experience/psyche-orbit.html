@@ -12,6 +12,18 @@
         <a-scene>
             <a-camera wasd-controls-enabled="false">
                 <a-cursor></a-cursor>
+                    <a-entity
+                        id="main-tasks"
+                        geometry="primitive:plane;"
+                        material="color:blue; wireframe:true"
+                        scale="2.5 1.8"
+                        position="-4 3 -10">
+                        <a-text
+                            value="Mission Tasks"
+                            color="white"
+                            position="-0.5 0.35 0"
+                        ></a-text>
+                    </a-entity>
             </a-camera>
             <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
             <a-sky id="background" src="../../src/img/blackbackground.jpg"></a-sky>
