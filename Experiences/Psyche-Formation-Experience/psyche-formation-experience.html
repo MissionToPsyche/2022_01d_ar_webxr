@@ -26,12 +26,14 @@
 			<!-- Text about asteroid impact animation-->
 			<a-timeline-animation select="#text1" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text1" name="threeseconddelay"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text1" name="togglevisibleoff"></a-timeline-animation>
 			
 			<!-- Crust stripped text animations-->
 			<a-timeline-animation select="#text2" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text2" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text2" name="threeseconddelay"></a-timeline-animation>
 			<a-timeline-animation select="#text2" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text2" name="togglevisibleoff"></a-timeline-animation>
 			
@@ -50,6 +52,7 @@
 			<!-- Core hardening text animations-->
 			<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
+			<a-timeline-animation select="#text3" name="threeseconddelay"></a-timeline-animation>
 
 			<!-- Core hardening animations -->
 			<a-timeline-animation select="#Molten" name="togglevisibleoff"></a-timeline-animation>
@@ -69,16 +72,18 @@
 			<a-timeline-animation select="#text4" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
 
-			<!-- How psyche looks today text animations-->
+			<!-- How psyche looks today text fade in-->
 			<a-timeline-animation select="#text5" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#text5" name="fadein"></a-timeline-animation>
-			<a-timeline-animation select="#text5" name="fadeout"></a-timeline-animation>
-			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
 
 			<!-- Psyche -->
 			<a-timeline-animation select="#Hardened" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#Psyche" name="togglevisible"></a-timeline-animation>
 			<a-timeline-animation select="#Psyche" name="delay"></a-timeline-animation>
+
+			<!-- Text fade out-->
+			<a-timeline-animation select="#text5" name="fadeout"></a-timeline-animation>
+			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
 		  </a-timeline>
 
 		  <img id="skyTexture"
@@ -109,6 +114,7 @@
 		  <a-mixin id="text"
 			text="align: center; color: #FFF; width: 6; opacity: 0"
 			animation__fadein="property: text.opacity; from: 0; to: 1; dur: 3000; easing: linear; autoplay: false"
+			animation__threeseconddelay="property: visible; from: true; to: true; dur: 3000; autoplay: false"
 			animation__fadeout="property: text.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false"
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
@@ -150,14 +156,14 @@
 			id="Asteroid" 
 			mixin="spaceRockMixin"
 			src="#asteroid-model"
-			position="10 0 -1"
+			position="5 0 -1"
 			rotation="0 0 0"
 			scale="0 0 0"
 			animation__rotate="property: rotation; to: 0 360 0; autoplay: true; loop: true; dur: 10000"
 			animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
-			animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 5000"
-			animation__bounce_off1="property: position; from: 2 0 -7; to: 1.73 2.67 -7.53; easing:linear; autoplay:false; dur: 1000"
-			animation__bounce_off2="property: position; from: 1.73 2.67 -7.53; to: 0 20 -11; easing:linear; autoplay:false; dur: 6500">
+			animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 1875"
+			animation__bounce_off1="property: position; from: 2 0 -7; to: 1.73 2.67 -7.53; easing:linear; autoplay:false; dur: 500"
+			animation__bounce_off2="property: position; from: 1.73 2.67 -7.53; to: 0 20 -11; easing:linear; autoplay:false; dur: 3250">
 		</a-gltf-model>
 
 		<!-- Molten Planetesimal-->
