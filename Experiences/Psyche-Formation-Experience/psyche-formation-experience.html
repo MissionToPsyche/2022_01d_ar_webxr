@@ -6,6 +6,8 @@
 	<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
 	<!-- Particle scripts--> 
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
+	<!-- GIF scripts -->
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 </head>
 
   <body>
@@ -108,8 +110,8 @@
 			animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 			animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
-			animation__delay="property: visible; from: true; to: true; dur: 5000; autoplay: false"
-		  ></a-mixin>
+			animation__delay="property: visible; from: true; to: true; dur: 5000; autoplay: false">
+		  </a-mixin>
 
 		  <a-mixin id="text"
 			text="align: center; color: #FFF; width: 6; opacity: 0"
@@ -122,18 +124,19 @@
 			visible="false">
 		  </a-mixin>
 		</a-assets>
-
+        
 		<!-- Particle system uses 'default' preset, setting custom colors. -->
 		<a-entity id="Explosion" 
 			position="0 0 -7"
 			animation__enable="property: particle-system.enabled; from: false; to: true; dur:1; autoplay: false"
-			particle-system="enabled:false; texture: images/smokeparticle.png; particleCount:25000; color: #FF0000,#444400; velocityValue: 0 0 0; accelerationSpread: 0 0 0; accelerationValue: 0 0 0; maxAge: 2; duration:0.5"></a-entity>
+			particle-system="enabled:false; texture: images/smokeparticle.png; particleCount:25000; color: #FF0000,#444400; velocityValue: 0 0 0; accelerationSpread: 0 0 0; accelerationValue: 0 0 0; maxAge: 2; duration:0.5">
+		</a-entity>
 
 		<!-- Background -->
 		<a-sky src="#skyTexture"></a-sky>
 
 		<!-- Texts -->
-		<a-entity id="introText" mixin="text" text="value: How do scienctists think Psyche formed?"></a-entity>
+		<a-entity id="introText" mixin="text" text="value: How do scientists think Psyche formed?"></a-entity>
 		<a-entity id="text1" mixin="text" text="value: It is theorized that long ago, a large outside body, or bodies, impacted Psyche."></a-entity>
 		<a-entity id="text2" mixin="text" text="value: Scientists think that these impacts could have stripped the mantle and crust off of Psyche."></a-entity>
 		<a-entity id="text3" mixin="text" text="value: Scientists speculate that this left behind a molten core, which they think then began to harden."></a-entity>
@@ -148,8 +151,8 @@
 			position="0 0 -10"
 			rotation="0 0 0"
 			scale="0 0 0"
-			animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false"
-		></a-gltf-model>
+			animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false">
+		</a-gltf-model>
 
 		<!-- Other Asteroid -->
 		<a-gltf-model 
@@ -176,12 +179,23 @@
 			src="./images/molten.png">
 		</a-sphere> 
 
+		<!-- Works -->
+		<a-entity
+			id="Hardening"
+			geometry="primitive:sphere;" 
+			position="-0 0 -10" 
+			material="shader:gif;src:url(./images/hardening.gif);" 	
+			mixin="spaceRockMixin"
+			radius="2"
+			visible="true">
+		</a-entity>
+
 		<!-- Molten Planetesimal-->
 		<a-sphere 
 			id="Hardened"	
 			mixin="spaceRockMixin"
 			position="0 0 -10"
-			radius="2"
+			radius="4"
 			visible="false"
 			src="./images/asteroid.png">
 		</a-sphere> 
@@ -218,7 +232,7 @@
 			position="0 0 -10"
 			rotation="0 0 0"
 			scale="1 1 1"
-			visible="false"
-		></a-gltf-model>
+			visible="false">
+		</a-gltf-model>
 	</a-scene>
   </body>
