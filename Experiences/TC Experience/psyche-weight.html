@@ -42,11 +42,13 @@
 
             <!-- Pyche Model -->
             <a-image
+                event-set__enter="_event: click; animation.property:position; animation.to: 0 0.6 -5; animation.dur: 500; animation.easing: linear;"
+                event-set__leave="_event: mouseleave; _target:#scale-needle; animation.property:rotation; animation.to: 0 0 -240; animation.dur: 2000; animation.easing: linear; animation.delay: 400;"
                 id="asteroid" 
                 position="-1.5 0.5 -5"
                 scale="0.8 0.8 0.8" 
-                src="../../src/img/psyche-asteroid.png"
-            ></a-image>
+                src="../../src/img/psyche-asteroid.png">
+            </a-image>
 
             <!-- Scale -->
             <a-entity
@@ -68,7 +70,21 @@
                     visible="true"
                     geometry="primitive: circle; radius:0.9"
                     material="color:grey">
-                </a-entity>  
+                </a-entity>
+                <a-entity
+                    id="scale-needle"
+                    position="0 3 -0.9"
+                    visible="true"
+                    geometry="primitive: box; width:0.2; height:0.2; depth:0.2"
+                    material="transparent:true; opacity:0"
+                    rotation="0 0 45">
+                    <a-entity
+                        position="-0.35 0 0"
+                        visible="true"
+                        geometry="primitive: plane; width:0.75; height:0.03"
+                        material="color:black">
+                    </a-entity>
+                </a-entity>      
             </a-entity>
 
             <!-- Return Button -->
