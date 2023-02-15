@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
 	<!-- GIF scripts -->
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 </head>
 
   <body>
@@ -57,8 +58,8 @@
 			<a-timeline-animation select="#text3" name="threeseconddelay"></a-timeline-animation>
 
 			<!-- Core hardening animations -->
-			<a-timeline-animation select="#Molten" name="togglevisibleoff"></a-timeline-animation>
 			<a-timeline-animation select="#Hardened" name="togglevisible"></a-timeline-animation>
+			<a-timeline-animation select="#Molten" name="harden"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
 			<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
 
@@ -88,8 +89,15 @@
 			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
 		  </a-timeline>
 
-		  <img id="skyTexture"
+		  <img 
+		  	id="skyTexture"
 		  	src="./images/stars background.jpg">
+		  <img 
+		  	id="moltenMaterial" 
+			src="./images/molten.png">
+		  <img 
+		  	id="hardenedMaterial" 
+			src="./images/asteroid.png">
 
 		  <a-asset-item
 			  id="planetesimal-model"
@@ -170,35 +178,27 @@
 		</a-gltf-model>
 
 		<!-- Molten Planetesimal-->
-		<a-sphere 
-			id="Molten"	
+        <a-entity 
+            id="Molten"
 			mixin="spaceRockMixin"
-			position="0 0 -10"
-			radius="2"
+            position="0 0 -10" 
+            geometry="primitive: sphere" 
+            material="src: #moltenMaterial; opacity: 1;"
+            scale="2 2 2"
 			visible="false"
-			src="./images/molten.png">
-		</a-sphere> 
-
-		<!-- Works -->
-		<a-entity
-			id="Hardening"
-			geometry="primitive:sphere;" 
-			position="-0 0 -10" 
-			material="shader:gif;src:url(./images/hardening.gif);" 	
+			animation__harden="property: material.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false">
+        </a-entity>
+        
+		<!-- Hardened Planetesimal-->
+        <a-entity 
+            id="Hardened"
 			mixin="spaceRockMixin"
-			radius="2"
-			visible="true">
-		</a-entity>
-
-		<!-- Molten Planetesimal-->
-		<a-sphere 
-			id="Hardened"	
-			mixin="spaceRockMixin"
-			position="0 0 -10"
-			radius="4"
-			visible="false"
-			src="./images/asteroid.png">
-		</a-sphere> 
+            position="0 0 -10" 
+            geometry="primitive: sphere" 
+            material="src: #hardenedMaterial; opacity: 1;"
+            scale="2 2 2"
+			visible="false">
+        </a-entity>
 
 		<!-- Debris 1-->
 		<a-gltf-model 

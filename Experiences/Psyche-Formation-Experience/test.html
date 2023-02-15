@@ -1,0 +1,49 @@
+<head>
+    <title>My A-Frame Scene</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-video-shader/master/dist/aframe-vid-shader.min.js"></script>
+
+    <!-- A-timeline scripts -->
+	<script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> 
+	<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
+	<!-- Particle scripts--> 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
+	
+  </head>
+  
+  <body>
+    <a-scene>
+        <a-assets>  
+		  <img id="skyTexture"
+          src="./images/stars background.jpg">
+          <video id="my-video" src="./images/hardening.mp4" autoplay="true"></video>
+          
+            <img id="moltenMaterial" src="./images/molten.png">
+            <img id="hardenedMaterial" src="./images/asteroid.png">
+        </a-assets>
+		<!-- Background -->
+		<a-sky src="#skyTexture"></a-sky>
+
+        <!-- <a-entity geometry="primitive:sphere" material="shader:gif;src:url(./images/hardening.gif);" gif=""></a-entity> -->
+        <!-- <a-entity geometry="primitive:box;" material="shader:gif;src:url(nyancat.gif);"></a-entity> -->
+        <a-entity 
+            id="MoltenRock"
+            position="0 0 -10" 
+            geometry="primitive: sphere" 
+            material="src: #moltenMaterial; opacity: 1;"
+            scale="2 2 2"
+			animation__fadein="property: material.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: true">
+        </a-entity>
+        
+        <a-entity 
+            id="HardenedRock"
+            position="0 0 -10" 
+            geometry="primitive: sphere" 
+            material="src: #hardenedMaterial; opacity: 1;"
+            scale="2 2 2">
+        </a-entity>
+
+    </a-scene>
+  </body>
