@@ -6,9 +6,6 @@
 	<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
 	<!-- Particle scripts--> 
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
-	<!-- GIF scripts -->
-    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 </head>
 
   <body>
@@ -89,31 +86,40 @@
 			<a-timeline-animation select="#text5" name="togglevisibleoff"></a-timeline-animation>
 		  </a-timeline>
 
+		  <!-- Stars Background-->
 		  <img 
 		  	id="skyTexture"
 		  	src="./images/stars background.jpg">
+
+		  <!-- Molten Planetesimal Texture-->	
 		  <img 
 		  	id="moltenMaterial" 
 			src="./images/molten.png">
+
+		  <!-- Hardened Planetesimal Texture-->	
 		  <img 
 		  	id="hardenedMaterial" 
 			src="./images/asteroid.png">
 
+		  <!-- Planetesimal -->
 		  <a-asset-item
 			  id="planetesimal-model"
 			  src="../../models/gltf/planetesimal/scene.gltf">
 		  </a-asset-item>
-
+		
+		  <!-- Asteroid -->
 		  <a-asset-item
 			id="asteroid-model"
 			src="../../models/gltf/otherAsteroid/scene.gltf">
 		  </a-asset-item>		  
 		  
+		  <!-- Psyche -->
 		  <a-asset-item
 		  	id="psyche-model"
 		  	src="../../models/gltf/psycheAsteroid/psycheAlternate.gltf">
 		  </a-asset-item>
 
+		  <!-- Mixin with animations of all space objects -->
 		  <a-mixin id="spaceRockMixin"
 			animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
 			animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
@@ -121,6 +127,7 @@
 			animation__delay="property: visible; from: true; to: true; dur: 5000; autoplay: false">
 		  </a-mixin>
 
+		  <!-- Mixin for text animations -->
 		  <a-mixin id="text"
 			text="align: center; color: #FFF; width: 6; opacity: 0"
 			animation__fadein="property: text.opacity; from: 0; to: 1; dur: 3000; easing: linear; autoplay: false"
@@ -133,7 +140,7 @@
 		  </a-mixin>
 		</a-assets>
         
-		<!-- Particle system uses 'default' preset, setting custom colors. -->
+		<!-- Particle system -->
 		<a-entity id="Explosion" 
 			position="0 0 -7"
 			animation__enable="property: particle-system.enabled; from: false; to: true; dur:1; autoplay: false"
