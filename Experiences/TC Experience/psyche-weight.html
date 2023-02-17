@@ -9,6 +9,7 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
     </head>
     <body>
+        <script src="adventure.js"></script>
         <a-scene>
             <!-- Main scene setup elements -->
             <a-camera wasd-controls-enabled="false">
@@ -42,9 +43,10 @@
 
             <!-- Pyche Model -->
             <a-image
+                asteroidweight
                 event-set__enter="_event: click; animation.property:position; animation.to: 0 0.6 -5; animation.dur: 500; animation.easing: linear;"
                 event-set__leave="_event: mouseleave; _target:#scale-needle; animation.property:rotation; animation.to: 0 0 -240; animation.dur: 2000; animation.easing: linear; animation.delay: 400;"
-                id="asteroid" 
+                id="asteroid-weight" 
                 position="-1.5 0.5 -5"
                 scale="0.8 0.8 0.8" 
                 src="../../src/img/psyche-asteroid.png">
