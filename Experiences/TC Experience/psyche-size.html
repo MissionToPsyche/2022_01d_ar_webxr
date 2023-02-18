@@ -9,17 +9,64 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
     </head>
     <body>
+        <script src="adventure.js"></script>
         <a-scene>
             <!-- Main scen setup elements -->
             <a-camera wasd-controls-enabled="false">
                 <a-cursor></a-cursor>
+                <a-entity
+                    id="main-tasks"
+                    geometry="primitive:plane;"
+                    material="color:blue; wireframe:true"
+                    scale="2.5 1.8"
+                    position="-4 3 -10">
+                    <a-text
+                        value="Mission Tasks"
+                        color="white"
+                        width="3"
+                        height="2"
+                        position="-0.5 0.35 0"
+                    ></a-text>
+                    <a-text
+                        id="task1"
+                        value="Scale the Moon"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 0.1 0"
+                    ></a-text>
+                    <a-text
+                        id="task2"
+                        value="Shape Psyche"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.05 0"
+                    ></a-text>
+                    <a-text
+                        id="task3"
+                        value="Find Psyche in orbit"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.20 0"
+                    ></a-text>
+                    <a-text
+                        id="task4"
+                        value="Weigh Psyche"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.35 0"
+                    ></a-text>
+                </a-entity>
             </a-camera>
             <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
             <a-sky id="background" src="../../src/img/blackbackground.jpg"></a-sky>
 
             <!-- Pyche Model -->
             <a-image
-                id="asteroid" 
+                id="asteroid-shape" 
                 position="1 1.09 -5"
                 scale="0.8 0.8 0.8" 
                 src="../../src/img/psyche-asteroid.png"
@@ -28,6 +75,7 @@
             <!-- Moon Model -->
             <a-gltf-model
                 id="moon"
+                visible="true"
                 scale="0.3 0.3 0.3"
                 src="../../models/gltf/planets/moon.glb"
                 position="-1 1.09 -5"
@@ -48,6 +96,7 @@
                 width="5">
                 <!-- Ellipsoid Animation Button -->
                 <a-entity 
+                    asteroidshape
                     position="4.4 -0.55 0" 
                     geometry="primitive: plane; height:0.5;width:2.7"
                     visible="true" 
@@ -66,6 +115,7 @@
                 </a-entity>
                 <!-- Moon Animation Button -->
                 <a-entity 
+                    moontask
                     position="4.78 -1.25 0" 
                     geometry="primitive: plane; height:0.5; width:2.2;"
                     visible="true"
@@ -136,7 +186,20 @@
                     align="center"
                 ></a-text> 
             </a-entity>
-
         </a-scene>
+        <script type="text/javascript">
+            if(sessionStorage.getItem('task1') === "true"){
+              document.getElementById('task1').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task2') === "true"){
+              document.getElementById('task2').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task3') === "true"){
+              document.getElementById('task3').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task4') === "true"){
+              document.getElementById('task4').setAttribute('color','green');
+            }
+          </script>
     </body>
 </html>
