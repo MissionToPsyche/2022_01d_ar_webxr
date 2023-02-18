@@ -9,6 +9,7 @@
 	<!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script> -->
   <!-- <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script> -->
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
       <script src="dist/aframe-particle-system-component.min.js"></script>
 
     <!-- <script src="https://aframe.io/releases/0.9.0/aframe.js"></script> -->
@@ -171,10 +172,150 @@
             // rotationAngle 120
             beam.setAttribute('particle-system', 'accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.5; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00');
             document.querySelector('a-scene').appendChild(beam);
-            console.log("test");
+            console.log("initial click");
+
+
+            
+
+            setTimeout(clickArrive, 1500);
+          //   setTimeout(clickGetBack, 2500);
           })
         }
       });
+
+      function incrementValues() {
+        var counter1 = document.querySelector('#counter1').getAttribute('text').value;
+        var counter2 = document.querySelector('#counter2').getAttribute('text').value;
+        var counter3 = document.querySelector('#counter3').getAttribute('text').value;
+        // Initialize three values 
+        let value1 = counter1;
+        let value2 = counter2;
+        let value3 = counter3;
+
+        // Maximum value for each value
+        const max = 3;
+
+          // Generate a random number between 1 and 3
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+
+          // Increment the random value or another value if it's already at max
+          switch (randomNumber) {
+            case 1:
+              if (value1 < max) {
+                value1++;
+              } else {
+                incrementOtherValue(1);
+              }
+              break;
+            case 2:
+              if (value2 < max) {
+                value2++;
+              } else {
+                incrementOtherValue(2);
+              }
+              break;
+            case 3:
+              if (value3 < max) {
+                value3++;
+              } else {
+                incrementOtherValue(3);
+              }
+              break;
+          }
+
+          if (value1 === max) {
+            var element1 = document.getElementById('element1');
+            element1.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 1 has reached its maximum of 3!");
+          } 
+          if (value2 === max) {
+            var element2 = document.getElementById('element2');
+            element2.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 2 has reached its maximum of 3!");
+          } 
+          if (value3 === max) {
+            var element3 = document.getElementById('element3');
+            element3.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 3 has reached its maximum of 3!");
+          }
+
+          // Log the updated values
+          console.log(`Value 1: ${value1}, Value 2: ${value2}, Value 3: ${value3}`);
+
+          // Helper function to increment a value that's not at max
+          function incrementOtherValue(valueNum) {
+            if (value1 < max && valueNum !== 1) {
+              value1++;
+            } else if (value2 < max && valueNum !== 2) {
+              value2++;
+            } else if (value3 < max && valueNum !== 3) {
+              value3++;
+            } else {
+              console.log("All values are already at their maximum!");
+            }
+          }
+
+        document.querySelector('#counter1').setAttribute('text', 'value', value1);
+        document.querySelector('#counter2').setAttribute('text', 'value', value2);
+        document.querySelector('#counter3').setAttribute('text', 'value', value3);
+
+
+
+      }
+
+      function createCell(textValue, x, y, parent, cellID) {
+        const cellEntity = document.createElement("a-entity");
+        cellEntity.setAttribute("text", {
+          value: textValue,
+          align: "center",
+          color: "white"
+        });
+        cellEntity.setAttribute("position", `${x} ${y} 0`);
+        cellEntity.setAttribute("scale", "2 2 2");
+        cellEntity.setAttribute("id", cellID);
+        parent.appendChild(cellEntity);
+      }
+
+      function clickArrive() {
+        console.log("click when arrive");
+        var scene = document.querySelector('a-scene');
+        var psyche = document.getElementById('psyche');
+        const imageEl = document.createElement('a-image');
+        imageEl.setAttribute('id', 'glow');
+        imageEl.setAttribute('position', '0 1.8 -5');
+        imageEl.setAttribute('width', '3');
+        imageEl.setAttribute('height', '3');
+        imageEl.setAttribute('src', '#glow');
+        imageEl.setAttribute('color', 'yellow');
+        imageEl.setAttribute('material', 'transparent: true; opacity: 1.0; alphaTest: 0.01;');
+        imageEl.setAttribute('animation__pulse', 'property: material.opacity; from: 1.0; to: 0.0; dur: 2000; loop: false; dir: alternate; easing: linear;');
+        scene.appendChild(imageEl);
+
+
+        // Create a new entity to hold the particle system
+        var particleSystem = document.createElement('a-entity');
+
+        // Set the position of the particle system
+        particleSystem.setAttribute('position', '0 1.6 -3');
+        particleSystem.setAttribute('particle-system', 'opacity: 0.8; maxAge: 0.5; accelerationValue: 0 1 0; size: 0.1; velocityValue: 0 1 -3; size: 0.09; texture: dist/images/star.png; color: #ffffff');
+        // Add the particle system entity to the scene
+        scene.appendChild(particleSystem);
+        setTimeout(() => {
+          scene.removeChild(particleSystem);
+        }, 1000);
+
+        incrementValues();
+
+
+    } 
+
+
+      
+
+      function clickGetBack() {
+        console.log("click when get back");
+
+      }
 
       var nextScreen1 = AFRAME.registerComponent('click-event', {
 			init: function () {
@@ -237,17 +378,20 @@
               psyche.setAttribute('click-event2', '');
               scene.appendChild(psyche);
 
-             
-              // var box = document.getElementById('psyche');
-              // box.addEventListener('click', function () {
-              //   alert('box clicked');
-              // });
-              // var dish = document.createElement('a-plane');
-              // dish.setAttribute('id', 'dish');
-              // dish.setAttribute('position', '0 0 -2');
-              // dish.setAttribute('scale', '2 2 2');
-              // dish.setAttribute('material', 'color:white; transparent: true; src:#dish;repeat: 1;');
-              // scene.appendChild(dish);
+              const parentEntity = document.createElement("a-entity");
+
+              createCell("??", -0.5, 0.1, parentEntity, "element1");
+              createCell("??", 0, 0.1, parentEntity, "element2");
+              createCell("??", 0.5, 0.1, parentEntity, "element3");
+              createCell(0, -0.5, -0.1, parentEntity, "counter1");
+              createCell(0, 0, -0.1, parentEntity, "counter2");
+              createCell(0, 0.5, -0.1, parentEntity, "counter3");
+
+
+              parentEntity.setAttribute("position", "0 2.2 -1");
+              parentEntity.setAttribute("scale", "0.7 0.7 0.7");
+              scene.appendChild(parentEntity);
+
 
 
 
@@ -300,6 +444,7 @@
         <img id="boxHolder" src="border.png" />
         <img id="spaceBG" src="spaceBG.png" />
         <img id="dish" src="dish.png" />
+        <img id="glow" src="glow.png" />
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
         <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
 
