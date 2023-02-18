@@ -38,14 +38,19 @@ export class GameManager {
         var aFrameDiv = document.createElement("a-entity");
         aFrameDiv.innerHTML = `<a-box position="0 1 -3" rotation="0 45 15" color="#ff00ea" shadow></a-box>`;
         var instructions = ["Testing instructions array"];
-        var overlayDiv2 = `Hello from Inserted Overlay Div 2!`;
+        var overlayDiv2 = `This will be the main game screen`;
         var aFrameDiv2 = document.createElement("a-entity");
-        aFrameDiv2.innerHTML = ` <a-box id="nextScreen" position="0 1 -3" rotation="0 45 15" color="#ffff00" shadow></a-box>`
+        aFrameDiv2.innerHTML = ` <a-box id="nextScreen" position="0 1 -3" rotation="0 45 15" color="#ffff00" shadow></a-box>`;
+        var overlayDiv3 = '';
         var screen1 = new Screen(overlayDiv, aFrameDiv, instructions);
         var screen2 = new Screen(overlayDiv2, aFrameDiv2, instructions);
         var screensList = [screen1, screen2];
         this.screensCollection = new ScreensCollection(screensList);
-        this.buildNextScreen();
+        // this.buildNextScreen();
+    }
+
+    readHTML() {
+
     }
 
     nextScreen() {
@@ -53,6 +58,28 @@ export class GameManager {
         this.screensCollection.nextScreen();
         this.buildNextScreen();
         this.incrementStage();
+        if (this.currentStage == 2) {
+            this.setPrevButtonToAppear();
+        }
+    }
+
+    setPrevButtonToAppear() {
+        document.getElementById("prevBtn").style.display = "block";
+    }
+
+
+    setPrevButtonToDisappear() {    
+        document.getElementById("prevBtn").style.display = "none";
+    }
+
+    prevScreen() {
+        this.takedownPrevScreen();
+        this.screensCollection.prevScreen();
+        this.buildNextScreen();
+        this.decrementStage();
+        if (this.currentStage == 1) {
+            this.setPrevButtonToDisappear();
+        }
     }
 
     buildNextScreen() {

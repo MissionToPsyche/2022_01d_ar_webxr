@@ -6,4 +6,9 @@ function getNextScreen() {
     gameManager.nextScreen();
 }
 
+function getPrevScreen() {
+    gameManager.prevScreen();
+}
+
 window.getNextScreen = getNextScreen;
+window.getPrevScreen = getPrevScreen;
