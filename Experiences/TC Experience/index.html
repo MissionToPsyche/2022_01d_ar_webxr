@@ -9,6 +9,11 @@
     </head>
         <body>
             <script>
+                sessionStorage.setItem('task1','false');
+                sessionStorage.setItem('task2','false');
+                sessionStorage.setItem('task3','false');
+                sessionStorage.setItem('task4','false');
+
                 AFRAME.registerComponent("link", {
                   init: function() {
                     this.el.addEventListener("click", (e) => {

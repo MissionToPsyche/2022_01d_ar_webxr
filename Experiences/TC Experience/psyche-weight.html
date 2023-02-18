@@ -9,40 +9,134 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
     </head>
     <body>
+        <script src="adventure.js"></script>
         <a-scene>
             <!-- Main scene setup elements -->
             <a-camera wasd-controls-enabled="false">
                 <a-cursor></a-cursor>
+                <a-entity
+                    id="main-tasks"
+                    geometry="primitive:plane;"
+                    material="color:white;"
+                    scale="2.5 1.8"
+                    position="-4 3 -10">
+                    <a-text
+                        value="Mission Tasks"
+                        color="black"
+                        width="3"
+                        height="2"
+                        position="-0.5 0.35 0.1"
+                    ></a-text>
+                    <a-text
+                        id="task1"
+                        value="Scale the Moon"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 0.1 0.1"
+                    ></a-text>
+                    <a-text
+                        id="task2"
+                        value="Shape Psyche"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.05 0.1"
+                    ></a-text>
+                    <a-text
+                        id="task3"
+                        value="Find Psyche in orbit"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.20 0.1"
+                    ></a-text>
+                    <a-text
+                        id="task4"
+                        value="Weigh Psyche"
+                        color="red"
+                        width="2.5"
+                        height="1"
+                        position="-0.5 -0.35 0.1"
+                    ></a-text>
+                </a-entity>
+                <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
             </a-camera>
-            <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
+            
             <a-sky id="background" src="../../src/img/blackbackground.jpg"></a-sky>
 
             <a-text
                 id="info"
-                color="black" 
-                position="0 5 -10" 
-                value="skjcnwkcwjxnwj \n owodwdkdmwddakmqm \n eijndwjidn2s"
+                color="#03cffc" 
+                position="-2.2 3.9 -10" 
+                value="--Psyche is believed to be very dense
+                       \n --Its bulk density is estimated to be between 3,400-4,100 kilograms per cubic meter"
                 z-offset="0.15" 
                 height="5" 
-                width="5" 
-                align="center" 
-                geometry="primitive: plane; width: 1.8; height: 0.5"   
-                material="color: grey"></a-text>
+                width="5">
+            </a-text>
 
-            <a-text 
-                id="location-button"
+            <!-- Pyche Model -->
+            <a-image
+                asteroidweight
+                event-set__enter="_event: click; animation.property:position; animation.to: 0 0.6 -5; animation.dur: 500; animation.easing: linear;"
+                id="asteroid-weight" 
+                position="-1.5 0.5 -5"
+                scale="0.8 0.8 0.8" 
+                src="../../src/img/psyche-asteroid.png">
+            </a-image>
+
+            <!-- Scale -->
+            <a-entity
+                id="scale-base"
+                position="0 -0.8 -10"
+                visible="true"
+                geometry="primitive: box; width:1.5; height:0.1; depth:1.5"
+                material="color:grey">
+                <a-entity
+                    id="scale-shaft"
+                    position="0 1 -1"
+                    visible="true"
+                    geometry="primitive: box; width:0.4; height:2.3; depth:0.4"
+                    material="color:grey">
+                </a-entity> 
+                <a-entity
+                    id="scale-meter"
+                    position="0 3 -1"
+                    visible="true"
+                    geometry="primitive: circle; radius:0.9"
+                    material="color:grey">
+                </a-entity>
+                <a-entity
+                    id="scale-needle"
+                    position="0 3 -0.9"
+                    visible="true"
+                    geometry="primitive: box; width:0.2; height:0.2; depth:0.2"
+                    material="transparent:true; opacity:0"
+                    rotation="0 0 45">
+                    <a-entity
+                        position="-0.35 0 0"
+                        visible="true"
+                        geometry="primitive: plane; width:0.75; height:0.03"
+                        material="color:black">
+                    </a-entity>
+                </a-entity>      
+            </a-entity>
+
+            <!-- Return Button -->
+            <a-text
+                id="return-button-text"
                 color="black" 
                 position="0 -2 -10" 
                 value="Return"
                 z-offset="0.15" 
                 height="5" 
                 width="5" 
-                align="center" 
-                >
+                align="center">
                 <a-entity 
                     event-set__enter="_event: mouseenter; material.color:#03cffc; geometry.height:0.7; geometry.width:2.2"
                     event-set__leave="_event: mouseleave; material.color:grey; geometry.height:0.4; geometry.width:1.5"
-                    id="button" 
+                    id="return-button" 
                     visible="true" 
                     geometry="primitive: box; width:1.5; height:0.4; depth:0.01"
                     material="color:grey" 
@@ -50,5 +144,19 @@
                     link="href:adventure.html"></a-entity>
             </a-text>
         </a-scene>
+        <script type="text/javascript">
+            if(sessionStorage.getItem('task1') === "true"){
+              document.getElementById('task1').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task2') === "true"){
+              document.getElementById('task2').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task3') === "true"){
+              document.getElementById('task3').setAttribute('color','green');
+            }
+            if(sessionStorage.getItem('task4') === "true"){
+              document.getElementById('task4').setAttribute('color','green');
+            }
+          </script>
     </body>
 </html>
