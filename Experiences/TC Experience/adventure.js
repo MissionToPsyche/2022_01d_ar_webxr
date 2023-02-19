@@ -81,14 +81,15 @@ AFRAME.registerComponent('asteroidweight', {
         //what to do when clicked
             sessionStorage.setItem('task4','true');
             document.getElementById('task4').setAttribute('color','green');
+            var needle = document.getElementById('scale-needle');
             console.log("Is task 4 done: " + sessionStorage.getItem('task4'));    
             for(var i=0;i<sessionStorage.length;i++){
                 console.log(sessionStorage.key(i)+" is done: "+sessionStorage.getItem(sessionStorage.key(i)))
             }
             setTimeout(() => {
             //delayed events
-
-            }, 5500);
+                needle.setAttribute('animation','property: rotation; to: 0 0 -240; loop: false; dur: 2000; easing: linear');
+            }, 600);
 
         }
         this.el.addEventListener('click',this.beginWeightTask);

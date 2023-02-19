@@ -17,15 +17,15 @@
               <a-entity
                 id="main-tasks"
                 geometry="primitive:plane;"
-                material="color:blue; wireframe:true"
+                material="color:white;"
                 scale="2.5 1.8"
                 position="-4 3 -10">
                 <a-text
                   value="Mission Tasks"
-                  color="white"
+                  color="black"
                   width="3"
                   height="2"
-                  position="-0.5 0.35 0"
+                  position="-0.5 0.35 0.1"
                 ></a-text>
                 <a-text
                   id="task1"
@@ -33,7 +33,7 @@
                   color="red"
                   width="2.5"
                   height="1"
-                  position="-0.5 0.1 0"
+                  position="-0.5 0.1 0.1"
                 ></a-text>
                 <a-text
                   id="task2"
@@ -41,7 +41,7 @@
                   color="red"
                   width="2.5"
                   height="1"
-                  position="-0.5 -0.05 0"
+                  position="-0.5 -0.05 0.1"
                 ></a-text>
                 <a-text
                   id="task3"
@@ -49,7 +49,7 @@
                   color="red"
                   width="2.5"
                   height="1"
-                  position="-0.5 -0.20 0"
+                  position="-0.5 -0.20 0.1"
                 ></a-text>
                 <a-text
                   id="task4"
@@ -57,12 +57,13 @@
                   color="red"
                   width="2.5"
                   height="1"
-                  position="-0.5 -0.35 0"
+                  position="-0.5 -0.35 0.1"
                 ></a-text>
 
               </a-entity>
+              <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
             </a-camera>
-            <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
+            
             <a-sky id="background" src="../../src/img/space.jpg"></a-sky>
             
             <!-- Title text -->
