@@ -2,12 +2,13 @@ import { GameManager } from './GameManager.js';
 
 const gameManager = new GameManager();
 
-function getNextScreen() {
-    gameManager.nextScreen();
+
+function getNextScreen(document) {
+    gameManager.nextScreen(document);
 }
 
-function getPrevScreen() {
-    gameManager.prevScreen();
+function getPrevScreen(document) {
+    gameManager.prevScreen(document);
 }
 
 window.getNextScreen = getNextScreen;

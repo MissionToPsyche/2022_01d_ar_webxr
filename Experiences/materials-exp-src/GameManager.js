@@ -1,155 +1,69 @@
-import ScreensCollection from './ScreensCollection.js';
-import Screen from './Screen.js';
-
 "use strict";
 export class GameManager {
-    screensCollection;
     isGameActive = true;
-    currentStage = 1;
-    maxStages = 6;
+    currentScreen = 1;
+    maxScreens = 6;
+    elementsNeeded = 3;
     nickelCounter = 0;
     ironCounter = 0;
-    oxygenCounter = 0;
-    nickelNeeded = 6;
-    ironNeeded = 8;
-    oxygenNeeded = 10;
-    overlayDivConst;
-    aFrameDivConst;
-
-    constructor() {
-        this.overlayDivConst = document.getElementById("overlaySpan");
-        this.aFrameDivConst = document.getElementById("aFrameScene");
-        this.buildScreens();        
-    }
-
+    otherCounter = 0;
+    
     checkIfGameActive() {
-        if (this.nickelCounter >= this.nickelNeeded && this.ironCounter >= this.ironNeeded && this.oxygenCounter >= this.oxygenNeeded) {
+        if (this.nickelCounter >= this.elementsNeeded && this.ironCounter >= this.elementsNeeded && this.otherCounter >= this.elementsNeeded) {
             this.isGameActive = false;
         }
     }
 
-    buildScreens() {
-        // build screens here
-        var overlayDiv = `
-                <div class="scientist-overlay"></div>
-        		<textarea class="scrollabletextbox" name="note" readonly> The instructions for the experience will go here.
-		        </textarea>
-        `;
-        var aFrameDiv = document.createElement("a-entity");
-        aFrameDiv.innerHTML = `<a-box position="0 1 -3" rotation="0 45 15" color="#ff00ea" shadow></a-box>`;
-        var instructions = ["Testing instructions array"];
-        var overlayDiv2 = `This will be the main game screen`;
-        var aFrameDiv2 = document.createElement("a-entity");
-        aFrameDiv2.innerHTML = ` <a-box id="nextScreen" position="0 1 -3" rotation="0 45 15" color="#ffff00" shadow></a-box>`;
-        var overlayDiv3 = '';
-        var screen1 = new Screen(overlayDiv, aFrameDiv, instructions);
-        var screen2 = new Screen(overlayDiv2, aFrameDiv2, instructions);
-        var screensList = [screen1, screen2];
-        this.screensCollection = new ScreensCollection(screensList);
-        // this.buildNextScreen();
+    nextScreen(document) {
+        this.incrementScreen(document);
+        this.buildNextScreen(document);
     }
 
-    readHTML() {
-
-    }
-
-    nextScreen() {
-        this.takedownPrevScreen();
-        this.screensCollection.nextScreen();
-        this.buildNextScreen();
-        this.incrementStage();
-        if (this.currentStage == 2) {
-            this.setPrevButtonToAppear();
-        }
-    }
-
-    setPrevButtonToAppear() {
-        document.getElementById("prevBtn").style.display = "block";
-    }
-
-
-    setPrevButtonToDisappear() {    
-        document.getElementById("prevBtn").style.display = "none";
+    prevScreen(document) {
+        this.decrementScreen(document);
+        this.takedownThisScreen(document);
     }
 
     prevScreen() {
-        this.takedownPrevScreen();
-        this.screensCollection.prevScreen();
-        this.buildNextScreen();
-        this.decrementStage();
-        if (this.currentStage == 1) {
-            this.setPrevButtonToDisappear();
+
+    }
+
+    buildNextScreen(document) {
+        // build next screen here by calling the appropriate method based on screen count 
+        switch (this.currentScreen) {
+            case 2:
+                this.buildSecondScreen(document);
+                this.takedownFirstScreen();
+                break;
+            case 3:
+                this.buildThirdScreen(document);
+                break;
+            case 4:
+                this.buildFourthScreen(document);
+                break;
+            case 5:
+                this.buildFifthScreen(document);
+                break;
+            case 6:
+                this.buildSixthScreen(document);
+                break;
+            default:
+                break;
         }
     }
 
-    buildNextScreen() {
-        // build next screen here from the collection
-        this.overlayDivConst.innerHTML = this.screensCollection.getCurScreen().getOverlayDiv();
-        this.aFrameDivConst.appendChild(this.screensCollection.getCurScreen().getAframeDiv());
+    buildSecondScreen(document) {
     }
 
-    takedownPrevScreen() {
-        // takedown previous screen here
-        this.overlayDivConst.innerHTML = ``;
-        this.aFrameDivConst.removeChild(this.aFrameDivConst.childNodes[0]);
+    takedownFirstScreen(document) {
+        // takedown first screen here
     }
 
-    incrementStage() {
-        this.currentStage++;
+    incrementScreen() {
+        this.currentScreen++;
     }
 
-    decrementStage() {
-        this.currentStage--;
+    decrementScreen() {
+        this.currentScreen--;
     }
-
-    incrementNickelCounter() {
-        this.nickelCounter++;
-    }
-
-    incrementIronCounter() {
-        this.ironCounter++;
-    }
-
-    incrementOxygenCounter() {
-        this.oxygenCounter++;
-    }
-
-    getNickelCounter() {
-        return this.nickelCounter;
-    }
-
-    getIronCounter() {
-        return this.ironCounter;
-    }
-
-    getOxygenCounter() {
-        return this.oxygenCounter;
-    }
-
-    getNickelNeeded() {
-        return this.nickelNeeded;
-    }
-
-    getIronNeeded() {
-        return this.ironNeeded;
-    }
-
-    getOxygenNeeded() {
-        return this.oxygenNeeded;
-    }
-
-    getIsGameActive() {
-        this.checkIfGameActive();
-        return this.isGameActive;
-    }
-
-    getCurrentStage() {
-        return this.currentStage;
-    }
-
-    getMaxStages() {
-        return this.maxStages;
-    }
-
-
 }
