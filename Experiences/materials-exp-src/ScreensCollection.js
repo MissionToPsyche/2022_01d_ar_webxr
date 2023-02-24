@@ -12,6 +12,10 @@ export default class ScreensCollection {
         this.curScreen = this.screensList[this.screensList.indexOf(this.curScreen) + 1];
     }
 
+    prevScreen() {
+        this.curScreen = this.screensList[this.screensList.indexOf(this.curScreen) - 1];
+    }
+
     testScreensCollectionClass() {
         console.log("Hello from ScreensCollection class");
     }

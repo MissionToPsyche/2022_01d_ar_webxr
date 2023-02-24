@@ -2,9 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Scrollable Text Box Test</title>
+    <title>Psyche Materials Experience</title>
     <meta name="description">
-    <script src="aframe-master.js"></script>
+    <!-- <script src="aframe-master.js"></script> -->
+
+	<!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script> -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+      <script src="dist/aframe-particle-system-component.min.js"></script>
+
+    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.js"></script> -->
+    <!-- <script src="aframe-sprite-particles-component.js"></script> -->
+
+
     <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script> -->
     <script type="module" src="./Main.js"></script>
     <style>
@@ -37,7 +48,7 @@
       color: #ffca2c;
       border: 5px solid #0cfff7ff;
       border-radius: 20px;
-      scrollbar-color: #00ccff #7b00ff;
+      scrollbar-color: #47a6ff #7b00ff;
       top: -300px;
       bottom: 0;
       left: 0;
@@ -62,24 +73,10 @@
         resize: none;
         margin: auto;
         background: url(elkins-tanton.png) no-repeat;
-        z-index: 2;
-        pointer-events: none;
-      }
-
-      .scrollboxholder {
-        height: 620px;
-        width: 500px;
-        position: absolute;
-        top: 55px;
-        bottom: 0;
-        left: 10px;
-        right: 0;
-        resize: none;
-        margin: auto;
-        background: url(scrollbox-holder.png) no-repeat;
         z-index: 1;
         pointer-events: none;
       }
+
       @-webkit-keyframes glow {
         to {
             border-color: #0066ff;
@@ -107,43 +104,357 @@
         z-index: 1;
       }
 
-      #btn {
+      #nextBtn {
         width: 100px;
         height: 150px;
         top: 100px;
         position: absolute;
       }
+
+      #prevBtn {
+        width: 100px;
+        height: 150px;
+        top: 100px;
+        position: absolute;
+        left: -360px;
+        display: none;
+      }
     </style>
     <script>
 
+      window.onload = function() {
+
+
+        placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
+        'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
+        'color:white; transparent: true; src:#scientist;repeat: 1;');
+
+        placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
+        'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#boxHolder;repeat: 1;');
+
+        var arrowShape = placeElement('a-plane', {x:-5.5, y:0.8, z:-2}, '0.8 0.5 1', 'arrow',
+        'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#arrow;repeat: 1;');
+        arrowShape.setAttribute('click-event', '');
+        
+        var instructionsText = placeElement('a-text', {x:-0.1, y:2, z:-1}, '0.3 0.3 0.3', 'text',
+        'property: position; to: -0.1 2 -1; loop: false; dur: 1000; easing: linear',
+        'color:white; transparent: true; src:#text;repeat: 1;');
+        instructionsText.setAttribute('value', 'Instructions Test');
+
+
+      }
+
+      function placeElement(elementType, position, scale, id, animation, material) {
+        var shape = document.createElement(elementType);
+        shape.setAttribute('position', position);
+        shape.setAttribute('scale', scale);
+        shape.setAttribute('id', id);
+        shape.setAttribute('animation', animation);
+        shape.setAttribute('material', material);
+        document.querySelector('a-scene').appendChild(shape);
+        return shape;
+      }
+
+      var psycheClick = AFRAME.registerComponent('click-event2', {
+        init: function () {
+          var el = this.el;
+          el.addEventListener('click', function () {
+            if (document.getElementById('beam') != null) {
+              var beam = document.getElementById('beam');
+              beam.remove();
+            }
+            var beam = document.createElement('a-entity');
+            beam.setAttribute('id', 'beam');
+            beam.setAttribute('position', '0 -10 2');
+            // 0 -6 -5
+            // rotationAngle 120
+            beam.setAttribute('particle-system', 'accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.5; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00');
+            document.querySelector('a-scene').appendChild(beam);
+            console.log("initial click");
+
+
+            
+
+            setTimeout(clickArrive, 1500);
+          //   setTimeout(clickGetBack, 2500);
+          })
+        }
+      });
+
+      function incrementValues() {
+        var counter1 = document.querySelector('#counter1').getAttribute('text').value;
+        var counter2 = document.querySelector('#counter2').getAttribute('text').value;
+        var counter3 = document.querySelector('#counter3').getAttribute('text').value;
+        // Initialize three values 
+        let value1 = counter1;
+        let value2 = counter2;
+        let value3 = counter3;
+
+        // Maximum value for each value
+        const max = 3;
+
+          // Generate a random number between 1 and 3
+          var randomNumber = Math.floor(Math.random() * 3) + 1;
+
+          // Increment the random value or another value if it's already at max
+          switch (randomNumber) {
+            case 1:
+              if (value1 < max) {
+                value1++;
+              } else {
+                incrementOtherValue(1);
+              }
+              break;
+            case 2:
+              if (value2 < max) {
+                value2++;
+              } else {
+                incrementOtherValue(2);
+              }
+              break;
+            case 3:
+              if (value3 < max) {
+                value3++;
+              } else {
+                incrementOtherValue(3);
+              }
+              break;
+          }
+
+          if (value1 === max) {
+            var element1 = document.getElementById('element1');
+            element1.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 1 has reached its maximum of 3!");
+          } 
+          if (value2 === max) {
+            var element2 = document.getElementById('element2');
+            element2.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 2 has reached its maximum of 3!");
+          } 
+          if (value3 === max) {
+            var element3 = document.getElementById('element3');
+            element3.setAttribute('text', 'value', 'Detected!');
+            console.log("Value 3 has reached its maximum of 3!");
+          }
+
+          // Log the updated values
+          console.log(`Value 1: ${value1}, Value 2: ${value2}, Value 3: ${value3}`);
+
+          // Helper function to increment a value that's not at max
+          function incrementOtherValue(valueNum) {
+            if (value1 < max && valueNum !== 1) {
+              value1++;
+            } else if (value2 < max && valueNum !== 2) {
+              value2++;
+            } else if (value3 < max && valueNum !== 3) {
+              value3++;
+            } else {
+              console.log("All values are already at their maximum!");
+            }
+          }
+
+        document.querySelector('#counter1').setAttribute('text', 'value', value1);
+        document.querySelector('#counter2').setAttribute('text', 'value', value2);
+        document.querySelector('#counter3').setAttribute('text', 'value', value3);
+
+
+
+      }
+
+      function createCell(textValue, x, y, parent, cellID) {
+        const cellEntity = document.createElement("a-entity");
+        cellEntity.setAttribute("text", {
+          value: textValue,
+          align: "center",
+          color: "white"
+        });
+        cellEntity.setAttribute("position", `${x} ${y} 0`);
+        cellEntity.setAttribute("scale", "2 2 2");
+        cellEntity.setAttribute("id", cellID);
+        parent.appendChild(cellEntity);
+      }
+
+      function clickArrive() {
+        console.log("click when arrive");
+        var scene = document.querySelector('a-scene');
+        var psyche = document.getElementById('psyche');
+        const imageEl = document.createElement('a-image');
+        imageEl.setAttribute('id', 'glow');
+        imageEl.setAttribute('position', '0 1.8 -5');
+        imageEl.setAttribute('width', '3');
+        imageEl.setAttribute('height', '3');
+        imageEl.setAttribute('src', '#glow');
+        imageEl.setAttribute('color', 'yellow');
+        imageEl.setAttribute('material', 'transparent: true; opacity: 1.0; alphaTest: 0.01;');
+        imageEl.setAttribute('animation__pulse', 'property: material.opacity; from: 1.0; to: 0.0; dur: 2000; loop: false; dir: alternate; easing: linear;');
+        scene.appendChild(imageEl);
+
+
+        // Create a new entity to hold the particle system
+        var particleSystem = document.createElement('a-entity');
+
+        // Set the position of the particle system
+        particleSystem.setAttribute('position', '0 1.6 -3');
+        particleSystem.setAttribute('particle-system', 'opacity: 0.8; maxAge: 0.5; accelerationValue: 0 1 0; size: 0.1; velocityValue: 0 1 -3; size: 0.09; texture: dist/images/star.png; color: #ffffff');
+        // Add the particle system entity to the scene
+        scene.appendChild(particleSystem);
+        setTimeout(() => {
+          scene.removeChild(particleSystem);
+        }, 1000);
+
+        incrementValues();
+
+
+    } 
+
+
+      
+
+      function clickGetBack() {
+        console.log("click when get back");
+
+      }
+
+      var nextScreen1 = AFRAME.registerComponent('click-event', {
+			init: function () {
+				var el = this.el; 
+				el.addEventListener('click', function () {
+          var scene = document.querySelector('a-scene');
+
+              var objectsToDelete = [];
+          for (var i = 0; i < scene.children.length; i++) {
+            var child = scene.children[i];
+            if (child.id == 'scientist') {
+              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation__2', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
+              // scene.removeChild(child);
+              objectsToDelete.push(child);
+            }
+            if (child.id == 'instructions') {
+              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 900; easing: linear');
+              // child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              // scene.removeChild('instructions');
+              console.log("pushed instructions");
+              objectsToDelete.push(child);
+
+            }
+            if (child.id == 'arrow') {
+              child.setAttribute('animation', 'property: position; to: 5.5 0.8 -2; loop: false; dur: 900; easing: linear');
+              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
+              // scene.removeChild(child);
+
+              objectsToDelete.push(child);
+
+            }
+            if (child.id == 'text') {
+              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 1900; easing: linear');
+
+              objectsToDelete.push(child);
+            }
+            if (child.id == 'labModel') {
+              child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 9000; easing: linear');
+
+
+            }
+
+
+            if (child.id == 'tilesBG') {
+
+              scene.removeChild(child);
+              var spaceSky = document.createElement('a-sky');
+              spaceSky.setAttribute('src', '#spaceBG');
+              spaceSky.setAttribute('id', 'spaceBG');
+              spaceSky.setAttribute('material', 'color: #ffffff; repeat: 10 10 1;');
+              scene.appendChild(spaceSky);
+              var psyche = document.createElement('a-entity');
+              psyche.setAttribute('class', 'clickable');
+              psyche.setAttribute('id', 'psyche');
+              psyche.setAttribute('gltf-model', '#psyche');
+              psyche.setAttribute('position', '0.03 1.7 -2');
+              psyche.setAttribute('scale', '0.01 0.01 0.01');
+              psyche.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
+              psyche.setAttribute('click-event2', '');
+              scene.appendChild(psyche);
+
+              const parentEntity = document.createElement("a-entity");
+
+              createCell("??", -0.5, 0.1, parentEntity, "element1");
+              createCell("??", 0, 0.1, parentEntity, "element2");
+              createCell("??", 0.5, 0.1, parentEntity, "element3");
+              createCell(0, -0.5, -0.1, parentEntity, "counter1");
+              createCell(0, 0, -0.1, parentEntity, "counter2");
+              createCell(0, 0.5, -0.1, parentEntity, "counter3");
+
+
+              parentEntity.setAttribute("position", "0 2.2 -1");
+              parentEntity.setAttribute("scale", "0.7 0.7 0.7");
+              scene.appendChild(parentEntity);
+
+
+
+
+            }
+          }
+
+              console.log(objectsToDelete.length);
+              for (var i = 0; i < objectsToDelete.length; i++) {
+                var obj = objectsToDelete[i];
+                obj.parentNode.removeChild(obj);
+              }
+
+        });
+      }
+    });
+
+
+
       function nextScreen() {
-        console.log("clicked");
         getNextScreen();
       }
+
+      function prevScreen() {
+        getPrevScreen();
+      }
       </script>
+
   </head>
   <body>
-    <div id="overlay">
-      <span id="changeColor"  style="color:#0000ff">
-      <button id="btn" onclick="nextScreen()">Next Screen</button>
-      </span>
-      <span id ="overlaySpan">
+ <a-scene id="aFrameScene"">
+  <a-sky src="#tiles" rotation="0 -130 0" material="color: #4e515c; repeat: 10 10 1;" id="tilesBG"></a-sky>
+  <a-entity light="type:ambient; color: #c4d2da" position="3 1 1"></a-entity>
+  <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+  <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2" id="labModel"></a-entity>
+        <!-- <a-entity position="0 0 -15" id="beam" particle-system="accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.3; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00"></a-entity> -->
 
-      </span>
-      <!-- <span id="greeting"> -->
-        <!-- <div class="scrollboxholder"></div> -->
-		<!-- <textarea class="scrollabletextbox" name="note" readonly>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non orci lacinia, bibendum dui quis, dapibus elit. Nullam porttitor neque non lectus pulvinar, a placerat odio mollis. Pellentesque sed hendrerit urna. In id pretium libero. Nulla laoreet pulvinar quam, vitae maximus justo vulputate sed. Curabitur tortor est, pellentesque eget augue in, dapibus gravida nunc. Duis maximus malesuada cursus. Fusce eu sem mollis, pharetra quam id, consectetur risus. Nullam imperdiet euismod nisl, posuere mollis risus ultricies vitae. Proin at iaculis dolor. Donec eu porta purus, eget auctor sapien. Integer in nibh convallis, accumsan velit in, congue diam. Cras quis odio sed ipsum lobortis congue et quis magna. Integer varius mi quam, at luctus odio pharetra et.
+        <a-entity class="raycaster"
+                  position="0 0 -1"
+                  scale="0.02 0.02 0.02"
+                  cursor="fuse: true; fuseTimeout: 500"
+                  geometry="primitive: ring"
+                  material="color: black; shader: flat" 
+                  raycaster="interval:1000; objects: .clickable;">
+        </a-entity>
+ 
+      <a-assets>
+        <img id="scientist" src="elkins-tanton.png"  "/>
+        <img id="tiles" src="tiles.jpg" />
+        <img id="arrow" src="arrow.png" />
+        <img id="boxHolder" src="border.png" />
+        <img id="spaceBG" src="spaceBG.png" />
+        <img id="dish" src="dish.png" />
+        <img id="glow" src="glow.png" />
+        <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
+        <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
 
-Sed ipsum augue, scelerisque sed sollicitudin vel, dictum in velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc lacinia feugiat neque, id cursus elit condimentum non. Pellentesque eget iaculis enim, sit amet maximus turpis. Quisque rhoncus quam quis finibus condimentum. Fusce nec posuere turpis, at luctus urna. Donec sed velit in purus hendrerit feugiat. In gravida massa nulla, sed consectetur sapien hendrerit vel. Aliquam mollis mattis varius. Aliquam erat volutpat. Integer finibus, nibh lobortis imperdiet hendrerit, augue felis lacinia felis, vel facilisis nibh lorem ac neque. Mauris mollis diam at purus commodo hendrerit. In hac habitasse platea dictumst. Cras in orci lacus.
-
-Donec non magna mi. In ultricies, urna ullamcorper tincidunt dapibus, leo nisl hendrerit nulla, id bibendum neque erat eu mauris. Phasellus tincidunt ante sit amet venenatis dapibus. Aenean rhoncus lectus vel mauris iaculis molestie. Fusce vel dignissim nibh, quis pellentesque enim. Phasellus eget consectetur sem. Etiam euismod porttitor tortor a sollicitudin. Aenean eu iaculis nulla, eu rutrum dui. Sed hendrerit quis enim ac tincidunt. Sed malesuada facilisis arcu quis tincidunt. Suspendisse nec condimentum dolor. Aenean sit amet posuere odio. 
-		</textarea> -->
-      <!-- </span> -->
-    </div>
- <a-scene  id="aFrameScene" background="color: #ECECEC"
-             webxr="optionalFeatures: dom-overlay; overlayElement: #overlay">
-
+        <a-asset-item id="tree-obj" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/tree.obj"></a-asset-item>
+      </a-assets>
+      <a-camera><a-cursor></a-cursor></a-camera>
     </a-scene>
+    <script>
+
+
+    </script>
   </body>
 </html>
