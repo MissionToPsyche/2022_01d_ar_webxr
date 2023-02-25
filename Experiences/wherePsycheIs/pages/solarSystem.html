@@ -14,6 +14,13 @@
         <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
         <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
         <style>
+            #homeButton {
+                color: #FFFFFF;
+                position: absolute;
+                text-decoration: none;
+                padding: 10px;
+                z-index: 1;
+            }
             video {
                 position: absolute;
                 z-index: -10;
@@ -26,7 +33,7 @@
     <body>
     <video autoplay></video>
         <a-scene>
-
+            <a id="homeButton" href="../index.html"> ⬅ Go back home </a>
             <!-- This is a "mixin" we can apply to planets to make them
             rotate-->
             <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
