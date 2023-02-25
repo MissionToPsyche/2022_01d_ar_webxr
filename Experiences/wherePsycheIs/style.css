@@ -152,11 +152,31 @@ h3 {
 .marsPsycheBtnContainer {
     text-align: center;
 }
+.marsPsycheBtnContainer #findPsycheButton {
+    display: none;
+    margin: auto;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .marsPsycheBtnContainer #marsPsycheButton {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
+}
+.marsFlyByContainer .orbit-info {
+    text-align: center;
+    border-radius: 10px;
+    margin: 7px auto;
+    padding: 10px;
+    position: relative;
+    top: 15px;
+    width: 60%;
+}
+#asteroidContainer-mars {
     display: none;
 }
 .asteroidContainer {
