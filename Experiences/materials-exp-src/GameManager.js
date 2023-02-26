@@ -1,5 +1,7 @@
 "use strict";
 export class GameManager {
+    firstSceneElements = [];
+    secondSceneElements = [];
     currentScreen = 1;
 
     nextScreen() {
@@ -36,13 +38,32 @@ export class GameManager {
     }
 
     buildFirstScreen() { 
-        this.placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
+        var sky = document.createElement('a-sky');
+        sky.setAttribute('src', '#tiles');
+        sky.setAttribute('rotation', '0 -130 0');
+        sky.setAttribute('material', 'color: #4e515c; repeat: 10 10 1;');
+        sky.setAttribute('id', 'tilesBG');
+        document.querySelector('a-scene').appendChild(sky);
+        this.firstSceneElements.push(sky);
+
+        var lab = document.createElement('a-entity');
+        lab.setAttribute('gltf-model', '#lab');
+        lab.setAttribute('position', '1 1 -4');
+        lab.setAttribute('rotation', '0 260 0');
+        lab.setAttribute('scale', '3 3 2');
+        lab.setAttribute('id', 'labModel');
+        document.querySelector('a-scene').appendChild(lab);
+        // this.firstSceneElements.push(lab);
+
+        var scientist = this.placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
         'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
         'color:white; transparent: true; src:#scientist;repeat: 1;');
+        // this.firstSceneElements.push(scientist);
 
-        this.placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
+        var boxHolder = this.placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
         'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
         'color:white; transparent: true; src:#boxHolder;repeat: 1;');
+        this.firstSceneElements.push(boxHolder);
 
         var arrowShape = this.placeElement('a-plane', {x:-5.5, y:0.8, z:-2}, '0.8 0.5 1', 'arrow',
         'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear',
@@ -51,11 +72,13 @@ export class GameManager {
         arrowShape.addEventListener('click', function() {
             this.buildSecondScreen();
         }.bind(this));
+        this.firstSceneElements.push(arrowShape);
         
         var instructionsText = this.placeElement('a-text', {x:-0.1, y:2, z:-1}, '0.3 0.3 0.3', 'text',
         'property: position; to: -0.1 2 -1; loop: false; dur: 1000; easing: linear',
         'color:white; transparent: true; src:#text;repeat: 1;');
         instructionsText.setAttribute('value', 'Instructions Test');
+        this.firstSceneElements.push(instructionsText);
     }
 
     buildSecondScreen() {
@@ -68,6 +91,8 @@ export class GameManager {
         spaceSky.setAttribute('id', 'spaceBG');
         spaceSky.setAttribute('material', 'color: #ffffff; repeat: 10 10 1;');
         scene.appendChild(spaceSky);
+        this.secondSceneElements.push(spaceSky);
+
         var psyche = document.createElement('a-entity');
         psyche.setAttribute('class', 'clickable');
         psyche.setAttribute('id', 'psyche');
@@ -80,6 +105,7 @@ export class GameManager {
             this.psycheClick();
         }.bind(this));
         scene.appendChild(psyche);
+        this.secondSceneElements.push(psyche);
 
         const parentEntity = document.createElement("a-entity");
 
@@ -93,8 +119,29 @@ export class GameManager {
         parentEntity.setAttribute("position", "0 2.2 -1");
         parentEntity.setAttribute("scale", "0.7 0.7 0.7");
         scene.appendChild(parentEntity);
+        this.secondSceneElements.push(parentEntity);
+
+        // Arrow to skip game and go to third screen
+        var arrow2 = document.createElement('a-plane');
+        arrow2.setAttribute('position', '0 0.8 -2');
+        arrow2.setAttribute('scale', '0.8 0.5 1');
+        arrow2.setAttribute('id', 'arrow2');
+        arrow2.setAttribute('material', 'color:white; transparent: true; src:#arrow;repeat: 1;');
+        arrow2.setAttribute('click-event', '');
+        arrow2.addEventListener('click', function() {
+            this.buildThirdScreen();
+        }
+        .bind(this));
+        scene.appendChild(arrow2);
+        this.secondSceneElements.push(arrow2);
     }
 
+    buildThirdScreen() {
+        this.takedownSecondScreen();
+      console.log("third screen");
+    }
+
+    // Helper function to create a cell
     createCell(textValue, x, y, parent, cellID) {
         const cellEntity = document.createElement("a-entity");
         cellEntity.setAttribute("text", {
@@ -150,41 +197,38 @@ export class GameManager {
         this.incrementValues();
     } 
 
+    takedownSceneElements(sceneElementsArray) {
+        var scene = document.querySelector('a-scene');
+        for (var i = 0; i < sceneElementsArray.length; i++) {
+            var obj = sceneElementsArray[i];
+            scene.removeChild(obj);
+        }
+    }
+
 
     takedownFirstScreen() {
         // takedown first screen here
-        var scene = document.querySelector('a-scene');
-        var objectsToDelete = [];
-        for (var i = 0; i < scene.children.length; i++) {
-            var child = scene.children[i];
-            if (child.id == 'scientist') {
-                child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
-                child.setAttribute('animation__2', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
-                objectsToDelete.push(child);
-            }
-            if (child.id == 'instructions') {
-                objectsToDelete.push(child);
-            }
-            if (child.id == 'arrow') {
-                child.setAttribute('animation', 'property: position; to: 5.5 0.8 -2; loop: false; dur: 900; easing: linear');
-                child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
-                objectsToDelete.push(child);
-            }
-            if (child.id == 'text') {
-                objectsToDelete.push(child);
-            }
-            if (child.id == 'labModel') {
-                child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 9000; easing: linear');
-            }
+        // remove what needs to be deleted
+        this.takedownSceneElements(this.firstSceneElements);
 
-            if (child.id == 'tilesBG') {
-                scene.removeChild(child);
-            }
-        }
-        for (var i = 0; i < objectsToDelete.length; i++) {
-            var obj = objectsToDelete[i];
-            obj.parentNode.removeChild(obj);
-        }
+        var scene = document.querySelector('a-scene');
+        // animate others for effect
+        for (var i = 0; i < scene.children.length; i++) {
+          var child = scene.children[i];
+          if (child.id == 'scientist') {
+              child.setAttribute('animation__2', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
+          }
+          if (child.id == 'labModel') {
+              child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 900; easing: linear');
+          }
+      }
+
+    }
+
+    takedownSecondScreen() {
+        // takedown second screen here
+        // remove what needs to be deleted
+        this.takedownSceneElements(this.secondSceneElements);
     }
 
     // Helper method for creating elements
@@ -199,6 +243,7 @@ export class GameManager {
         return shape;
       }
 
+    // Increment when Psyche is clicked
     incrementValues() {
         var counter1 = document.querySelector('#counter1').getAttribute('text').value;
         var counter2 = document.querySelector('#counter2').getAttribute('text').value;
