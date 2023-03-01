@@ -2,6 +2,7 @@
 export class GameManager {
     firstSceneElements = [];
     secondSceneElements = [];
+    thirdSceneElements = [];
     currentScreen = 1;
 
     nextScreen() {
@@ -53,12 +54,12 @@ export class GameManager {
         lab.setAttribute('scale', '3 3 2');
         lab.setAttribute('id', 'labModel');
         document.querySelector('a-scene').appendChild(lab);
-        // this.firstSceneElements.push(lab);
+        this.firstSceneElements.push(lab);
 
         var scientist = this.placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
         'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
         'color:white; transparent: true; src:#scientist;repeat: 1;');
-        // this.firstSceneElements.push(scientist);
+        this.firstSceneElements.push(scientist);
 
         var boxHolder = this.placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
         'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
@@ -139,6 +140,14 @@ export class GameManager {
     buildThirdScreen() {
         this.takedownSecondScreen();
       console.log("third screen");
+      var computer = document.createElement('a-entity');
+      computer.setAttribute('id', 'computer');
+      computer.setAttribute('gltf-model', '#computer');
+      computer.setAttribute('position', '1 0 -2');
+      computer.setAttribute('scale', '0.08 0.08 0.08');
+      var scene = document.querySelector('a-scene');
+      scene.appendChild(computer);
+      this.thirdSceneElements.push(computer);
     }
 
     // Helper function to create a cell
