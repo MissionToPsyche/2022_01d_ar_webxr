@@ -10,12 +10,25 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!-- <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script> -->
     <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
     <style>
+      .marsPsycheButton:hover {
+        cursor: pointer;
+      }
       video {
-          position: absolute;
-          z-index: -10;
-          width: 100%;
-          top: 0;
+            position: absolute;
+            z-index: -10;
+            height: 100%;
+            top: 0;
+        }
+      @media only screen and (min-width: 768px){
+        video {
+            position: absolute;
+            z-index: -10;
+            width: 100%;
+            height: auto;
+            top: 0;
+        }
       }
     </style>
 </head>
@@ -24,31 +37,66 @@
       <img id="border" src="../img/psyche-border.png" alt="">
       <div class="main-container">
         <div id="marsContainer" class="marsFlyByContainer">
-            <div class="marsFlyBy">
+            <div class="marsFlyBy adjust-width">
                 <h3>Welcome To:</h3>
                 <h2>The Mars Flyby</h2>
                 <p><span>Trajectory: </span> The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist.</p>
             </div>
             <img id="exploreBtn" src="../img/explore-button.png" onclick="click_explore()" alt="">
+            <!-- <img id="exploreBtn" src="../img/explore-button.png" alt=""> -->
         </div>
         <div class="marsPsycheBtnContainer">
-          <a href="asteroid.html">
+          <!-- <a href="asteroid.html">
             <img id="marsPsycheButton" src="../img/psyche-button.png" alt="">
+          </a> -->
+          <a id="marsPsycheButton" onclick="click_psyche()">
+            <img src="../img/psyche-button.png" alt="">
+          </a>
+          <a href="solarSystem.html">
+              <!-- <img id="earthBtn" src="../img/earth-button.png" alt=""> -->
+              <img id="findPsycheButton" src="../img/findPsyche.png" alt="">
           </a>
         </div>
       </div>
+      <div id="asteroidContainer-mars">
+        <!-- <img class="infoBg" src="../img/info-bg.png" alt=""> -->
+        <div class="informationText">
+            <h3>Arrived Destination: </h3>
+            <h2>Psyche Asteroid</h2>
+            <img src="../img/psyche-orbits.png" alt="">
+            <div class="list">
+              <ul>
+                <li>
+                    <p><span>Orbit:</span> Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.</p>
+                </li>
+                <li>
+                    <p><span>Orbit A:</span> Characterization <br> 56 Days (41 Orbits)</p>
+                </li>
+                <li>
+                    <p><span>Orbit B:</span> Topography <br> 80 Days (169 Orbits)</p>
+                </li>
+                <li>
+                    <p><span>Orbit C:</span> Gravity Science <br> 100 Days (362 Orbits)</p>
+                </li>
+                <li>
+                    <p><span>Orbit D:</span> Elemental Mapping <br> 100 Days (684 Orbits)</p>
+                </li> 
+              </ul>
+            </div>
+        </div>
     </div>
     <video autoplay></video>
     <a-scene embedded class="aFrameContainer">
         <a-assets>
-          <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
           <img id="mars" src="../img/mars.jpeg">
           <img id="galaxy" src="../img/gx.png">
           <img id="border" src="../img/psyche-border.png" alt="">
           <img id="welcomeToSpace" src="../img/welcome-to-space.png" alt="">
           <img id="startMission" src="../img/start-mission.png" alt="">
+          <a-asset-item id="asteroidgltf" src="../models/psyche.gltf"></a-asset-item>
         </a-assets>
-
+        
+        <!-- MARS -->
         <a-sphere position="-1.5 3 -5"
         src="#mars" 
         repeat="1 1" 
@@ -59,14 +107,34 @@
         animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true"
         color="#FFFFFF" 
         radius="3"></a-sphere>
+
+        <!-- Asteroid -->
+        <!-- <a-entity light="color: #FFFFFF; intensity: 1" position="1 4 -8"></a-entity> -->
+        <a-entity id="psyche"
+                gltf-model="#asteroidgltf" 
+                position="10 5 -10"
+                color="#FFFFFF" 
+                scale="0.01 0.01 0.01"
+                animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true" 
+                roughness="0.7"
+                play-all-model-animations modify-materials>
+        </a-entity>
+        <a-entity light="color: #FFFFFF; intensity: 0.5" position="5 2 3" type="probe" target="#psyche"
+                  animation="property: light.intensity; dur: 2000; easing:linear; to: 2; startEvents: zoom;">
+        </a-entity>
+
+
+        <!-- <a-entity id="fading-cube" geometry="primitive: box" material="opacity: 1" position="10 5 -10" animation="property: material.opacity; startEvents: fade">
+        </a-entity> -->
       
        <!--  <a-sky id="image-360" src="#galaxy"></a-sky> -->
-       <a-sky color="black" opacity="0.7"></a-sky>
+       <a-sky color="black" opacity="0.85"></a-sky>
+       <!-- Default lighting injected by A-Frame. -->
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
        <a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
-        <a-camera>
-            <!-- <a-image src="#border" height="2.5" width="1.5" position="0 0 -1.5" transparent="true" alpha-test="0.5"></a-image> -->
-            <!-- <a-image src="#welcomeToSpace" height="0.2" width="0.7" position="0 0.1 -1"></a-image>
-            <a-image id="btnStartMission" src="#startMission" height="0.15" width="0.5" position="0 -0.15 -1"></a-image> -->
+         <a-camera id="cam" 
+              animation="property: position; dur: 2000; easing:linear; to: 10 5 -9; startEvents: zoom;">
         </a-camera>
       </a-scene>
       <script>

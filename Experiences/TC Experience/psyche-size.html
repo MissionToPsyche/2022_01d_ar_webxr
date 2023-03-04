@@ -90,16 +90,16 @@
                 position="-2.2 3.9 -10" 
                 value="-- Scientists estimate the mean diameter of Psyche is about 140 miles (226 km) 
                        \n\n -- That is roughly the distance from Los Angeles to San Francisco 
-                       \n\n -- Psyche is in the shape of a 
-                       \n\n -- It's estimated to be 1/14 the size of"
+                       \n\n -- Psyche has an irregular 
+                       \n\n -- It's estimated to be 1/16 the diameter of"
                 z-offset="0.15" 
                 height="5" 
                 width="5">
                 <!-- Ellipsoid Animation Button -->
                 <a-entity 
                     asteroidshape
-                    position="4.4 -0.55 0" 
-                    geometry="primitive: plane; height:0.5;width:2.7"
+                    position="3 -0.55 0" 
+                    geometry="primitive: plane; height:0.5;width:1.1"
                     visible="true" 
                     material="transparent:true; opacity:0;"
                     event-set__enter="_event: click; _target: #asteroid; animation.property:scale; animation.to: 1.2 0.8 1; animation.dur: 3000; animation.easing: linear;">
@@ -108,8 +108,8 @@
                         id="jacobi"
                         color="yellow" 
                         visible="true"
-                        position="-1.55 0 0" 
-                        value="JACOBI ELLIPSOID" 
+                        position="-0.5 0 0" 
+                        value="shape" 
                         height="7" 
                         width="7">
                     </a-text>
@@ -117,7 +117,7 @@
                 <!-- Moon Animation Button -->
                 <a-entity 
                     moontask
-                    position="4.78 -1.25 0" 
+                    position="5.3 -1.25 0" 
                     geometry="primitive: plane; height:0.5; width:2.2;"
                     visible="true"
                     material="transparent:true; opacity:0"
