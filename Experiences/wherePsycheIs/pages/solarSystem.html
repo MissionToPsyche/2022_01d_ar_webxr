@@ -24,8 +24,17 @@
             video {
                 position: absolute;
                 z-index: -10;
-                width: 100%;
+                height: 100%;
                 top: 0;
+            }
+            @media only screen and (min-width: 768px){
+                video {
+                    position: absolute;
+                    z-index: -10;
+                    width: 100%;
+                    height: auto;
+                    top: 0;
+                }
             }
           </style>
     </head>
@@ -144,7 +153,13 @@
                     animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true" 
                     roughness="0.7"
                     play-all-model-animations modify-materials
-                    sound="on: click; src: #click-sound"></a-entity>
+                    sound="on: click; src: #click-sound">
+                    <a-text 
+                    position="1 5 1"
+                    color="#FFFFFF" 
+                    value="\n\nPsyche Asteroid"
+                    scale="2 2 2" 
+                    ></a-text></a-entity>
             </a-entity>
 
             <a-entity id="orbit-jupiter" mixin="orbit" animation="dur: 90000;">
