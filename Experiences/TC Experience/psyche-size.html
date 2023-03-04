@@ -13,7 +13,9 @@
         <a-scene>
             <!-- Main scen setup elements -->
             <a-camera wasd-controls-enabled="false">
-                <a-cursor></a-cursor>
+                <a-cursor
+                    material="color:white"
+                ></a-cursor>
                 <a-entity
                     id="main-tasks"
                     geometry="primitive:plane;"
@@ -88,7 +90,7 @@
                 id="info"
                 color="#03cffc" 
                 position="-2.2 3.9 -10" 
-                value="-- Scientists estimate the mean diameter of Psyche is about 140 miles (226 km) 
+                value="-- Scientists estimate if Psyche were a perfect sphere, it would have a diameter of 140 miles 
                        \n\n -- That is roughly the distance from Los Angeles to San Francisco 
                        \n\n -- Psyche has an irregular 
                        \n\n -- It's estimated to be 1/16 the diameter of"
@@ -102,7 +104,7 @@
                     geometry="primitive: plane; height:0.5;width:1.1"
                     visible="true" 
                     material="transparent:true; opacity:0;"
-                    event-set__enter="_event: click; _target: #asteroid; animation.property:scale; animation.to: 1.2 0.8 1; animation.dur: 3000; animation.easing: linear;">
+                    event-set__enter="_event: click; _target: #asteroid-shape; animation.property:scale; animation.to: 1.2 0.8 1; animation.dur: 3000; animation.easing: linear;">
                     <!-- Ellipsoid Button Text -->
                     <a-text
                         id="jacobi"
