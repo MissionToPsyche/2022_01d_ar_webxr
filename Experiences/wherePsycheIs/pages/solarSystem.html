@@ -49,7 +49,8 @@
 
             <!-- here is a "mixin" that we can apply to a container to make the
             planet inside it orbit -->
-            <a-mixin id="orbit" animation="property: rotation; loop: true; to: 0 360 0; dur: 40000; easing: linear;"></a-mixin>
+            <!-- <a-mixin id="orbit" animation="property: rotation; loop: true; to: 0 360 0; dur: 40000; easing: linear;"></a-mixin> -->
+            <a-mixin id="orbit"></a-mixin>
 
             <a-assets>
                 <img id="sun-texture" src="https://cdn.glitch.com/d558c128-2ed0-4284-a0da-4d18b9163ad6%2F1024px-Map_of_the_full_sun.jpg?1540859304920"
@@ -154,12 +155,14 @@
                     roughness="0.7"
                     play-all-model-animations modify-materials
                     sound="on: click; src: #click-sound">
-                    <a-text 
-                    position="1 5 1"
-                    color="#FFFFFF" 
-                    value="\n\nPsyche Asteroid"
-                    scale="2 2 2" 
-                    ></a-text></a-entity>
+                </a-entity>
+
+                <a-text 
+                position="-3.7 1 15"
+                color="#FFFFFF" 
+                value="Psyche Asteroid"
+                side="double"
+                ></a-text>
             </a-entity>
 
             <a-entity id="orbit-jupiter" mixin="orbit" animation="dur: 90000;">
