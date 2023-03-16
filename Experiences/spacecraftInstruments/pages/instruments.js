@@ -32,3 +32,23 @@ const sceneStates = {
 	arSolar:23,
 	arXband:24
 };
+
+
+var sceneState = sceneStates.selection;
+
+function click_back() {
+	if (sceneState >= 20 && sceneState <= 24) {
+		// Then go back to info state
+		sceneState -= 10;
+	} else if (sceneState >= 10 && sceneState <= 14) {
+		// Then go back to selection state
+		sceneState = 2;
+	} else if (sceneState == 2) {
+		// Then go back to spacecraft state
+		sceneState = 1;
+	} else if (sceneState == 1) {
+		// Then go back to opening state
+		sceneState = 0; 
+		document.getElementById("backButton").style.display = "none";
+	}
+}
