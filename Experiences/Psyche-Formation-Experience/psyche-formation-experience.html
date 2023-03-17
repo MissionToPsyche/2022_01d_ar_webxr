@@ -62,16 +62,22 @@
 				<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
 
 				<!-- Impacts of smaller rocks-->
+				<a-timeline-animation select="#Debris1" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris1" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris1" name="togglevisibleoff"></a-timeline-animation>
+				<a-timeline-animation select="#Debris2" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris2" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris2" name="togglevisibleoff"></a-timeline-animation>
+				<a-timeline-animation select="#Debris3" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris3" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris3" name="togglevisibleoff"></a-timeline-animation>
+				<a-timeline-animation select="#Debris4" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris4" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris4" name="togglevisibleoff"></a-timeline-animation>
+				<a-timeline-animation select="#Debris5" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris5" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris5" name="togglevisibleoff"></a-timeline-animation>
+				<a-timeline-animation select="#Debris6" name="togglevisible"></a-timeline-animation>
 				<a-timeline-animation select="#Debris6" name="move"></a-timeline-animation>
 				<a-timeline-animation select="#Debris6" name="togglevisibleoff"></a-timeline-animation>
 				<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
@@ -222,9 +228,9 @@
 				id="Debris1" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="1.85 0 -1"
+				position="1.85 0 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>		
@@ -234,9 +240,9 @@
 				id="Debris2" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="-1.85 0 -1"
+				position="-1.85 0 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>
@@ -246,9 +252,9 @@
 				id="Debris3" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="1.85 2 -1"
+				position="1.85 2 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>		
@@ -258,9 +264,9 @@
 				id="Debris4" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="-1.85 2 -1"
+				position="-1.85 2 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>
@@ -270,9 +276,9 @@
 				id="Debris5" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="5 1 -1"
+				position="5 1 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>		
@@ -282,9 +288,9 @@
 				id="Debris6" 
 				mixin="spaceRockMixin"
 				src="#asteroid-model"
-				position="-5 1 -1"
+				position="-5 1 1"
 				rotation="0 0 0"
-				visible="true"
+				visible="false"
 				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>
