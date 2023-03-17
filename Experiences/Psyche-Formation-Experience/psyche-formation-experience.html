@@ -82,8 +82,10 @@
 				<a-timeline-animation select="#text4" name="fadein"></a-timeline-animation>
 
 				<!-- Psyche -->
+				<a-timeline-animation select="#Hardened" name="scaledown"></a-timeline-animation>
 				<a-timeline-animation select="#Hardened" name="togglevisibleoff"></a-timeline-animation>
 				<a-timeline-animation select="#Psyche" name="togglevisible"></a-timeline-animation>
+				<a-timeline-animation select="#Psyche" name="scale"></a-timeline-animation>
 				<a-timeline-animation select="#Psyche" name="delay"></a-timeline-animation>
 
 				<!-- Text fade out-->
@@ -121,7 +123,7 @@
 			<!-- Psyche -->
 			<a-asset-item
 				id="psyche-model"
-				src="../../models/gltf/psycheAsteroid/psycheAlternate.gltf">
+				src="../../models/gltf/psycheAsteroid/psyche_improved.gltf">
 			</a-asset-item>
 
 			<!-- Mixin with animations of all space objects -->
@@ -154,6 +156,9 @@
 
 			<!-- Background -->
 			<a-sky src="#skyTexture"></a-sky>
+
+			<!--Light-->
+			<a-entity light="color: #FFFFFF; intensity: 2" position="-1 1 0.5"></a-entity>
 
 			<!-- Texts -->
 			<a-entity id="introText" mixin="text" text="value: How do scientists think Psyche formed?"></a-entity>
@@ -208,7 +213,8 @@
 				geometry="primitive: sphere" 
 				material="src: #hardenedMaterial; opacity: 1;"
 				scale="2 2 2"
-				visible="false">
+				visible="false"
+				animation__scaledown="property: scale; to: 0 0 0; dur: 2000; easing: easeInOutElastic; autoplay: false">
 			</a-entity>
 
 			<!-- Debris 1-->
@@ -284,15 +290,16 @@
 			</a-gltf-model>
 
 			<!-- Psyche -->
-			<a-gltf-model
-				id="Psyche" 
+			<a-entity 
+				id="Psyche"
+				gltf-model="#psyche-model" 
 				mixin="spaceRockMixin"
-				src="#psyche-model"
 				position="0 0 -10"
-				rotation="0 0 0"
-				scale="1 1 1"
-				visible="false">
-			</a-gltf-model>
+				color="#FFFFFF" 
+				scale="0 0 0"
+				roughness="0.7"
+				animation__scale="property: scale; to: 0.1 0.1 0.1; dur: 2000; easing: easeInOutElastic; autoplay: false">
+			</a-entity>
 		</a-scene>
 	</body>
 </html>
