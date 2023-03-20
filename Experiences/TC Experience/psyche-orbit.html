@@ -204,6 +204,23 @@
                     link="href:adventure.html">
                 </a-entity>
             </a-text>
+
+            <!-- Hint -->
+            <a-entity
+                event-set__enter="_event: click; _target:#asteroid; animation.property:scale; animation.to: 1 1 1; animation.dur: 3000; animation.easing: linear;"
+                id="hint-button" 
+                visible="true"
+                geometry="primitive: box; width:1; height:0.4; depth:0.01" 
+                material="color:grey"
+                position="4 -1.7 -10">       
+                <a-text
+                    color="black"
+                    value="Hint"
+                    position="0 0 0.1"
+                    align="center"
+                ></a-text>
+            </a-entity>
+
         </a-scene>
         <script type="text/javascript">
             if(sessionStorage.getItem('task1') === "true"){
