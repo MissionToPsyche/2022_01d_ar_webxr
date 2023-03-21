@@ -46,8 +46,61 @@
 					</p>
 				</div>
 				<!-- Tap screen instruction text -->
-		
 			</div>
 		</div>
+
+		<a-scene embedded class="aFrameContainer">
+			
+			<!-- Camera -->
+			<a-camera>
+				<!-- Screen-space entities -->
+				
+				<!-- Spacecraft -->
+				<a-entity class="spacecraft" id="spacecraft" gltf-model="url(/models/PsycheSpacecraft.gltf)"
+				position="0 -1 -5" rotation="0 90 0" scale="0.01 0.01 0.01" spacecraft-select></a-entity>
+
+				<!-- Instruments -->
+				<!-- Multispectral imager -->
+				<a-entity class="instrument" id="multi" gltf-model="#multigltf"
+				position="-2 2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
+
+				<!-- Gamma ray and neutron spectrometer -->
+				<a-entity class="instrument" id="gamma" gltf-model="#gammagltf"
+				position="-2 1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
+
+				<!-- Magnetometer -->
+				<a-entity class="instrument" id="magnet" gltf-model="#magnetgltf"
+				position="-2 0 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
+
+				<!-- X-band radio telecom system -->
+				<a-box class="instrument" id="xband"
+				position="-2 -1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-box>
+
+				<!-- Solar panels -->
+				<a-box box class="instrument" id="solar"
+				position="-2 -2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-box>
+
+				<!-- Instrument list text -->
+				<a-text class="instrumentText" id="multiText" value="Multispectral Imager"
+				position="-1 2 -4.5"></a-text>
+				<a-text class="instrumentText" id="gammaText" value="Gamma Ray and\nNeutron Spectrometer"
+				position="-1 1 -4.5"></a-text>
+				<a-text class="instrumentText" id="magnetText" value="Magnetometer"
+				position="-1 0 -4.5"></a-text>
+				<a-text class="instrumentText" id="xbandText" value="X-band Radio\nTelecom System"
+				position="-1 -1 -4.5"></a-text>
+				<a-text class="instrumentText" id="solarText" value="Solar Panels"
+				position="-1 -2 -4.5"></a-text>
+
+				<!-- Instrument description text -->
+				<a-text class="descriptionText" id="descriptionText" value="Description text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text"
+				position="-1.5 -1.5 -4.5"></a-text>
+
+				<!-- Backlighting -->
+				<!-- Must be last of entities within camera -->
+				<a-entity light="color: #FFFFFF; intensity: 0.3" position="0 0 10" type="probe" target="#psyche"></a-entity>
+
+			</a-camera>
+		</a-scene>
 	</body>
 </html>
