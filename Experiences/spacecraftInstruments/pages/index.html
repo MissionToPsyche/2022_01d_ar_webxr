@@ -101,6 +101,65 @@
 				<a-entity light="color: #FFFFFF; intensity: 0.3" position="0 0 10" type="probe" target="#psyche"></a-entity>
 
 			</a-camera>
+			
+			<!-- Psyche asteroid -->
+				<a-entity id="asteroid"
+				gltf-model="#asteroidgltf" 
+				position="-7 2 -10"
+				color="#FFFFFF" 
+				scale="0.15 0.15 0.15"
+				animation="property: rotation; to: 0 360 0; dur: 250000; easing: linear; loop: true" 
+				roughness="0.7"
+				play-all-model-animations modify-materials>
+			</a-entity>
+
+			<!-- Light-->
+			<a-entity light="color: #FFFFFF; intensity: 1" position="5 0 -5" type="probe" target="#psyche"/>
+
+
+			<!-- ToDo: Opening timeline -->
+			<a-timeline id="opening">
+				<!-- ToDo:
+				Asteroid visible
+				Spacecraft visible
+				Tap instructions text visible
+				Logo visible or otherwise in the main-container
+				-->
+			</a-timeline>
+
+			<!-- ToDo: Spacecraft timeline -->
+			<a-timeline id="spacecraft">
+				<!-- ToDo:
+				Mission text visible
+				Outlines of instruments visible
+				Old tap instructions NOT visible
+				New tap instructions visible
+				-->
+			</a-timeline>
+
+			<!-- ToDo: Spacecraft timeline -->
+			<a-timeline id="selection">
+				<!-- ToDo:
+				Instrument outlines move to list positions
+
+				Gamma instrument moves to list position and visible
+				Gamma name text moves to list position and visible
+				Magnet instrument moves to list position and visible
+				Magnet name text moves to list position and visible
+				Multi instrument moves to list position and visible
+				Multi name text moves to list position and visible
+				Solar panel moves to list position and visible
+				Solar panel name text moves to list position and visible
+				Xband instrument moves to list position and visible
+				Xband name text moves to list position and visible
+				
+				Tap icon moves to bottom instrument position
+				Completion badges scale to visible size
+				-->
+			</a-timeline>
+
 		</a-scene>
+
+		<script src="instruments.js"></script>
 	</body>
 </html>
