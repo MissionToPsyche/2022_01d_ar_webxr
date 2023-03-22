@@ -22,7 +22,7 @@
                     animation__fadeout="property: text.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false"
                     animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
                     animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
-                    position="0 3 -3"
+                    position="0 1.25 -3"
                     visible="true">
                 </a-mixin>
                 
@@ -38,10 +38,24 @@
 			<a-entity light="color: #FFFFFF; intensity: 2" position="-1 1 0.5"></a-entity>
 
             <!-- Intro Text-->
-			<a-entity id="introText" mixin="text" text="value: How do scientists think Psyche formed?\nClick play to continue"></a-entity>
+			<!--
+				<a-entity id="introText" mixin="text" text="value: How do scientists think Psyche formed?\nClick play to continue"></a-entity>
+			-->
+
+			<a-link 
+				id="linkToLandingPage" 
+				mixin="text" 
+				href="psyche-formation-experience.html" 
+				target="_blank" 
+				title="Click to see how Psyche formed" 
+				image="#skyTexture">
+			</a-link>
+
 
             <!--Play button-->
+			<!--
             <a-image id="playButton" position="0 1.5 -10" src="./images/Play button.jpg"  link="href: psyche-formation-experience.html"></a-image>
-        </a-scene>
+			-->
+		</a-scene>
     </body>
 </html>

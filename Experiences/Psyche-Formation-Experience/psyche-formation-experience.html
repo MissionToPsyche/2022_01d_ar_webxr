@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-		<a-scene animation-timeline__1="timeline: #myTimeline; loop: true">
+		<a-scene animation-timeline__1="timeline: #myTimeline; loop: false" cursor="rayOrigin: mouse">
 			<a-assets timeout="10000">
 				<a-asset-item src="https://cdn.aframe.io/fonts/Roboto-msdf.json"></a-asset-item>
 
@@ -22,7 +22,7 @@
 					<a-timeline-animation select="#introText" name="threeseconddelay"></a-timeline-animation>
 					<a-timeline-animation select="#introText" name="fadeout"></a-timeline-animation>
 					<a-timeline-animation select="#introText" name="togglevisibleoff"></a-timeline-animation>
-
+					
 					<!-- Planetesimal appearing animation -->
 					<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
 
@@ -91,11 +91,15 @@
 					<a-timeline-animation select="#Hardened" name="togglevisibleoff"></a-timeline-animation>
 					<a-timeline-animation select="#Psyche" name="togglevisible"></a-timeline-animation>
 					<a-timeline-animation select="#Psyche" name="scale"></a-timeline-animation>
-					<a-timeline-animation select="#Psyche" name="delay"></a-timeline-animation>
 
 					<!-- Text fade out-->
 					<a-timeline-animation select="#text4" name="fadeout"></a-timeline-animation>
 					<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
+
+					<!--Link Home-->
+					<a-timeline-animation select="#link" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#link" name="scale"></a-timeline-animation>
+					<a-timeline-animation select="#Psyche" name="togglevisibleoff"></a-timeline-animation>
 				</a-timeline>
 
 				<!-- Stars Background-->
@@ -180,8 +184,25 @@
 			<a-entity id="text1" mixin="text" text="value: One scenario is that long ago, a planetesimal that had separated internally into a rocky mantle and iron core suffered violent impacts that stripped away its mantle, leaving behind core material."></a-entity>
 			<a-entity id="text2" mixin="text" text="value: The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."></a-entity>
 			<a-entity id="text3" mixin="text" text="value: As smaller objects continued to impact Psyche, they could leave craters on the surface."></a-entity>
-			<a-entity id="text4" mixin="text" text="value: And this is an artist’s concept of how Psyche may looks today."></a-entity>
-
+			<a-entity id="text4" mixin="text" text="value: And this is an artist's concept of how Psyche may looks today."></a-entity>
+			
+			<a-entity
+				id="link"
+				visible="false"
+				scale="0 0 0"
+				animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
+				animation__scale="property: scale; to: 1 1 1; dur: 2000; easing: easeInOutElastic; autoplay: false">
+				<a-link 
+					position="0 1.25 -3" 
+					href="../../index.html" 
+					target="_blank" 
+					title="Landing Page" 
+					image="#skyTexture" 
+					borderColor="black">
+				</a-link>	
+			</a-entity>
+		
+			
 			<!-- Planetesimal -->
 			<a-gltf-model
 				id="Planetesimal" 
@@ -313,7 +334,7 @@
 				color="#FFFFFF" 
 				scale="0 0 0"
 				roughness="0.7"
-				animation__scale="property: scale; to: 0.1 0.1 0.1; dur: 2000; easing: easeInOutElastic; autoplay: false">
+				animation__scale="property: scale; to: 0.08 0.08 0.08; dur: 2000; easing: easeInOutElastic; autoplay: false">
 			</a-entity>
 		</a-scene>
 	</body>
