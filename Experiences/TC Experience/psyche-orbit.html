@@ -206,9 +206,16 @@
             </a-text>
 
             <!-- Hint -->
+            <a-text
+                id="hint"
+                visible="false"
+                value="Find and Click the Psyche Asteroid"
+                position="4 -.5 -10"
+            ></a-text>
+
             <a-entity
-                event-set__enter="_event: click; _target:#asteroid; animation.property:scale; animation.to: 1 1 1; animation.dur: 3000; animation.easing: linear;"
                 id="hint-button" 
+                hint
                 visible="true"
                 geometry="primitive: box; width:1; height:0.4; depth:0.01" 
                 material="color:grey"

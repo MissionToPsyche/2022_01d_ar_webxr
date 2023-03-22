@@ -103,3 +103,14 @@ AFRAME.registerComponent('asteroidweight', {
     }
 }); 
 
+AFRAME.registerComponent('hint', {
+    init: function() {
+        this.showHint = function() {
+            document.getElementById('hint').setAttribute('visible','true');
+        }
+        this.el.addEventListener('click',this.showHint);
+    },
+    remove: function() {
+        this.el.removeEventListener('click',this.showHint);
+    }
+}); 
