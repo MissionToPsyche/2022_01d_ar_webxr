@@ -130,6 +130,7 @@ export class GameManager {
     arrow2.setAttribute('material', 'color:white; transparent: true; src:#arrow;repeat: 1;');
     arrow2.setAttribute('click-event', '');
     arrow2.addEventListener('click', function () {
+      this.takedownSecondScreen();
       this.buildThirdScreen();
     }
       .bind(this));
@@ -138,7 +139,6 @@ export class GameManager {
   }
 
   buildThirdScreen() {
-    this.takedownSecondScreen();
     var scene = document.querySelector('a-scene');
     console.log("third screen");
     var sky = document.createElement('a-sky');
@@ -152,35 +152,102 @@ export class GameManager {
     var computer = document.createElement('a-entity');
     computer.setAttribute('id', 'computer');
     computer.setAttribute('gltf-model', '#computer');
-    computer.setAttribute('position', '1 0 -10');
-    computer.setAttribute('scale', '0.08 0.08 0.08');
+    computer.setAttribute('position', '0 0 -10');
+    computer.setAttribute('scale', '0.05 0.05 0.05');
     var scene = document.querySelector('a-scene');
     scene.appendChild(computer);
-    computer.setAttribute('animation', 'property: position; to: 1 0 -2; loop: false; dur: 1000; easing: linear'); 
+    computer.setAttribute('animation', 'property: position; to: 1.2 0.5 -1.5; loop: false; dur: 1000; easing: linear');
     this.thirdSceneElements.push(computer);
 
-    var rock1 = document.createElement('a-entity');
-    rock1.setAttribute('id', 'rock1');
-    rock1.setAttribute('gltf-model', '#rock');
-    // rock1.setAttribute('position', '0 5 -0.3');
-    rock1.setAttribute('position', '-0.13 1.68 -0.16');
-    rock1.setAttribute('scale', '0.008 0.008 0.008');
-    scene.appendChild(rock1);
-    // rock1.setAttribute('animation', 'property: position; to: -0.13 1.68 -0.16; loop: false; dur: 1000; easing: linear');
-    rock1.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
-    this.thirdSceneElements.push(rock1);
+    var nickel = document.createElement('a-entity');
+    nickel.setAttribute('id', 'nickel');
+    nickel.setAttribute('gltf-model', '#nickel');
+    nickel.setAttribute('position', '-0.3 1.7 -1');
+    nickel.setAttribute('scale', '0.3 0.3 0.3');
+    scene.appendChild(nickel);
+    nickel.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
+    this.thirdSceneElements.push(nickel);
+
+    var nickelGlow = this.addGlow(scene, '-0.35 1.7 -1', 0.8, 0.8, '#70a4c2');
+    this.thirdSceneElements.push(nickelGlow);
+
+    var iron = document.createElement('a-entity');
+    iron.setAttribute('id', 'iron');
+    iron.setAttribute('gltf-model', '#iron');
+    iron.setAttribute('position', '0.1 1 -0.9');
+    iron.setAttribute('scale', '0.0006 0.0006 0.0006');
+    scene.appendChild(iron);
+    iron.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: easeInOutSine');
+    this.thirdSceneElements.push(iron);
+
+    var ironGlow = this.addGlow(scene, '0 1.3 -0.9', 0.8, 0.8, '#918066');
+    this.thirdSceneElements.push(ironGlow);
+
+    this.addOxygens(scene);
+    var oxygenGlow = this.addGlow(scene, '0.17 1.73 -0.9', 0.35, 0.35, '#defeff');
+
+
+
 
     const parentEntity2 = document.createElement("a-entity");
-    this.createCell("Click to view element!", 1, 0.1, parentEntity2, "top", "black");
-    parentEntity2.setAttribute("position", "-1 2 -1");
+    this.createCell("Click an element to view it!", 1, 0.1, parentEntity2, "top", "#0dff00", "1.5 1.5 1.5");
+    parentEntity2.setAttribute("position", "-1 1.9 -1");
     scene.appendChild(parentEntity2);
-    
+    parentEntity2.setAttribute('animation', 'property: scale; from: 1 1 0; to: 1 1 20; loop: true; dur: 1000; easing: linear; dir: alternate');
 
 
   }
 
+  addOxygens(scene) {
+    var oxygen = document.createElement('a-entity');
+    oxygen.setAttribute('id', 'oxygen');
+    oxygen.setAttribute('gltf-model', '#oxygen');
+    oxygen.setAttribute('position', '0.3 1.8 -1.5');
+    oxygen.setAttribute('scale', '0.015 0.015 0.015');
+    scene.appendChild(oxygen);
+    oxygen.setAttribute('animation', 'property: rotation; to: 0 -360 0; loop: true; dur: 8000; easing: linear');
+    this.thirdSceneElements.push(oxygen);
+
+    var oxygen2 = document.createElement('a-entity');
+    oxygen2.setAttribute('id', 'oxygen2');
+    oxygen2.setAttribute('gltf-model', '#oxygen');
+    oxygen2.setAttribute('position', '0.3 1.8 -1.5');
+    oxygen2.setAttribute('scale', '0.015 0.015 0.015');
+    oxygen2.setAttribute('rotation', '0 180 0');
+    scene.appendChild(oxygen2);
+    oxygen2.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 8000; easing: linear');
+    this.thirdSceneElements.push(oxygen2);
+
+    var oxygen3 = document.createElement('a-entity');
+    oxygen3.setAttribute('id', 'oxygen3');
+    oxygen3.setAttribute('gltf-model', '#oxygen');
+    oxygen3.setAttribute('position', '0.3 1.8 -1.5');
+    oxygen3.setAttribute('scale', '0.015 0.015 0.015');
+    oxygen3.setAttribute('rotation', '0 0 180');
+    scene.appendChild(oxygen3);
+    oxygen3.setAttribute('animation', 'property: rotation; to: 0 270 0; loop: true; dur: 8000; easing: linear');
+    this.thirdSceneElements.push(oxygen3);
+
+
+  }
+
+  addGlow(scene, position, width, height, color) {
+    const imageEl = document.createElement('a-image');
+    imageEl.setAttribute('id', 'glow');
+    imageEl.setAttribute('position', position);
+    imageEl.setAttribute('width', width);
+    imageEl.setAttribute('height', height);
+    imageEl.setAttribute('src', '#glow');
+    imageEl.setAttribute('color', color);
+    imageEl.setAttribute('material', 'transparent: true; opacity: 1.0; alphaTest: 0.01;');
+    imageEl.setAttribute('animation__pulse', 'property: material.opacity; from: 1.0; to: 0.0; dur: 2000; loop: true; dir: alternate; easing: linear;');
+    scene.appendChild(imageEl);
+    return imageEl;
+  }
+
+
   // Helper function to create a cell
-  createCell(textValue, x, y, parent, cellID, textColor) {
+  createCell(textValue, x, y, parent, cellID, textColor, scale) {
     const cellEntity = document.createElement("a-entity");
     cellEntity.setAttribute("text", {
       value: textValue,
@@ -188,7 +255,7 @@ export class GameManager {
       color: textColor
     });
     cellEntity.setAttribute("position", `${x} ${y} 0`);
-    cellEntity.setAttribute("scale", "2 2 2");
+    cellEntity.setAttribute("scale", scale);
     cellEntity.setAttribute("id", cellID);
     parent.appendChild(cellEntity);
   }
@@ -361,13 +428,13 @@ export class GameManager {
       // Trigger end game screen here
       this.buildThirdScreen();
     }
-}
+  }
 
-incrementScreen() {
-  this.currentScreen++;
-}
+  incrementScreen() {
+    this.currentScreen++;
+  }
 
-decrementScreen() {
-  this.currentScreen--;
-}
+  decrementScreen() {
+    this.currentScreen--;
+  }
 }

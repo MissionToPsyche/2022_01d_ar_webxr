@@ -6,6 +6,10 @@ function buildFirstScreen() {
     gameManager.buildFirstScreen();
 }
 
+function buildThirdScreen() {
+    gameManager.buildThirdScreen();
+}
+
 function getNextScreen() {
     gameManager.nextScreen();
 }
@@ -17,3 +21,4 @@ function getPrevScreen() {
 window.getNextScreen = getNextScreen;
 window.getPrevScreen = getPrevScreen;
 window.buildFirstScreen = buildFirstScreen;
+window.buildThirdScreen = buildThirdScreen;

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Atomic Magic
+* source:	https://sketchfab.com/3d-models/atomic-magic-0e630aa7beac471594108338f6bcfb81
+* author:	Floating Castle Robotics (https://sketchfab.com/FloatingCastleRobotics)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Atomic Magic" (https://sketchfab.com/3d-models/atomic-magic-0e630aa7beac471594108338f6bcfb81) by Floating Castle Robotics (https://sketchfab.com/FloatingCastleRobotics) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
