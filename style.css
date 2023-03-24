@@ -24,6 +24,8 @@ h2 {
 .missionToPsyche {
     position: relative;
     background: linear-gradient(180deg, #090029 0%, #130045 44.98%, #050F7E 100%);
+    height: 100svh;
+    height: 100dvh;
     height: 100vh;
 }
 .missionToPsyche .introText {
