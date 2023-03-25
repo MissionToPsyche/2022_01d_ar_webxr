@@ -165,12 +165,18 @@
             <a-entity position="0 2 -20" animation = "property: rotation; to: 0 0 360; loop: true; dur: 182700; easing: linear">
                 <!-- Psyche Model -->
                 <a-image
-                    asteroidorbit
                     id="asteroid-orbit" 
                     position="0 7 0"
                     scale="0.5 0.5 0.5" 
                     src="../../src/img/psyche-asteroid.png">
                     <!-- Psyche Title tethered to model -->
+                    <a-sphere
+                    asteroidorbit
+                    id="astroid-clicker"
+                    position="0 0 0"
+                    scale="2 2 2"
+                    visible="false">
+                    </a-sphere>
                     <a-text 
                         position="0 0 0" 
                         value="\n\nPsyche" 
@@ -221,8 +227,8 @@
                     width="5"
                     align="center">
                 <a-entity
-                    event-set__enter="_event: mouseenter; material.color:#03cffc; geometry.height:0.7; geometry.width:2.2"
-                    event-set__leave="_event: mouseleave; material.color:grey; geometry.height:0.4; geometry.width:1.5"
+                    event-set__enter="_event: mouseenter; material.color:#03cffc; geometry.height:0.7; geometry.width:2"
+                    event-set__leave="_event: mouseleave; material.color:grey; geometry.height:0.4; geometry.width:1"
                     id="hint-button" 
                     hint
                     visible="true"
