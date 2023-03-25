@@ -132,7 +132,7 @@
 
   </head>
   <body>
- <a-scene id="aFrameScene"">
+ <a-scene id="aFrameScene" cursor="rayOrigin: mouse">
   <!-- <a-sky src="#tiles" rotation="0 -130 0" material="color: #4e515c; repeat: 10 10 1;" id="tilesBG"></a-sky> -->
   <a-entity light="type:ambient; color: #c4d2da" position="3 1 1"></a-entity>
   <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
@@ -146,14 +146,20 @@
         <img id="spaceBG" src="spaceBG.png" />
         <img id="dish" src="dish.png" />
         <img id="glow" src="glow.png" />
+        <img id="custom-cursor" src="cursor.png">
+        <img id="ok" src="OK.png">
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
         <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
         <a-asset-item id="computer" src="src/models/computer/scene.gltf"></a-asset-item>
-        <a-asset-item id="rock" src="src/models/nickel/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="nickel" src="src/models/nickel/scene.gltf"></a-asset-item>
+        <a-asset-item id="iron" src="src/models/iron/scene.gltf"></a-asset-item>
+        <a-asset-item id="oxygen" src="src/models/oxygen/scene.gltf"></a-asset-item>
+        
 
         <a-asset-item id="tree-obj" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/tree.obj"></a-asset-item>
       </a-assets>
-      <a-camera><a-cursor></a-cursor></a-camera>
+      <a-camera raycaster="objects: .clickable;"><a-cursor material="src: #custom-cursor" scale="2 2 2" color="#00FFFF"></a-cursor></a-camera>
     </a-scene>
     <script>
 

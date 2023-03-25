@@ -157,16 +157,25 @@ export class GameManager {
     var scene = document.querySelector('a-scene');
     scene.appendChild(computer);
     computer.setAttribute('animation', 'property: position; to: 1.2 0.5 -1.5; loop: false; dur: 1000; easing: linear');
-    this.thirdSceneElements.push(computer);
+    // this.thirdSceneElements.push(computer);
 
     var nickel = document.createElement('a-entity');
     nickel.setAttribute('id', 'nickel');
     nickel.setAttribute('gltf-model', '#nickel');
     nickel.setAttribute('position', '-0.3 1.7 -1');
     nickel.setAttribute('scale', '0.3 0.3 0.3');
+    nickel.setAttribute('clickable', '');
     scene.appendChild(nickel);
     nickel.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
     this.thirdSceneElements.push(nickel);
+
+    var nickBox = this.addHitbox(nickel);
+    nickBox.setAttribute('click-event', '');
+    nickBox.setAttribute('clikable', '');
+    nickBox.addEventListener('click', function () {
+      this.elementClick(scene, nickel);
+    }.bind(this));
+    this.thirdSceneElements.push(nickBox);
 
     var nickelGlow = this.addGlow(scene, '-0.35 1.7 -1', 0.8, 0.8, '#70a4c2');
     this.thirdSceneElements.push(nickelGlow);
@@ -183,8 +192,24 @@ export class GameManager {
     var ironGlow = this.addGlow(scene, '0 1.3 -0.9', 0.8, 0.8, '#918066');
     this.thirdSceneElements.push(ironGlow);
 
-    this.addOxygens(scene);
+    iron.setAttribute('click-event', '');
+    iron.addEventListener('click', function () {
+      this.elementClick(scene, iron);
+    }.bind(this));
+
+
+    var motherOxygen = this.addOxygens(scene);
+    motherOxygen.setAttribute('id', 'motherOxygen');
+    this.thirdSceneElements.push(motherOxygen);
     var oxygenGlow = this.addGlow(scene, '0.17 1.73 -0.9', 0.35, 0.35, '#defeff');
+    this.thirdSceneElements.push(oxygenGlow);
+
+    motherOxygen.setAttribute('click-event', '');
+    motherOxygen.addEventListener('click', function () {
+      this.elementClick(scene, motherOxygen);
+    }.bind(this));
+
+
 
 
 
@@ -198,15 +223,85 @@ export class GameManager {
 
   }
 
+  addHitbox(entity) {
+    // Create the invisible hitbox entity
+    var hitbox = document.createElement('a-box');
+    hitbox.setAttribute('geometry', 'width: 1; height: 1; depth: 1;');
+    var sourcePosition = entity.getAttribute('position');
+
+    hitbox.setAttribute('clickable', '');
+    hitbox.setAttribute('position', sourcePosition);
+    hitbox.setAttribute('material', 'visible: false;');
+
+    // Add the hitbox entity as a child of the main box entity
+    entity.appendChild(hitbox);
+
+    return hitbox;
+  }
+
+  elementClick(scene, entity, entityGlow) {
+    console.log("clicked " + entity.id);
+    this.focusElement(scene, entity);
+  }
+
+  focusElement(scene, entity, entityGlow) {
+    // entity.removeAttribute('animation');
+    this.createElementDialog(scene, entity);
+  }
+
+  createElementDialog(scene, entity) {
+    console.log("creating dialog for " + entity.id);
+    // Create the overlay entity with the semi-transparent plane
+    var overlay = document.createElement('a-entity');
+    overlay.setAttribute('id', 'overlay');
+    overlay.setAttribute('position', '0 0 -1');
+
+    var plane = document.createElement('a-plane');
+    plane.setAttribute('color', '#000000');
+    plane.setAttribute('opacity', '0.5');
+    plane.setAttribute('width', '1');
+    plane.setAttribute('height', '1');
+    plane.setAttribute('position', '0 1.8 0.1');
+
+    var textValue = "Overlay Text";
+    const text = document.createElement("a-entity");
+    text.setAttribute("text", {
+      value: textValue,
+      align: "center",
+      color: "yellow"
+    });
+    text.setAttribute("position", "0 2.1 0.2");
+    text.setAttribute("scale", "1 1 1");
+
+
+    // Create the button to remove the overlay
+
+    var button = document.createElement('a-plane');
+    button.setAttribute('position', '0 1.5 0.3');
+    button.setAttribute('height', '0.15');
+    button.setAttribute('width', '0.25');
+    button.setAttribute('src', '#ok');
+    button.setAttribute('class', 'clickable');
+    button.setAttribute('transparent', 'true');
+    button.addEventListener('click', function () {
+      overlay.setAttribute('visible', false);
+    });
+
+    // Append the elements to the scene and overlay entity
+    overlay.appendChild(plane);
+    overlay.appendChild(text);
+    overlay.appendChild(button);
+    scene.appendChild(overlay);
+  }
+
   addOxygens(scene) {
+    var parent = document.createElement('a-entity');
     var oxygen = document.createElement('a-entity');
     oxygen.setAttribute('id', 'oxygen');
     oxygen.setAttribute('gltf-model', '#oxygen');
     oxygen.setAttribute('position', '0.3 1.8 -1.5');
     oxygen.setAttribute('scale', '0.015 0.015 0.015');
-    scene.appendChild(oxygen);
     oxygen.setAttribute('animation', 'property: rotation; to: 0 -360 0; loop: true; dur: 8000; easing: linear');
-    this.thirdSceneElements.push(oxygen);
 
     var oxygen2 = document.createElement('a-entity');
     oxygen2.setAttribute('id', 'oxygen2');
@@ -214,9 +309,7 @@ export class GameManager {
     oxygen2.setAttribute('position', '0.3 1.8 -1.5');
     oxygen2.setAttribute('scale', '0.015 0.015 0.015');
     oxygen2.setAttribute('rotation', '0 180 0');
-    scene.appendChild(oxygen2);
     oxygen2.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 8000; easing: linear');
-    this.thirdSceneElements.push(oxygen2);
 
     var oxygen3 = document.createElement('a-entity');
     oxygen3.setAttribute('id', 'oxygen3');
@@ -224,11 +317,13 @@ export class GameManager {
     oxygen3.setAttribute('position', '0.3 1.8 -1.5');
     oxygen3.setAttribute('scale', '0.015 0.015 0.015');
     oxygen3.setAttribute('rotation', '0 0 180');
-    scene.appendChild(oxygen3);
     oxygen3.setAttribute('animation', 'property: rotation; to: 0 270 0; loop: true; dur: 8000; easing: linear');
-    this.thirdSceneElements.push(oxygen3);
 
-
+    parent.appendChild(oxygen);
+    parent.appendChild(oxygen2);
+    parent.appendChild(oxygen3);
+    scene.appendChild(parent);
+    return parent;
   }
 
   addGlow(scene, position, width, height, color) {
