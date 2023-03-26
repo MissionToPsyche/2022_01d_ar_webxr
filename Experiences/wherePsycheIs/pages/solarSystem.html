@@ -41,7 +41,7 @@
 
     <body>
     <video autoplay></video>
-        <a-scene>
+        <a-scene loading-screen="backgroundColor: black">
             <a id="homeButton" href="../index.html"> ⬅ Go back home </a>
             <!-- This is a "mixin" we can apply to planets to make them
             rotate-->
@@ -154,12 +154,14 @@
                     roughness="0.7"
                     play-all-model-animations modify-materials
                     sound="on: click; src: #click-sound">
-                    <a-text 
-                    position="1 5 1"
-                    color="#FFFFFF" 
-                    value="\n\nPsyche Asteroid"
-                    scale="2 2 2" 
-                    ></a-text></a-entity>
+                </a-entity>
+
+                <a-text 
+                position="-3.7 1 15"
+                color="#FFFFFF" 
+                value="Psyche Asteroid"
+                side="double"
+                ></a-text>
             </a-entity>
 
             <a-entity id="orbit-jupiter" mixin="orbit" animation="dur: 90000;">

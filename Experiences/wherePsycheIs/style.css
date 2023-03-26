@@ -26,6 +26,14 @@ h3 {
     font-family: 'Space Mono Bold', sans-serif;
     font-size: 15px;
 }
+/* Title when screen is loading */
+.a-loader-title { 
+    color: black;
+}
+/* For pop up modals */
+.a-modal {
+    z-index: 100;
+}
 .mainDiv {
     max-width: 100%;
     height: 100%;
