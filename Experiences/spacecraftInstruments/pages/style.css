@@ -28,3 +28,8 @@ body {
     transform: translate(-50%, -50%);
     display: block;
 }
+
+/* Remove AR VR buttons */
+.a-enter-vr-button, .a-enter-ar-button {
+    display: none;
+}

@@ -1,16 +1,13 @@
 <html>
 	<head>
 		<title>Psyche Instruments</title>
-    	<link rel="stylesheet" href="../style.css">
+		<link rel="stylesheet" href="style.css">
 		<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-		<!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script> -->
 		<script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
 
 		<!-- A-timeline scripts -->
 		<script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> 
 		<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
-
-        <!-- <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script> -->
 
 	</head>
 
@@ -50,13 +47,20 @@
 		</div>
 
 		<a-scene embedded class="aFrameContainer">
+			<a-assets>
+				<a-asset-item id="asteroidgltf" src="../../../models/gltf/psycheAsteroid/psyche.gltf"></a-asset-item>
+				<a-asset-item id="spacecraftgltf" src="../../../models/gltf/spacecraft/PsycheSpacecraft.gltf"></a-asset-item>
+				<a-asset-item id="multigltf" src="../../../models/gltf/spacecraft/multispectral_imager.gltf"></a-asset-item>
+				<a-asset-item id="magnetgltf" src="../../../models/gltf/spacecraft/magnetometer.gltf"></a-asset-item>
+				<a-asset-item id="gammagltf" src="../../../models/gltf/spacecraft/gamma_ray_and_neutron_spectrometer.gltf"></a-asset-item>
+			</a-assets>
 			
 			<!-- Camera -->
 			<a-camera>
 				<!-- Screen-space entities -->
 				
 				<!-- Spacecraft -->
-				<a-entity class="spacecraft" id="spacecraft" gltf-model="url(/models/PsycheSpacecraft.gltf)"
+				<a-entity class="spacecraft" id="spacecraft" gltf-model="#spacecraftgltf"
 				position="0 -1 -5" rotation="0 90 0" scale="0.01 0.01 0.01" spacecraft-select></a-entity>
 
 				<!-- Instruments -->
@@ -101,9 +105,13 @@
 				<a-entity light="color: #FFFFFF; intensity: 0.3" position="0 0 10" type="probe" target="#psyche"></a-entity>
 
 			</a-camera>
+
+			<!-- Star-scape -->
+			<a-sky color="black"></a-sky>
+        	<a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
 			
 			<!-- Psyche asteroid -->
-				<a-entity id="asteroid"
+			<a-entity id="asteroid"
 				gltf-model="#asteroidgltf" 
 				position="-7 2 -10"
 				color="#FFFFFF" 
@@ -115,7 +123,6 @@
 
 			<!-- Light-->
 			<a-entity light="color: #FFFFFF; intensity: 1" position="5 0 -5" type="probe" target="#psyche"/>
-
 
 			<!-- ToDo: Opening timeline -->
 			<a-timeline id="opening">
@@ -161,5 +168,6 @@
 		</a-scene>
 
 		<script src="instruments.js"></script>
+
 	</body>
 </html>
