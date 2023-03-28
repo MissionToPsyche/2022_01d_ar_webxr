@@ -60,25 +60,32 @@
 					<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
 					<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
 
-					<!-- Impacts of smaller rocks-->
+					<!-- Impacts of smaller rock 1-->
 					<a-timeline-animation select="#Debris1" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris1" name="move"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision"></a-timeline-animation>
+
+					<!-- Impacts of smaller rock 2-->
+					<a-timeline-animation select="#Debris1" name="move_to_position2"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision2"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 3-->
+					<a-timeline-animation select="#Debris1" name="move_to_position3"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision3"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 4-->
+					<a-timeline-animation select="#Debris1" name="move_to_position4"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision4"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 5-->
+					<a-timeline-animation select="#Debris1" name="move_to_position5"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision5"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 6-->
+					<a-timeline-animation select="#Debris1" name="move_to_position6"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision6"></a-timeline-animation>
 					<a-timeline-animation select="#Debris1" name="togglevisibleoff"></a-timeline-animation>
-					<a-timeline-animation select="#Debris2" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris2" name="move"></a-timeline-animation>
-					<a-timeline-animation select="#Debris2" name="togglevisibleoff"></a-timeline-animation>
-					<a-timeline-animation select="#Debris3" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris3" name="move"></a-timeline-animation>
-					<a-timeline-animation select="#Debris3" name="togglevisibleoff"></a-timeline-animation>
-					<a-timeline-animation select="#Debris4" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris4" name="move"></a-timeline-animation>
-					<a-timeline-animation select="#Debris4" name="togglevisibleoff"></a-timeline-animation>
-					<a-timeline-animation select="#Debris5" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris5" name="move"></a-timeline-animation>
-					<a-timeline-animation select="#Debris5" name="togglevisibleoff"></a-timeline-animation>
-					<a-timeline-animation select="#Debris6" name="togglevisible"></a-timeline-animation>
-					<a-timeline-animation select="#Debris6" name="move"></a-timeline-animation>
-					<a-timeline-animation select="#Debris6" name="togglevisibleoff"></a-timeline-animation>
+
+					<!-- Text Fades out -->
 					<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
 					<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
 
@@ -186,6 +193,7 @@
 			<a-entity id="text3" mixin="text" text="value: As smaller objects continued to impact Psyche, they could leave craters on the surface."></a-entity>
 			<a-entity id="text4" mixin="text" text="value: And this is an artist's concept of how Psyche may looks today."></a-entity>
 			
+			<!-- Link to Landing Page-->
 			<a-entity
 				id="link"
 				visible="false"
@@ -202,7 +210,6 @@
 				</a-link>	
 			</a-entity>
 		
-			
 			<!-- Planetesimal -->
 			<a-gltf-model
 				id="Planetesimal" 
@@ -261,69 +268,19 @@
 				position="1.85 0 1"
 				rotation="0 0 0"
 				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_collision="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position2="property: position; from: 0 0 -10; to: -1.85 0 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision2="property: position; from: -1.85 0 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position3="property: position; from: 0 0 -10; to: 1.85 2 1;  autoplay:false; dur: 1"
+				animation__move_to_collision3="property: position; from: 1.85 2 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position4="property: position; from: 0 0 -10; to: -2 2 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision4="property: position; from: -2 2 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position5="property: position; from: 0 0 -10; to: 5 1 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision5="property: position; from: 5 1 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position6="property: position; from: 0 0 -10; to: -5 1 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision6="property: position; from: -5 1 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
 				scale="0.001 0.001 0.001">
 			</a-gltf-model>		
-			
-			<!-- Debris 2-->
-			<a-gltf-model 
-				id="Debris2" 
-				mixin="spaceRockMixin"
-				src="#asteroid-model"
-				position="-1.85 0 1"
-				rotation="0 0 0"
-				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
-				scale="0.001 0.001 0.001">
-			</a-gltf-model>
-
-			<!-- Debris 3-->
-			<a-gltf-model 
-				id="Debris3" 
-				mixin="spaceRockMixin"
-				src="#asteroid-model"
-				position="1.85 2 1"
-				rotation="0 0 0"
-				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
-				scale="0.001 0.001 0.001">
-			</a-gltf-model>		
-			
-			<!-- Debris 4-->
-			<a-gltf-model 
-				id="Debris4" 
-				mixin="spaceRockMixin"
-				src="#asteroid-model"
-				position="-1.85 2 1"
-				rotation="0 0 0"
-				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
-				scale="0.001 0.001 0.001">
-			</a-gltf-model>
-
-			<!-- Debris 5-->
-			<a-gltf-model 
-				id="Debris5" 
-				mixin="spaceRockMixin"
-				src="#asteroid-model"
-				position="5 1 1"
-				rotation="0 0 0"
-				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
-				scale="0.001 0.001 0.001">
-			</a-gltf-model>		
-			
-			<!-- Debris 6-->
-			<a-gltf-model 
-				id="Debris6" 
-				mixin="spaceRockMixin"
-				src="#asteroid-model"
-				position="-5 1 1"
-				rotation="0 0 0"
-				visible="false"
-				animation__move="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
-				scale="0.001 0.001 0.001">
-			</a-gltf-model>
 
 			<!-- Psyche -->
 			<a-entity 
