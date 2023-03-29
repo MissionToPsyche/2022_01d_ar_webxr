@@ -104,9 +104,9 @@
 					<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
 
 					<!--Link Home-->
+					<a-timeline-animation select="#Psyche" name="move_down"></a-timeline-animation>
 					<a-timeline-animation select="#link" name="togglevisible"></a-timeline-animation>
 					<a-timeline-animation select="#link" name="scale"></a-timeline-animation>
-					<a-timeline-animation select="#Psyche" name="togglevisibleoff"></a-timeline-animation>
 				</a-timeline>
 
 				<!-- Stars Background-->
@@ -201,7 +201,7 @@
 				animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
 				animation__scale="property: scale; to: 1 1 1; dur: 2000; easing: easeInOutElastic; autoplay: false">
 				<a-link 
-					position="0 1.25 -3" 
+					position="0 2 -3" 
 					href="../../index.html" 
 					target="_blank" 
 					title="Landing Page" 
@@ -291,7 +291,8 @@
 				color="#FFFFFF" 
 				scale="0 0 0"
 				roughness="0.7"
-				animation__scale="property: scale; to: 0.08 0.08 0.08; dur: 2000; easing: easeInOutElastic; autoplay: false">
+				animation__scale="property: scale; to: 0.08 0.08 0.08; dur: 2000; easing: easeInOutElastic; autoplay: false"
+				animation__move_down="property: position; to: 0 -5 -10; easing:easeInOutElastic; autoplay:false; dur: 1000">
 			</a-entity>
 		</a-scene>
 	</body>
