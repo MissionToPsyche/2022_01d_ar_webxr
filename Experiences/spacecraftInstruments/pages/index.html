@@ -9,14 +9,28 @@
 		<script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> 
 		<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
 
+		<script src="instruments.js"></script>
 	</head>
 
 	<body>
+		<div class="missionToPsyche" id="applogo">
+			<div class="introText">
+				<p>Instruments of</p>
+				<img src="../../../src/img/psyche-title.png" alt="">
+				<p>                </p>
+				<img class="sparks" id="sparkRight" src="../../../src/img/sparkRight.png" alt="">
+				<img class="sparks" id="sparkLeft" src="../../../src/img/sparkLeft.png" alt="">
+			</div>
+		</div>
 		<div class="mainDiv">
 			<div class="main-container">
+				<!-- Home button -->
+				<a id="homeButton" href="../../../index.html">
+					<img src="../img/home-button.png" alt="">
+				</a>
 				<!-- Back button -->
 				<a id="backButton" onclick="click_back()">
-					<img src="../img/back_button.png" alt="">
+					<img src="../img/back-button.png" alt="">
 				</a>
 
 				<!-- Instrument description text -->
