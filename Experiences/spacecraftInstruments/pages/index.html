@@ -60,9 +60,11 @@
 			</div>
 		</div>
 
-		<a-scene embedded class="aFrameContainer">
+		<a-scene embedded class="aFrameContainer" cursor="rayOrigin: mouse">
 			<a-assets>
-				<a-asset-item id="asteroidgltf" src="../../../models/gltf/psycheAsteroid/psyche.gltf"></a-asset-item>
+				<!-- <a-asset-item id="asteroidgltf" src="../../../models/gltf/psycheAsteroid/psyche.gltf"></a-asset-item> -->
+				<a-asset-item id="logoimage" src="../../../src/webpage-images/TitleSection/title-text.png"></a-asset-item>
+				<a-asset-item id="asteroidgltf" src="../../../Experiences/wherePsycheIs/models/psyche.gltf"></a-asset-item>
 				<a-asset-item id="spacecraftgltf" src="../../../models/gltf/spacecraft/PsycheSpacecraft.gltf"></a-asset-item>
 				<a-asset-item id="multigltf" src="../../../models/gltf/spacecraft/multispectral_imager.gltf"></a-asset-item>
 				<a-asset-item id="magnetgltf" src="../../../models/gltf/spacecraft/magnetometer.gltf"></a-asset-item>
@@ -72,7 +74,7 @@
 			<!-- Camera -->
 			<a-camera>
 				<!-- Screen-space entities -->
-				
+
 				<!-- Spacecraft -->
 				<a-entity class="spacecraft" id="spacecraft" gltf-model="#spacecraftgltf"
 				position="0 -1 -5" rotation="0 90 0" scale="0.01 0.01 0.01" spacecraft-select></a-entity>
@@ -80,39 +82,53 @@
 				<!-- Instruments -->
 				<!-- Multispectral imager -->
 				<a-entity class="instrument" id="multi" gltf-model="#multigltf"
-				position="-2 2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
-
+				position="-2 2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" visible="false" component-select></a-entity>
 				<!-- Gamma ray and neutron spectrometer -->
 				<a-entity class="instrument" id="gamma" gltf-model="#gammagltf"
-				position="-2 1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
-
+				position="-2 1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" visible="false" component-select></a-entity>
 				<!-- Magnetometer -->
 				<a-entity class="instrument" id="magnet" gltf-model="#magnetgltf"
-				position="-2 0 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-entity>
-
+				position="-2 0 -5" rotation="0 0 0" scale="0.2 0.2 0.2" visible="false" component-select></a-entity>
 				<!-- X-band radio telecom system -->
 				<a-box class="instrument" id="xband"
-				position="-2 -1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-box>
-
+				position="-2 -1 -5" rotation="0 0 0" scale="0.2 0.2 0.2" visible="false" component-select></a-box>
 				<!-- Solar panels -->
 				<a-box box class="instrument" id="solar"
-				position="-2 -2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" component-select></a-box>
+				position="-2 -2 -5" rotation="0 0 0" scale="0.2 0.2 0.2" visible="false" component-select></a-box>
 
 				<!-- Instrument list text -->
-				<a-text class="instrumentText" id="multiText" value="Multispectral Imager"
-				position="-1 2 -4.5"></a-text>
-				<a-text class="instrumentText" id="gammaText" value="Gamma Ray and\nNeutron Spectrometer"
-				position="-1 1 -4.5"></a-text>
-				<a-text class="instrumentText" id="magnetText" value="Magnetometer"
-				position="-1 0 -4.5"></a-text>
-				<a-text class="instrumentText" id="xbandText" value="X-band Radio\nTelecom System"
-				position="-1 -1 -4.5"></a-text>
-				<a-text class="instrumentText" id="solarText" value="Solar Panels"
-				position="-1 -2 -4.5"></a-text>
+				<a-text class="instrumentLabel" id="multiLabel" value="Multispectral Imager"
+				position="-1 2 -4.5" visible="false"></a-text>
+				<a-text class="instrumentLabel" id="gammaLabel" value="Gamma Ray and\nNeutron Spectrometer"
+				position="-1 1 -4.5" visible="false"></a-text>
+				<a-text class="instrumentLabel" id="magnetLabel" value="Magnetometer"
+				position="-1 0 -4.5" visible="false"></a-text>
+				<a-text class="instrumentLabel" id="xbandLabel" value="X-band Radio\nTelecom System"
+				position="-1 -1 -4.5" visible="false"></a-text>
+				<a-text class="instrumentLabel" id="solarLabel" value="Solar Panels"
+				position="-1 -2 -4.5" visible="false"></a-text>
 
 				<!-- Instrument description text -->
-				<a-text class="descriptionText" id="descriptionText" value="Description text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text"
-				position="-1.5 -1.5 -4.5"></a-text>
+				<a-text class="descriptionText" id="descriptionText"
+				value="Description text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text\nDescription text Description text"
+				position="-1.5 -1.5 -4.5" visible="false"></a-text>
+
+				<!-- Instruction text -->
+				<a-text class="instructionText" id="openingInstruction"
+				value="Tap the Psyche spacecraft to learn\nabout its scientific instruments."
+				position="-1.5 -2.5 -4.5"></a-text>
+				<a-text class="instructionText" id="spacecraftInstruction"
+				value="Tap Psyche to bring out its scientific\ninstruments."
+				position="-1.5 -2.5 -4.5" visible="false"></a-text>
+
+				<!-- Mission text -->
+				<a-text id="missionText"
+				value="In order to complete its mission,\nPsyche carries several scientific\ninstruments that will gather data\nabout the asteroid from orbit."
+				position="-1.5 3 -4.5" visible="false"></a-text>
+
+				<!-- State debug text -->
+				<a-text class="debugText" id="debugText" value="+=+=+="
+				position="-1.5 -0.25 -4.5" visible="false"></a-text>
 
 				<!-- Backlighting -->
 				<!-- Must be last of entities within camera -->
@@ -125,63 +141,33 @@
         	<a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
 			
 			<!-- Psyche asteroid -->
-			<a-entity id="asteroid"
+			<!-- <a-entity id="psyche"
 				gltf-model="#asteroidgltf" 
 				position="-7 2 -10"
 				color="#FFFFFF" 
-				scale="0.15 0.15 0.15"
-				animation="property: rotation; to: 0 360 0; dur: 250000; easing: linear; loop: true" 
+				scale="3 3 3"
+				animation="property: rotation; to: 0 360 0; dur: 250; easing: linear; loop: true" 
+				roughness="0.7"
+				play-all-model-animations modify-materials></a-entity>
+			</a-entity>
+			<a-entity light="color: #FFFFFF; intensity: 2" position="-12 -1 3" type="probe" target="#psyche"></a-entity> -->
+
+			<a-entity id="psyche"
+				gltf-model="#asteroidgltf" 
+				position="-7 2 -10"
+				color="#FFFFFF" 
+				scale="0.1 0.1 0.1"
+				animation="property: rotation; to: 0 360 0; dur: 500000; easing: linear; loop: true" 
 				roughness="0.7"
 				play-all-model-animations modify-materials>
 			</a-entity>
-
-			<!-- Light-->
-			<a-entity light="color: #FFFFFF; intensity: 1" position="5 0 -5" type="probe" target="#psyche"/>
-
-			<!-- ToDo: Opening timeline -->
-			<a-timeline id="opening">
-				<!-- ToDo:
-				Asteroid visible
-				Spacecraft visible
-				Tap instructions text visible
-				Logo visible or otherwise in the main-container
-				-->
-			</a-timeline>
-
-			<!-- ToDo: Spacecraft timeline -->
-			<a-timeline id="spacecraft">
-				<!-- ToDo:
-				Mission text visible
-				Outlines of instruments visible
-				Old tap instructions NOT visible
-				New tap instructions visible
-				-->
-			</a-timeline>
-
-			<!-- ToDo: Spacecraft timeline -->
-			<a-timeline id="selection">
-				<!-- ToDo:
-				Instrument outlines move to list positions
-
-				Gamma instrument moves to list position and visible
-				Gamma name text moves to list position and visible
-				Magnet instrument moves to list position and visible
-				Magnet name text moves to list position and visible
-				Multi instrument moves to list position and visible
-				Multi name text moves to list position and visible
-				Solar panel moves to list position and visible
-				Solar panel name text moves to list position and visible
-				Xband instrument moves to list position and visible
-				Xband name text moves to list position and visible
-				
-				Tap icon moves to bottom instrument position
-				Completion badges scale to visible size
-				-->
-			</a-timeline>
+			<a-entity light="color: #FFFFFF; intensity: .5" position="-12 -11 3" type="probe" target="#psyche"></a-entity>
+                  
+			<!-- Default lighting injected by A-Frame. -->
+			<a-entity light="type: ambient; color: #BBB"></a-entity>
+			<a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-17.5 -2 1"></a-entity>
 
 		</a-scene>
-
-		<script src="instruments.js"></script>
 
 	</body>
 </html>
