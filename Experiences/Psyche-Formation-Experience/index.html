@@ -4,12 +4,14 @@
 		<meta charset="utf-8">
 		<title>Psyche Formation</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--A-frame Script -->
 		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 	</head>
 
 	<body>
 		<a-scene cursor="rayOrigin: mouse">
             <a-assets>
+				<!-- Text Mixin -->
                 <a-mixin id="text"
                     text="align: center; color: #FFF; width: 6; opacity: 1"
                     position="0 1.25 -3"
@@ -31,8 +33,9 @@
 			<!--Light-->
 			<a-entity light="color: #FFFFFF; intensity: 2" position="-1 1 0.5"></a-entity>
 
+			<!-- Link to Psyche Formation Experience-->
 			<a-link 
-				id="linkToLandingPage" 
+				id="linkToExpPage" 
 				mixin="text" 
 				href="psyche-formation-experience.html" 
 				target="_blank" 
