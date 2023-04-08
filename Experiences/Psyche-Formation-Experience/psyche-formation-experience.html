@@ -14,10 +14,13 @@
 	</head>
 
 	<body>
+		<!--Start A-Scene -->
 		<a-scene animation-timeline__1="timeline: #myTimeline; loop: false" cursor="rayOrigin: mouse">
+			<!-- Create A-Assets-->
 			<a-assets timeout="10000">
 				<a-asset-item src="https://cdn.aframe.io/fonts/Roboto-msdf.json"></a-asset-item>
 
+				<!-- Create A-timeline-->
 				<a-timeline id="myTimeline">
 					<!-- Intro text animation-->
 					<a-timeline-animation select="#introText" name="threeseconddelay"></a-timeline-animation>
