@@ -108,7 +108,15 @@ AFRAME.registerComponent('hint', {
         this.showHint = function() {
             document.getElementById('hint').setAttribute('visible','true');
         }
+        this.hintbuttonon = function() {
+
+        }
+        this.hintbuttonoff = function() {
+
+        }
         this.el.addEventListener('click',this.showHint);
+        this.el.addEventListener('mouseover', this.hintbuttonon);
+        this.el.addEventListener('mouseout', this.hintbuttonoff);
     },
     remove: function() {
         this.el.removeEventListener('click',this.showHint);
