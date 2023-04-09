@@ -37,10 +37,12 @@
                 <h2><span>work?</span></h2>
             </div>
             <div class="arVideoContainer">
-                <img id="arVideoFrame" src="src/img/howItWorks.png" alt="">
+                <img id="arVideoFrame" src="src/img/howItWorks.png" alt="" style="cursor: pointer;">
                 <iframe id="arVideo"
-                src="https://www.youtube-nocookie.com/embed/_WFa3EVTxTc?autoplay=1&mute=1" frameborder="0" allowfullscreen  allow='autoplay'>
+
+                src="https://www.youtube-nocookie.com/embed/_WFa3EVTxTc?mute=0" frameborder="0" allowfullscreen  allow='autoplay'>
                 </iframe>
+                <!-- https://www.youtube-nocookie.com/embed/_WFa3EVTxTc?autoplay=1&mute=1 -->
             </div>
         </div>
         <!-- <div class="overlay">
@@ -134,5 +136,11 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('arVideoFrame').addEventListener('click', function(event){
+            document.getElementById('arVideo').src += "&autoplay=1";
+            event.preventDefault();
+        })
+    </script>
 </body>
 </html>
