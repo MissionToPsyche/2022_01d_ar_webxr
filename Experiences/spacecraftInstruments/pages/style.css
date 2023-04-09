@@ -3,11 +3,48 @@
     padding: 0;
     font-family: 'Space Mono', sans-serif;
 }
+
+:root {
+    --orange-font-color: #F5B06F;
+}
+
 body {
     margin: 0; 
     padding: 0;
     overflow: hidden;
 }
+
+
+
+.missionToPsyche {
+    position: relative;
+    height: 0vh;
+}
+.missionToPsyche .introText {
+    position: relative;
+    text-align: center;
+    padding-top: 6em;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+}
+.missionToPsyche .introText p {
+    color: var(--orange-font-color);
+    text-transform: uppercase;
+}
+.missionToPsyche .introText .sparks {
+    position: absolute;
+    max-width: 100%;
+}
+.missionToPsyche .introText #sparkRight {
+    top: 3em;
+    margin-left: 4em;
+}
+.missionToPsyche .introText #sparkLeft {
+    top: 6em;
+    margin-left: -10em;
+}
+
+
 
 .aFrameContainer {
     position: absolute;
@@ -22,6 +59,14 @@ body {
 }
 
 #backButton {
+    position: absolute;
+    top: 60px;
+    left: 150px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+#homeButton {
     position: absolute;
     top: 60px;
     left: 150px;
