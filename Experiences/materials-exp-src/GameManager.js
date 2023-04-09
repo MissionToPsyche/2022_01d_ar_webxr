@@ -4,6 +4,10 @@ export class GameManager {
   secondSceneElements = [];
   thirdSceneElements = [];
   currentScreen = 1;
+  _overlay = null;
+  _ironClicked = false;
+  _nickelClicked = false;
+  _siliconClicked = false;
 
   nextScreen() {
     this.incrementScreen();
@@ -61,11 +65,6 @@ export class GameManager {
       'color:white; transparent: true; src:#scientist;repeat: 1;');
     this.firstSceneElements.push(scientist);
 
-    var boxHolder = this.placeElement('a-plane', { x: 0.3, y: 2, z: -2 }, '40 0.001 1', 'instructions',
-      'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
-      'color:white; transparent: true; src:#boxHolder;repeat: 1;');
-    this.firstSceneElements.push(boxHolder);
-
     var arrowShape = this.placeElement('a-plane', { x: -5.5, y: 0.8, z: -2 }, '0.8 0.5 1', 'arrow',
       'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear',
       'color:white; transparent: true; src:#arrow;repeat: 1;');
@@ -75,11 +74,21 @@ export class GameManager {
     }.bind(this));
     this.firstSceneElements.push(arrowShape);
 
-    var instructionsText = this.placeElement('a-text', { x: -0.1, y: 2, z: -1 }, '0.3 0.3 0.3', 'text',
-      'property: position; to: -0.1 2 -1; loop: false; dur: 1000; easing: linear',
-      'color:white; transparent: true; src:#text;repeat: 1;');
-    instructionsText.setAttribute('value', 'Instructions Test');
+    var instructionsText = this.placeElement('a-text', { x: -0.1, y: 2, z: -1 }, '0.25 0.25 0.25', 'text',
+      'color:white; src:#text;repeat: 1;');
+      instructionsText.setAttribute('position', '0.05 1.17 -0.25');
+    instructionsText.setAttribute('value', ' ');
+    instructionsText.appendChild(this.introInformation());
     this.firstSceneElements.push(instructionsText);
+
+    const plane = document.createElement('a-plane');
+    plane.setAttribute('color', '#000000');
+    plane.setAttribute('opacity', '0.7');
+    plane.setAttribute('width', '5');
+    plane.setAttribute('height', '8');
+    plane.setAttribute('position', '0 0 -2.55');
+    document.querySelector('a-scene').appendChild(plane);
+    this.firstSceneElements.push(plane);
   }
 
   buildSecondScreen() {
@@ -108,6 +117,16 @@ export class GameManager {
     scene.appendChild(psyche);
     this.secondSceneElements.push(psyche);
 
+    var satellite = document.createElement('a-entity');
+    satellite.setAttribute('id', 'satellite');
+    satellite.setAttribute('gltf-model', '#satellite');
+    satellite.setAttribute('position', '0.03 0.9 -0.5');
+    satellite.setAttribute('scale', '0.015 0.014 0.014');
+    satellite.setAttribute('rotation', '10 -90 -30');
+    scene.appendChild(satellite);
+    this.secondSceneElements.push(satellite);
+
+
     const parentEntity = document.createElement("a-entity");
 
     this.createCell("??", -0.5, 0.1, parentEntity, "element1", "white");
@@ -122,20 +141,20 @@ export class GameManager {
     scene.appendChild(parentEntity);
     this.secondSceneElements.push(parentEntity);
 
-    // Arrow to skip game and go to third screen
-    var arrow2 = document.createElement('a-plane');
-    arrow2.setAttribute('position', '0 0.8 -2');
-    arrow2.setAttribute('scale', '0.8 0.5 1');
-    arrow2.setAttribute('id', 'arrow2');
-    arrow2.setAttribute('material', 'color:white; transparent: true; src:#arrow;repeat: 1;');
-    arrow2.setAttribute('click-event', '');
-    arrow2.addEventListener('click', function () {
-      this.takedownSecondScreen();
-      this.buildThirdScreen();
-    }
-      .bind(this));
-    scene.appendChild(arrow2);
-    this.secondSceneElements.push(arrow2);
+    // // Arrow to skip game and go to third screen
+    // var arrow2 = document.createElement('a-plane');
+    // arrow2.setAttribute('position', '0 0.8 -2');
+    // arrow2.setAttribute('scale', '0.8 0.5 1');
+    // arrow2.setAttribute('id', 'arrow2');
+    // arrow2.setAttribute('material', 'color:white; transparent: true; src:#arrow;repeat: 1;');
+    // arrow2.setAttribute('click-event', '');
+    // arrow2.addEventListener('click', function () {
+    //   this.takedownSecondScreen();
+    //   this.buildThirdScreen();
+    // }
+    //   .bind(this));
+    // scene.appendChild(arrow2);
+    // this.secondSceneElements.push(arrow2);
   }
 
   buildThirdScreen() {
@@ -160,7 +179,7 @@ export class GameManager {
     // this.thirdSceneElements.push(computer);
 
     var nickel = document.createElement('a-entity');
-    nickel.setAttribute('id', 'nickel');
+    nickel.setAttribute('id', 'Nickel');
     nickel.setAttribute('gltf-model', '#nickel');
     nickel.setAttribute('position', '-0.3 1.7 -1');
     nickel.setAttribute('scale', '0.3 0.3 0.3');
@@ -181,7 +200,7 @@ export class GameManager {
     this.thirdSceneElements.push(nickelGlow);
 
     var iron = document.createElement('a-entity');
-    iron.setAttribute('id', 'iron');
+    iron.setAttribute('id', 'Iron');
     iron.setAttribute('gltf-model', '#iron');
     iron.setAttribute('position', '0.1 1 -0.9');
     iron.setAttribute('scale', '0.0006 0.0006 0.0006');
@@ -197,21 +216,20 @@ export class GameManager {
       this.elementClick(scene, iron);
     }.bind(this));
 
-
-    var motherOxygen = this.addOxygens(scene);
-    motherOxygen.setAttribute('id', 'motherOxygen');
-    this.thirdSceneElements.push(motherOxygen);
-    var oxygenGlow = this.addGlow(scene, '0.17 1.73 -0.9', 0.35, 0.35, '#defeff');
-    this.thirdSceneElements.push(oxygenGlow);
-
-    motherOxygen.setAttribute('click-event', '');
-    motherOxygen.addEventListener('click', function () {
-      this.elementClick(scene, motherOxygen);
+    var silicone = document.createElement('a-entity');
+    silicone.setAttribute('id', 'Silicon');
+    silicone.setAttribute('gltf-model', '#silicone');
+    silicone.setAttribute('position', '0.35 1.5 -1.5');
+    silicone.setAttribute('scale', '0.005 0.005 0.005');
+    scene.appendChild(silicone);
+    silicone.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: easeInOutSine');
+    silicone.setAttribute('click-event', '');
+    silicone.addEventListener('click', function () {
+      this.elementClick(scene, silicone);
     }.bind(this));
-
-
-
-
+    var siliconeGlow = this.addGlow(scene, '0.3 1.7 -1.6', 1, 1, '#f7f7f7');
+    this.thirdSceneElements.push(siliconeGlow);
+    this.thirdSceneElements.push(silicone);
 
 
     const parentEntity2 = document.createElement("a-entity");
@@ -219,8 +237,6 @@ export class GameManager {
     parentEntity2.setAttribute("position", "-1 1.9 -1");
     scene.appendChild(parentEntity2);
     parentEntity2.setAttribute('animation', 'property: scale; from: 1 1 0; to: 1 1 20; loop: true; dur: 1000; easing: linear; dir: alternate');
-
-
   }
 
   addHitbox(entity) {
@@ -246,85 +262,314 @@ export class GameManager {
 
   focusElement(scene, entity, entityGlow) {
     // entity.removeAttribute('animation');
-    this.createElementDialog(scene, entity);
+    let infoText;
+    if (entity.id == "Nickel") {
+      infoText = this.nickelInformation();
+    } else if (entity.id == "Iron") {
+      infoText = this.ironInformation();
+    } else if (entity.id == "Silicon") {
+      infoText = this.siliconInformation();
+    }
+    this.createElementDialog(scene, entity, infoText);
   }
 
-  createElementDialog(scene, entity) {
-    console.log("creating dialog for " + entity.id);
-    // Create the overlay entity with the semi-transparent plane
-    var overlay = document.createElement('a-entity');
-    overlay.setAttribute('id', 'overlay');
-    overlay.setAttribute('position', '0 0 -1');
+  createElementDialog(scene, entity, infoText) {
+    // check if an overlay already exists before creating a new one
+    if (!this._overlay) {
+      console.log("creating dialog for " + entity.id);
 
-    var plane = document.createElement('a-plane');
-    plane.setAttribute('color', '#000000');
-    plane.setAttribute('opacity', '0.5');
-    plane.setAttribute('width', '1');
-    plane.setAttribute('height', '1');
-    plane.setAttribute('position', '0 1.8 0.1');
+      // Create the overlay entity with the semi-transparent plane
+      const overlay = document.createElement('a-entity');
+      overlay.setAttribute('id', 'overlay');
+      overlay.setAttribute('position', '0 0 -1');
 
-    var textValue = "Overlay Text";
-    const text = document.createElement("a-entity");
-    text.setAttribute("text", {
-      value: textValue,
-      align: "center",
-      color: "yellow"
-    });
-    text.setAttribute("position", "0 2.1 0.2");
-    text.setAttribute("scale", "1 1 1");
+      const plane = document.createElement('a-plane');
+      plane.setAttribute('color', '#000000');
+      plane.setAttribute('opacity', '0.7');
+      plane.setAttribute('width', '1');
+      plane.setAttribute('height', '1');
+      plane.setAttribute('position', '0 1.8 0.3');
 
+      const text = infoText;
 
-    // Create the button to remove the overlay
+      // Create the button to remove the overlay
+      const button = document.createElement('a-plane');
+      button.setAttribute('position', '0 1.5 0.4');
+      button.setAttribute('height', '0.15');
+      button.setAttribute('width', '0.25');
+      button.setAttribute('src', '#ok');
+      button.setAttribute('class', 'clickable');
+      button.setAttribute('transparent', 'true');
 
-    var button = document.createElement('a-plane');
-    button.setAttribute('position', '0 1.5 0.3');
-    button.setAttribute('height', '0.15');
-    button.setAttribute('width', '0.25');
-    button.setAttribute('src', '#ok');
-    button.setAttribute('class', 'clickable');
-    button.setAttribute('transparent', 'true');
-    button.addEventListener('click', function () {
-      overlay.setAttribute('visible', false);
-    });
+      button.addEventListener('click', () => {
+        // remove the overlay and its children from the scene
+        overlay.parentElement.removeChild(overlay);
+        this._overlay = null;
 
-    // Append the elements to the scene and overlay entity
-    overlay.appendChild(plane);
-    overlay.appendChild(text);
-    overlay.appendChild(button);
-    scene.appendChild(overlay);
+        // If all 3 elements have been clicked, display the "COMPLETE!" overlay
+        if (this._ironClicked && this._nickelClicked && this._siliconClicked) {
+          console.log("all elements clicked");
+          this.splosion('#031cfc');
+          const completeParent = document.createElement("a-entity");
+          const completeOverlay = document.createElement('a-entity');
+          completeOverlay.setAttribute('id', 'complete-overlay');
+          completeOverlay.setAttribute('position', '0 0 -1');
+          completeParent.appendChild(completeOverlay);
+
+          const completePlane = document.createElement('a-plane');
+          completePlane.setAttribute('color', '#ffca4f');
+          completePlane.setAttribute('opacity', '0.7');
+          completePlane.setAttribute('width', '1');
+          completePlane.setAttribute('height', '1');
+          completePlane.setAttribute('position', '0 1.8 0.3');
+          // completeOverlay.setAttribute('animation', 'property: scale; from: 1 1 0; to: 1 1 20; loop: true; dur: 1000; easing: linear; dir: alternate');
+          completeOverlay.appendChild(completePlane);
+
+          const completeText = document.createElement('a-plane');
+          completeText.setAttribute("position", "0 2.1 0.4");
+          completeText.setAttribute('height', '0.15');
+          completeText.setAttribute('width', '0.5');
+          completeText.setAttribute('src', '#complete');
+          completeText.setAttribute('class', 'clickable');
+          completeText.setAttribute('transparent', 'true');
+          completeOverlay.appendChild(completeText);
+
+          const conclusionText = this.conclusionInformation();
+          completeOverlay.appendChild(conclusionText);
+
+          const nextButton = document.createElement('a-plane');
+          nextButton.setAttribute('position', '0 1.4 0.4');
+          nextButton.setAttribute('height', '0.15');
+          nextButton.setAttribute('width', '0.5');
+          nextButton.setAttribute('src', '#return');
+          nextButton.setAttribute('class', 'clickable');
+          nextButton.setAttribute('transparent', 'true');
+          completeOverlay.appendChild(nextButton);
+
+          nextButton.addEventListener('click', () => {
+            completeOverlay.parentElement.removeChild(completeOverlay);
+            this._overlay = null;
+            window.location.href = "../../../index.html";
+          });
+          document.querySelector('a-scene').appendChild(completeParent);
+        }
+      });
+
+      // Append the elements to the scene and overlay entity
+      overlay.appendChild(plane);
+      overlay.appendChild(text);
+      overlay.appendChild(button);
+      scene.appendChild(overlay);
+
+      // update the reference to the overlay
+      this._overlay = overlay;
+    } else {
+      console.log("Overlay dialog is already open!");
+    }
   }
 
-  addOxygens(scene) {
-    var parent = document.createElement('a-entity');
-    var oxygen = document.createElement('a-entity');
-    oxygen.setAttribute('id', 'oxygen');
-    oxygen.setAttribute('gltf-model', '#oxygen');
-    oxygen.setAttribute('position', '0.3 1.8 -1.5');
-    oxygen.setAttribute('scale', '0.015 0.015 0.015');
-    oxygen.setAttribute('animation', 'property: rotation; to: 0 -360 0; loop: true; dur: 8000; easing: linear');
+  splosion(color) {
+    var scene = document.querySelector('a-scene');
+    var particleSystem = document.createElement('a-entity');
 
-    var oxygen2 = document.createElement('a-entity');
-    oxygen2.setAttribute('id', 'oxygen2');
-    oxygen2.setAttribute('gltf-model', '#oxygen');
-    oxygen2.setAttribute('position', '0.3 1.8 -1.5');
-    oxygen2.setAttribute('scale', '0.015 0.015 0.015');
-    oxygen2.setAttribute('rotation', '0 180 0');
-    oxygen2.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 8000; easing: linear');
+    particleSystem.setAttribute('position', '0 1.6 -3');
+    particleSystem.setAttribute('scale', '1 1 1');
+    particleSystem.setAttribute('particle-system', 'opacity: 0.8; maxAge: 0.5; accelerationValue: 0 1 0; size: 1; velocityValue: 0 1 -3; size: 1; texture: dist/images/star.png; color: ' + color + '; particleCount: 1000');
+    scene.appendChild(particleSystem);
 
-    var oxygen3 = document.createElement('a-entity');
-    oxygen3.setAttribute('id', 'oxygen3');
-    oxygen3.setAttribute('gltf-model', '#oxygen');
-    oxygen3.setAttribute('position', '0.3 1.8 -1.5');
-    oxygen3.setAttribute('scale', '0.015 0.015 0.015');
-    oxygen3.setAttribute('rotation', '0 0 180');
-    oxygen3.setAttribute('animation', 'property: rotation; to: 0 270 0; loop: true; dur: 8000; easing: linear');
+    var particleSystem2 = document.createElement('a-entity');
 
-    parent.appendChild(oxygen);
-    parent.appendChild(oxygen2);
-    parent.appendChild(oxygen3);
-    scene.appendChild(parent);
+    particleSystem2.setAttribute('position', '0 1.6 -3');
+    particleSystem2.setAttribute('scale', '1 1 1');
+    particleSystem2.setAttribute('particle-system', 'opacity: 0.8; maxAge: 0.5; accelerationValue: 0 1 0; size: 1; velocityValue: 0 1 -3; size: 1; texture: dist/images/star.png; color: ' + color + '; particleCount: 1000');
+    scene.appendChild(particleSystem2);
+  }
+
+  conclusionInformation() {
+    const parent = document.createElement('a-entity');
+
+    const paragraphOneValue = "Congratulations on completing the Psyche Asteroid Materials Virtual Reality Experience! Through your journey, you have gained valuable insight into the unique composition and properties of Psyche. ";
+    const paragraphOne = this.generateParagraph(paragraphOneValue, "#00008a");
+    paragraphOne.setAttribute("position", "0 1.97 0.4");
+    paragraphOne.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphOne);
+
+    const paragraphTwoValue = "The asteroid's high concentration of metal, particularly iron, has sparked the interest of scientists worldwide, and your exploration has contributed to our understanding of its origin and formation.";
+    const paragraphTwo = this.generateParagraph(paragraphTwoValue, "#00008a");
+    paragraphTwo.setAttribute("position", "0 1.80 0.4");
+    paragraphTwo.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphTwo);
+
+    const paragraphThreeValue = "More research is needed to really understand and solve the mysteries of this super cool asteroid.";
+    const paragraphThree = this.generateParagraph(paragraphThreeValue, "#00008a");
+    paragraphThree.setAttribute("position", "0 1.70 0.4");
+    paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphThree);
+
+    const paragraphFourValue = "We hope you have enjoyed this immersive experience and are inspired to continue learning about the mysteries of our universe.";
+    const paragraphFour = this.generateParagraph(paragraphFourValue, "#00008a");
+    paragraphFour.setAttribute("position", "0 1.55 0.4");
+    paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphFour);
+
+
     return parent;
   }
+
+  introInformation() {
+    const parent = document.createElement('a-entity');
+    const titleValue = "Welcome to NASA!";
+    const title = this.generateParagraph(titleValue, "#f263ff");
+    title.setAttribute("position", "0 2.155 0.4");
+    title.setAttribute("scale", "1.4 1.4 1.4");
+    parent.appendChild(title);
+
+    const paragraphOneValue = "I'm Dr Lindy Elkins-Tanton, and I need your help to explore an awesome asteroid called Psyche!";
+    const paragraphOne = this.generateParagraph(paragraphOneValue, "#ffd83d");
+    paragraphOne.setAttribute("position", "0 2.05 0.4");
+    paragraphOne.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphOne);
+
+    const paragraphTwoValue = "We'll need to use a huge satellite to collect information about Psyche's surface and find out what it's made of.";
+    const paragraphTwo = this.generateParagraph(paragraphTwoValue, "#ffd83d");
+    paragraphTwo.setAttribute("position", "0 1.95 0.4");
+    paragraphTwo.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphTwo);
+
+    const paragraphThreeValue = "Click on the Psyche asteroid to send a satellite signal on the next screen. Once you've discovered all 3 elements, we'll be able to analyze the information in the lab!";
+    const paragraphThree = this.generateParagraph(paragraphThreeValue, "#ffd83d");
+    paragraphThree.setAttribute("position", "0 1.8 0.4");
+    paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphThree);
+
+    const paragraphFourValue = "Ready to become a NASA scientist? Click the button below to start your journey!";
+    const paragraphFour = this.generateParagraph(paragraphFourValue, "#ffd83d");
+    paragraphFour.setAttribute("position", "0 1.65 0.4");
+    paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphFour);
+
+
+    return parent;
+  }
+
+  ironInformation() {
+    this._ironClicked = true;
+    const parent = document.createElement('a-entity');
+    const titleValue = "Iron";
+    const title = this.generateParagraph(titleValue, "#e88000");
+    title.setAttribute("position", "0 2.155 0.4");
+    title.setAttribute("scale", "1.4 1.4 1.4");
+    parent.appendChild(title);
+
+    const paragraphOneValue = "Iron is a really important metal that helps make things strong and tough!";
+    const paragraphOne = this.generateParagraph(paragraphOneValue, "#ffd83d");
+    paragraphOne.setAttribute("position", "0 2.05 0.4");
+    paragraphOne.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphOne);
+
+    const paragraphTwoValue = "Scientists have found that Psyche is not the same brightness all over, which means that some parts of it have a lot more metal in some areas than others, especially iron.";
+    const paragraphTwo = this.generateParagraph(paragraphTwoValue, "#1cffec");
+    paragraphTwo.setAttribute("position", "0 1.95 0.4");
+    paragraphTwo.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphTwo);
+
+    const paragraphThreeValue = "Scientists think that the high metal content in these areas is due to something called \"ferrovolcanic activity,\" which is like a volcano, but instead of lava, it spews out hot metal!";
+    const paragraphThree = this.generateParagraph(paragraphThreeValue, "#f20400");
+    paragraphThree.setAttribute("position", "0 1.8 0.4");
+    paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphThree);
+
+    const paragraphFourValue = "This is really interesting because it tells us that Psyche might have had some really unique geological activity in the past!";
+    const paragraphFour = this.generateParagraph(paragraphFourValue, "#1cffec");
+    paragraphFour.setAttribute("position", "0 1.65 0.4");
+    paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphFour);
+
+    return parent;
+  }
+
+  nickelInformation() {
+    this._nickelClicked = true;
+    const parent = document.createElement('a-entity');
+    const titleValue = "Nickel";
+    const title = this.generateParagraph(titleValue, "#d3e5e8");
+    title.setAttribute("position", "0 2.155 0.4");
+    title.setAttribute("scale", "1.4 1.4 1.4");
+    parent.appendChild(title);
+
+    const paragraphOneValue = "Nickel on Psyche helps scientists learn about how it was created.";
+    const paragraphOne = this.generateParagraph(paragraphOneValue, "#a1cf9d");
+    paragraphOne.setAttribute("position", "0 2.05 0.4");
+    paragraphOne.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphOne);
+
+    const paragraphTwoValue = "They think the asteroid is made of both metal and non-metal stuff, and has a certain density. By looking at the nickel, researchers can figure out how mixed up the metal and non-metal parts are.";
+    const paragraphTwo = this.generateParagraph(paragraphTwoValue, "#8ab9ff");
+    paragraphTwo.setAttribute("position", "0 1.95 0.4");
+    paragraphTwo.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphTwo);
+
+    const paragraphThreeValue = "By using special tools, they can see how much nickel is in the metal on Psyche, which can help them figure out if the asteroid was once part of a bigger space rock or if it formed on its own. ";
+    const paragraphThree = this.generateParagraph(paragraphThreeValue, "#b98aff");
+    paragraphThree.setAttribute("position", "0 1.8 0.4");
+    paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphThree);
+
+    const paragraphFourValue = "This can help us understand more about the history of the solar system and how different objects formed over time!";
+    const paragraphFour = this.generateParagraph(paragraphFourValue, "#8ab9ff");
+    paragraphFour.setAttribute("position", "0 1.65 0.4");
+    paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphFour);
+
+    return parent;
+  }
+
+  siliconInformation() {
+    this._siliconClicked = true;
+    const parent = document.createElement('a-entity');
+    const titleValue = "Silicon";
+    const title = this.generateParagraph(titleValue, "#ffbf1c");
+    title.setAttribute("position", "0 2.155 0.4");
+    title.setAttribute("scale", "1.4 1.4 1.4");
+    parent.appendChild(title);
+
+    const paragraphOneValue = "Psyche has tiny rocks called \"silicates,\" which are like little pieces of rock that reflect a lot of light. ";
+    const paragraphOne = this.generateParagraph(paragraphOneValue, "#ffbb91");
+    paragraphOne.setAttribute("position", "0 2.05 0.4");
+    paragraphOne.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphOne);
+
+    const paragraphTwoValue = "Scientists found out that these silicates are similar to the metals found in a special type of space rock called \"enstatite\" or \"CH/CB chondritic.\" This means that Psyche has different layers, with some layers having more metal than others. ";
+    const paragraphTwo = this.generateParagraph(paragraphTwoValue, "#ff91ff");
+    paragraphTwo.setAttribute("position", "0 1.9 0.4");
+    paragraphTwo.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphTwo);
+
+    const paragraphThreeValue = "By using special cameras, scientists can study these silicates and learn more about what Psyche is made of.";
+    const paragraphThree = this.generateParagraph(paragraphThreeValue, "#a6ffc6");
+    paragraphThree.setAttribute("position", "0 1.75 0.4");
+    paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphThree);
+
+    const paragraphFourValue = "The Imager on the Psyche spacecraft helps find and map the iron silicates, while the Neutron Spectrometer (NS) helps measure the metal-to-silicate ratio really well!";
+    const paragraphFour = this.generateParagraph(paragraphFourValue, "#ff91ff");
+    paragraphFour.setAttribute("position", "0 1.65 0.4");
+    paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
+    parent.appendChild(paragraphFour);
+
+    return parent;
+  }
+
+  generateParagraph(textValue, color) {
+    const paragraph = document.createElement("a-entity");
+    paragraph.setAttribute("text", {
+      value: textValue,
+      align: "center",
+      color: color
+    });
+    return paragraph;
+  }
+
 
   addGlow(scene, position, width, height, color) {
     const imageEl = document.createElement('a-image');
@@ -366,11 +611,11 @@ export class GameManager {
       beam.setAttribute('particle-system', 'accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.5; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00');
       document.querySelector('a-scene').appendChild(beam);
       console.log("initial click");
-      setTimeout(this.clickArrive.bind(this), 1500);
+      setTimeout(this.clickArrive('yellow').bind(this), 1500);
     }
   }
 
-  clickArrive() {
+  clickArrive(color) {
     console.log("click when arrive");
     var scene = document.querySelector('a-scene');
     var psyche = document.getElementById('psyche');
@@ -380,7 +625,7 @@ export class GameManager {
     imageEl.setAttribute('width', '3');
     imageEl.setAttribute('height', '3');
     imageEl.setAttribute('src', '#glow');
-    imageEl.setAttribute('color', 'yellow');
+    imageEl.setAttribute('color', color);
     imageEl.setAttribute('material', 'transparent: true; opacity: 1.0; alphaTest: 0.01;');
     imageEl.setAttribute('animation__pulse', 'property: material.opacity; from: 1.0; to: 0.0; dur: 2000; loop: false; dir: alternate; easing: linear;');
     scene.appendChild(imageEl);
@@ -521,6 +766,7 @@ export class GameManager {
     } else {
       console.log("All values are already at their maximum!");
       // Trigger end game screen here
+      this.takedownSecondScreen();
       this.buildThirdScreen();
     }
   }
