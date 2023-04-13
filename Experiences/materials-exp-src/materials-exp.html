@@ -4,20 +4,11 @@
     <meta charset="utf-8">
     <title>Psyche Materials Experience</title>
     <meta name="description">
-    <!-- <script src="aframe-master.js"></script> -->
-
-	<!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script> -->
-  <!-- <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script> -->
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
       <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
       <script src="dist/aframe-particle-system-component.min.js"></script>
-
-    <!-- <script src="https://aframe.io/releases/0.9.0/aframe.js"></script> -->
-    <!-- <script src="aframe-sprite-particles-component.js"></script> -->
-
-
-    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script> -->
-    <script type="module" src="./Main.js"></script>
+    <script type="module" src="./Main.js">
+    </script>
     <style>
       #overlay {
           display: none;
@@ -123,292 +114,9 @@
     <script>
 
       window.onload = function() {
-
-
-        placeElement('a-plane', {x:-4, y:2, z:-3}, '1 2 1', 'scientist', 
-        'property: position; to: -0.5 1.2 -1.5; loop: false; dur: 900; easing: linear',
-        'color:white; transparent: true; src:#scientist;repeat: 1;');
-
-        placeElement('a-plane', {x:0.3, y:2, z:-2}, '40 0.001 1', 'instructions',
-        'property: scale; to: 2 2 1; loop: false; dur: 1000; easing: linear',
-        'color:white; transparent: true; src:#boxHolder;repeat: 1;');
-
-        var arrowShape = placeElement('a-plane', {x:-5.5, y:0.8, z:-2}, '0.8 0.5 1', 'arrow',
-        'property: position; to: 0.5 0.8 -2; loop: false; dur: 1000; easing: linear',
-        'color:white; transparent: true; src:#arrow;repeat: 1;');
-        arrowShape.setAttribute('click-event', '');
-        
-        var instructionsText = placeElement('a-text', {x:-0.1, y:2, z:-1}, '0.3 0.3 0.3', 'text',
-        'property: position; to: -0.1 2 -1; loop: false; dur: 1000; easing: linear',
-        'color:white; transparent: true; src:#text;repeat: 1;');
-        instructionsText.setAttribute('value', 'Instructions Test');
-
-
+        // Initialize the first screen
+        buildFirstScreen();
       }
-
-      function placeElement(elementType, position, scale, id, animation, material) {
-        var shape = document.createElement(elementType);
-        shape.setAttribute('position', position);
-        shape.setAttribute('scale', scale);
-        shape.setAttribute('id', id);
-        shape.setAttribute('animation', animation);
-        shape.setAttribute('material', material);
-        document.querySelector('a-scene').appendChild(shape);
-        return shape;
-      }
-
-      var psycheClick = AFRAME.registerComponent('click-event2', {
-        init: function () {
-          var el = this.el;
-          el.addEventListener('click', function () {
-            if (document.getElementById('beam') != null) {
-              var beam = document.getElementById('beam');
-              beam.remove();
-            }
-            var beam = document.createElement('a-entity');
-            beam.setAttribute('id', 'beam');
-            beam.setAttribute('position', '0 -10 2');
-            // 0 -6 -5
-            // rotationAngle 120
-            beam.setAttribute('particle-system', 'accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.5; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00');
-            document.querySelector('a-scene').appendChild(beam);
-            console.log("initial click");
-
-
-            
-
-            setTimeout(clickArrive, 1500);
-          //   setTimeout(clickGetBack, 2500);
-          })
-        }
-      });
-
-      function incrementValues() {
-        var counter1 = document.querySelector('#counter1').getAttribute('text').value;
-        var counter2 = document.querySelector('#counter2').getAttribute('text').value;
-        var counter3 = document.querySelector('#counter3').getAttribute('text').value;
-        // Initialize three values 
-        let value1 = counter1;
-        let value2 = counter2;
-        let value3 = counter3;
-
-        // Maximum value for each value
-        const max = 3;
-
-          // Generate a random number between 1 and 3
-          var randomNumber = Math.floor(Math.random() * 3) + 1;
-
-          // Increment the random value or another value if it's already at max
-          switch (randomNumber) {
-            case 1:
-              if (value1 < max) {
-                value1++;
-              } else {
-                incrementOtherValue(1);
-              }
-              break;
-            case 2:
-              if (value2 < max) {
-                value2++;
-              } else {
-                incrementOtherValue(2);
-              }
-              break;
-            case 3:
-              if (value3 < max) {
-                value3++;
-              } else {
-                incrementOtherValue(3);
-              }
-              break;
-          }
-
-          if (value1 === max) {
-            var element1 = document.getElementById('element1');
-            element1.setAttribute('text', 'value', 'Detected!');
-            console.log("Value 1 has reached its maximum of 3!");
-          } 
-          if (value2 === max) {
-            var element2 = document.getElementById('element2');
-            element2.setAttribute('text', 'value', 'Detected!');
-            console.log("Value 2 has reached its maximum of 3!");
-          } 
-          if (value3 === max) {
-            var element3 = document.getElementById('element3');
-            element3.setAttribute('text', 'value', 'Detected!');
-            console.log("Value 3 has reached its maximum of 3!");
-          }
-
-          // Log the updated values
-          console.log(`Value 1: ${value1}, Value 2: ${value2}, Value 3: ${value3}`);
-
-          // Helper function to increment a value that's not at max
-          function incrementOtherValue(valueNum) {
-            if (value1 < max && valueNum !== 1) {
-              value1++;
-            } else if (value2 < max && valueNum !== 2) {
-              value2++;
-            } else if (value3 < max && valueNum !== 3) {
-              value3++;
-            } else {
-              console.log("All values are already at their maximum!");
-            }
-          }
-
-        document.querySelector('#counter1').setAttribute('text', 'value', value1);
-        document.querySelector('#counter2').setAttribute('text', 'value', value2);
-        document.querySelector('#counter3').setAttribute('text', 'value', value3);
-
-
-
-      }
-
-      function createCell(textValue, x, y, parent, cellID) {
-        const cellEntity = document.createElement("a-entity");
-        cellEntity.setAttribute("text", {
-          value: textValue,
-          align: "center",
-          color: "white"
-        });
-        cellEntity.setAttribute("position", `${x} ${y} 0`);
-        cellEntity.setAttribute("scale", "2 2 2");
-        cellEntity.setAttribute("id", cellID);
-        parent.appendChild(cellEntity);
-      }
-
-      function clickArrive() {
-        console.log("click when arrive");
-        var scene = document.querySelector('a-scene');
-        var psyche = document.getElementById('psyche');
-        const imageEl = document.createElement('a-image');
-        imageEl.setAttribute('id', 'glow');
-        imageEl.setAttribute('position', '0 1.8 -5');
-        imageEl.setAttribute('width', '3');
-        imageEl.setAttribute('height', '3');
-        imageEl.setAttribute('src', '#glow');
-        imageEl.setAttribute('color', 'yellow');
-        imageEl.setAttribute('material', 'transparent: true; opacity: 1.0; alphaTest: 0.01;');
-        imageEl.setAttribute('animation__pulse', 'property: material.opacity; from: 1.0; to: 0.0; dur: 2000; loop: false; dir: alternate; easing: linear;');
-        scene.appendChild(imageEl);
-
-
-        // Create a new entity to hold the particle system
-        var particleSystem = document.createElement('a-entity');
-
-        // Set the position of the particle system
-        particleSystem.setAttribute('position', '0 1.6 -3');
-        particleSystem.setAttribute('particle-system', 'opacity: 0.8; maxAge: 0.5; accelerationValue: 0 1 0; size: 0.1; velocityValue: 0 1 -3; size: 0.09; texture: dist/images/star.png; color: #ffffff');
-        // Add the particle system entity to the scene
-        scene.appendChild(particleSystem);
-        setTimeout(() => {
-          scene.removeChild(particleSystem);
-        }, 1000);
-
-        incrementValues();
-
-
-    } 
-
-
-      
-
-      function clickGetBack() {
-        console.log("click when get back");
-
-      }
-
-      var nextScreen1 = AFRAME.registerComponent('click-event', {
-			init: function () {
-				var el = this.el; 
-				el.addEventListener('click', function () {
-          var scene = document.querySelector('a-scene');
-
-              var objectsToDelete = [];
-          for (var i = 0; i < scene.children.length; i++) {
-            var child = scene.children[i];
-            if (child.id == 'scientist') {
-              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
-              child.setAttribute('animation__2', 'property: position; to: -6.5 1.2 -1.5; loop: false; dur: 900; easing: linear');
-              // scene.removeChild(child);
-              objectsToDelete.push(child);
-            }
-            if (child.id == 'instructions') {
-              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 900; easing: linear');
-              // child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
-              // scene.removeChild('instructions');
-              console.log("pushed instructions");
-              objectsToDelete.push(child);
-
-            }
-            if (child.id == 'arrow') {
-              child.setAttribute('animation', 'property: position; to: 5.5 0.8 -2; loop: false; dur: 900; easing: linear');
-              child.setAttribute('animation', 'property: opacity; to: 0; loop: false; dur: 900; easing: linear');
-              // scene.removeChild(child);
-
-              objectsToDelete.push(child);
-
-            }
-            if (child.id == 'text') {
-              // child.setAttribute('animation', 'property: position; to: -0.5 8.0 -1.5; loop: false; dur: 1900; easing: linear');
-
-              objectsToDelete.push(child);
-            }
-            if (child.id == 'labModel') {
-              child.setAttribute('animation', 'property: position; to: 0.5 -135.0 -2; loop: false; dur: 9000; easing: linear');
-
-
-            }
-
-
-            if (child.id == 'tilesBG') {
-
-              scene.removeChild(child);
-              var spaceSky = document.createElement('a-sky');
-              spaceSky.setAttribute('src', '#spaceBG');
-              spaceSky.setAttribute('id', 'spaceBG');
-              spaceSky.setAttribute('material', 'color: #ffffff; repeat: 10 10 1;');
-              scene.appendChild(spaceSky);
-              var psyche = document.createElement('a-entity');
-              psyche.setAttribute('class', 'clickable');
-              psyche.setAttribute('id', 'psyche');
-              psyche.setAttribute('gltf-model', '#psyche');
-              psyche.setAttribute('position', '0.03 1.7 -2');
-              psyche.setAttribute('scale', '0.01 0.01 0.01');
-              psyche.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 9000; easing: linear');
-              psyche.setAttribute('click-event2', '');
-              scene.appendChild(psyche);
-
-              const parentEntity = document.createElement("a-entity");
-
-              createCell("??", -0.5, 0.1, parentEntity, "element1");
-              createCell("??", 0, 0.1, parentEntity, "element2");
-              createCell("??", 0.5, 0.1, parentEntity, "element3");
-              createCell(0, -0.5, -0.1, parentEntity, "counter1");
-              createCell(0, 0, -0.1, parentEntity, "counter2");
-              createCell(0, 0.5, -0.1, parentEntity, "counter3");
-
-
-              parentEntity.setAttribute("position", "0 2.2 -1");
-              parentEntity.setAttribute("scale", "0.7 0.7 0.7");
-              scene.appendChild(parentEntity);
-
-
-
-
-            }
-          }
-
-              console.log(objectsToDelete.length);
-              for (var i = 0; i < objectsToDelete.length; i++) {
-                var obj = objectsToDelete[i];
-                obj.parentNode.removeChild(obj);
-              }
-
-        });
-      }
-    });
-
-
 
       function nextScreen() {
         getNextScreen();
@@ -417,26 +125,19 @@
       function prevScreen() {
         getPrevScreen();
       }
+
+
+
       </script>
 
   </head>
   <body>
- <a-scene id="aFrameScene"">
-  <a-sky src="#tiles" rotation="0 -130 0" material="color: #4e515c; repeat: 10 10 1;" id="tilesBG"></a-sky>
+ <a-scene id="aFrameScene" cursor="rayOrigin: mouse">
+  <!-- <a-sky src="#tiles" rotation="0 -130 0" material="color: #4e515c; repeat: 10 10 1;" id="tilesBG"></a-sky> -->
   <a-entity light="type:ambient; color: #c4d2da" position="3 1 1"></a-entity>
   <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
-  <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2" id="labModel"></a-entity>
-        <!-- <a-entity position="0 0 -15" id="beam" particle-system="accelerationSpread: 0.1 0.1 0.1; opacitySpread: 0.0001; size: 0.5; velocitySpread: 0.001 0.001 0.001; rotationAngle: 120; sizeSpread: 0.0001; duration: 0.3; texture: dist/images/shockwave.png; color: #47a6ff,#44CC00"></a-entity> -->
+    <a-entity gltf-model="#lab" position="1 1 -4" rotation="0 260 0" scale="3 3 2" id="labModel"></a-entity>
 
-        <a-entity class="raycaster"
-                  position="0 0 -1"
-                  scale="0.02 0.02 0.02"
-                  cursor="fuse: true; fuseTimeout: 500"
-                  geometry="primitive: ring"
-                  material="color: black; shader: flat" 
-                  raycaster="interval:1000; objects: .clickable;">
-        </a-entity>
- 
       <a-assets>
         <img id="scientist" src="elkins-tanton.png"  "/>
         <img id="tiles" src="tiles.jpg" />
@@ -445,12 +146,24 @@
         <img id="spaceBG" src="spaceBG.png" />
         <img id="dish" src="dish.png" />
         <img id="glow" src="glow.png" />
+        <img id="custom-cursor" src="cursor.png">
+        <img id="ok" src="OK.png">
+        <img id="complete" src="missionComplete.png">
+        <img id="return" src="returnToHome.png">
         <a-asset-item id="lab" src="scene.gltf"></a-asset-item>
         <a-asset-item id="psyche" src="psyche.gltf"></a-asset-item>
+        <a-asset-item id="computer" src="src/models/computer/scene.gltf"></a-asset-item>
+        <a-asset-item id="satellite" src="src/models/satellite/scene.gltf"></a-asset-item>
+
+        <a-asset-item id="nickel" src="src/models/nickel/scene.gltf"></a-asset-item>
+        <a-asset-item id="iron" src="src/models/iron/scene.gltf"></a-asset-item>
+        <a-asset-item id="oxygen" src="src/models/oxygen/scene.gltf"></a-asset-item>
+        <a-asset-item id="silicone" src="src/models/silicone/scene.gltf"></a-asset-item>
+        
 
         <a-asset-item id="tree-obj" src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/obj/tree.obj"></a-asset-item>
       </a-assets>
-      <a-camera><a-cursor></a-cursor></a-camera>
+      <a-camera raycaster="objects: .clickable;"><a-cursor material="src: #custom-cursor" scale="2 2 2" color="#00FFFF"></a-cursor></a-camera>
     </a-scene>
     <script>
 
