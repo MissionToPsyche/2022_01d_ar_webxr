@@ -13,7 +13,9 @@
         <a-scene>
             <!-- Main scene setup elements -->
             <a-camera wasd-controls-enabled="false">
-                <a-cursor></a-cursor>
+                <a-cursor
+                    material="color:grey"
+                ></a-cursor>
                 <a-entity
                     id="main-tasks"
                     geometry="primitive:plane;"
@@ -59,6 +61,13 @@
                         height="1"
                         position="-0.5 -0.35 0.1"
                     ></a-text>
+                    <a-entity
+                        id="task-crossed"
+                        line="start: -0.46 0.07 0.2; end: 0.54 0.07 0.2; color: red; visible:false"
+                        line__2="start: -0.46 -0.08 0.2; end: 0.54 -0.08 0.2; color: red; visible:false"
+                        line__3="start: -0.46 -0.22 0.2; end: 0.54 -0.22 0.2; color: red; visible:false"
+                        line__4="start: -0.46 -0.36 0.2; end: 0.54 -0.36 0.2; color: red; visible:false">
+                    </a-entity>
                 </a-entity>
                 <a-light type="directional" color="#FFF" intensity="1.5" position="0 0 10"></a-light>
             </a-camera>
@@ -143,19 +152,51 @@
                     position="0 0 0" 
                     link="href:adventure.html"></a-entity>
             </a-text>
+
+            <!-- Hint -->
+            <a-text
+                id="hint"
+                visible="false"
+                value="Click the Psyche Asteroid to put it on the scale"
+                position="1.8 -1.15 -10"
+            ></a-text>
+            <a-text
+                    color="black"
+                    value="Hint"
+                    position="4 -1.7 -10"
+                    z-offset="0.15"
+                    height="5"
+                    width="5"
+                    align="center">
+                <a-entity
+                    event-set__enter="_event: mouseenter; material.color:#03cffc; geometry.height:0.7; geometry.width:2"
+                    event-set__leave="_event: mouseleave; material.color:grey; geometry.height:0.4; geometry.width:1"
+                    id="hint-button" 
+                    hint
+                    visible="true"
+                    geometry="primitive: box; width:1; height:0.4; depth:0.01" 
+                    material="color:grey"
+                    position="0 0 0">       
+                </a-entity>
+            </a-text>
+
         </a-scene>
         <script type="text/javascript">
             if(sessionStorage.getItem('task1') === "true"){
               document.getElementById('task1').setAttribute('color','green');
+              document.getElementById('task-crossed').setAttribute('line','{start: -0.46 0.07 0.2; end: 0.54 0.07 0.2; color: grey; visible:true}');
             }
             if(sessionStorage.getItem('task2') === "true"){
               document.getElementById('task2').setAttribute('color','green');
+              document.getElementById('task-crossed').setAttribute('line__2','{start: -0.46 -0.08 0.2; end: 0.54 -0.08 0.2; color: grey; visible:true}');
             }
             if(sessionStorage.getItem('task3') === "true"){
               document.getElementById('task3').setAttribute('color','green');
+              document.getElementById('task-crossed').setAttribute('line__3','{start: -0.46 -0.22 0.2; end: 0.54 -0.22 0.2; color: grey; visible:true}');
             }
             if(sessionStorage.getItem('task4') === "true"){
               document.getElementById('task4').setAttribute('color','green');
+              document.getElementById('task-crossed').setAttribute('line__4','{start: -0.46 -0.36 0.2; end: 0.54 -0.36 0.2; color: grey; visible:true}');
             }
           </script>
     </body>
