@@ -1,199 +1,195 @@
-// Position of entities on spacecraft screen
-const spacecraftScreenPositions = {
-	spacecraft:{x:0, y:-1, z:-5},
-	gamma:{x:0, y:0, z:0},
-	magnet:{x:0, y:0, z:0},
-	multi:{x:0, y:0, z:0},
-	solar:{x:0, y:0, z:0},
-	xband:{x:0, y:0, z:0}
-};
-
-// Position of instruments on selection screen
-const instrumentListPositions = {
-	multi:"-2 2 -5",
-	gamma:"-2 1 -5",
-	magnet:"-2 0 -5",
-	xband:"-2 -1 -5",
-	solar:"-2 -2 -5"
-};
-// Position of instrument labels on selection screen
-const instrumentLabelPositions = {
-	multi:"-1 2 -4.5",
-	gamma:"-1 1 -4.5",
-	magnet:"-1 0 -4.5",
-	xband:"-1 -1 -4.5",
-	solar:"-1 -2 -4.5"
-};
-
-const sceneStates = {
-	opening:0,
-	spacecraft:1,
-	selection:2,
-	infoGamma:10,
-	infoMagnet:11,
-	infoMulti:12,
-	infoSolar:13,
-	infoXband:14,
-	arGamma:20,
-	arMagnet:21,
-	arMulti:22,
-	arSolar:23,
-	arXband:24
-};
-
-AFRAME.registerComponent('spacecraft-select', {
-	init: function () {
-		var el = this.el; // spacecraft
-		el.addEventListener('click', function () {
-			console.log('spacecraft clicked');
-			switch (sceneState) {
-				case sceneStates.opening:
-					advanceState(sceneStates.spacecraft);
-					break;
-				case sceneStates.spacecraft:
-					advanceState(sceneStates.selection);
-					break;
-			}
-		});
-		console.log("init spacecraft-select");
-		updateDebugText();
-	}
+const Scenes = Object.freeze({
+	Opening:    Symbol("Opening"),
+	Spacecraft: Symbol("Spacecraft"),
+	Selection:  Symbol("Selection"),
+	InfoGamma:  Symbol("InfoGamma"),
+	InfoMagnet: Symbol("InfoMagnet"),
+	InfoMulti:  Symbol("InfoMulti"),
+	InfoSolar:  Symbol("InfoSolar"),
+	InfoXband:  Symbol("InfoXband"),
 });
 
-
-var sceneState = sceneStates.opening;
+var sceneState = Scenes.Opening;
 
 function click_back() {
-	if (sceneState >= sceneStates.arGamma && sceneState <= sceneStates.arXband) {
-		// Then go back to info state
-		sceneState -= 10;
-	} else if (sceneState >= sceneStates.infoGamma && sceneState <= sceneStates.infoXband) {
-		// Then go back to selection state
-		sceneState = sceneStates.selection;
-	} else if (sceneState == sceneStates.selection) {
-		// Then go back to spacecraft state
-		sceneState = sceneStates.spacecraft;
-	} else if (sceneState == sceneStates.spacecraft) {
-		// Then go back to opening state
-		sceneState = sceneStates.opening; 
-		document.getElementById("backButton").style.display = "none";
-		document.getElementById("homeButton").style.display = "block";
+	switch (sceneState) {
+		case Scenes.Opening:
+			console.log("Error: Cannot _retreat_ from 'opening' scene state");
+			break;
+		case Scenes.Spacecraft:
+			retreatState(Scenes.Opening);
+			break;
+		case Scenes.Selection:
+			retreatState(Scenes.Spacecraft);
+			break;
+		default:
+			retreatState(Scenes.Selection);
+			break;
 	}
-	updateDebugText();
 }
 
 function updateDebugText() {
 	const debugText = document.querySelector('a-text#debugText');
-	debugText.setAttribute('value', "scene: " + Object.keys(sceneStates)[sceneState]);
+	debugText.setAttribute('value', "scene: " + sceneState.description);
+	console.log("scene: " + sceneState.description);
 }
 
 // Advance to scene state s
 function advanceState(s) {
+	console.log("advanceState " + s.description); 
 	sceneState = s;
 	updateDebugText();
 
-	var text;
-	var spacecraft = document.querySelector('a-entity#spacecraft');
-	var instruments = {
-		gamma: document.querySelector('a-entity#gamma'),
-		magnet: document.querySelector('a-entity#magnet'),
-		multi: document.querySelector('a-entity#multi'),
-		solar: document.querySelector('a-entity#solar'),
-		xband: document.querySelector('a-entity#xband')
-	};
-	var labels = {
-		gamma: document.querySelector('a-text#gammaLabel'),
-		magnet: document.querySelector('a-text#magnetLabel'),
-		multi: document.querySelector('a-text#multiLabel'),
-		solar: document.querySelector('a-text#solarLabel'),
-		xband: document.querySelector('a-text#xbandLabel')
-	};
-
-	switch (s) {
-		case sceneStates.opening:
+	switch (sceneState) {
+		case Scenes.Opening:
 			console.log("Error: Cannot _advance_ to 'opening' scene state");
 			break;
-		case sceneStates.spacecraft:
+		case Scenes.Spacecraft:
 			// Hide logo image/text
 			document.getElementById("applogo").style.display = "none";
 			// Hide home button
 			document.getElementById("homeButton").style.display = "none";
-			// Hide opening instructions
-			text = document.querySelector('a-text#openingInstruction');
-			text.setAttribute('visible', 'false');
-
 			// Show back button
 			document.getElementById("backButton").style.display = "block";
-			// Show mission text
-			text = document.querySelector('a-text#missionText');
-			text.setAttribute('visible', 'true');
-			// Center spacecraft
-			spacecraft.setAttribute('position', '0 -1 -5');
+
+			// Hide last scene (opening)
+			hideGroup(openingSceneElements);
+
+			// Show spacecraft scene
+			moveGroup(spacecraftSceneElements, spacecraftScenePositions);
+			showGroup(spacecraftSceneElements);
 
 			// ToDo: Show instrument dashed circle outlines
 			// ToDo: Show 'tap' image over spacecraft
 
-			// Show spacecraft instructions
-			text = document.querySelector('a-text#spacecraftInstruction');
-			text.setAttribute('visible', 'true');
 			break;
-		case sceneStates.selection:
-			// Hide mission text
-			text = document.querySelector('a-text#missionText');
-			text.setAttribute('visible', 'false');
-			// Hide spacecraft
-			spacecraft.setAttribute('visible', 'false');
+		case Scenes.Selection:
+			// Hide last scene (spacecraft)
+			hideGroup(spacecraftSceneElements);
+			
 			// ToDo: Hide outlines
-			// Hide spacecraft instructions
-			text = document.querySelector('a-text#spacecraftInstruction');
-			text.setAttribute('visible', 'false');
+			
+			// Show selection scene
+			moveGroup(selectionSceneElements, selectionScenePositions);
+			showGroup(selectionSceneElements);
 
-			for (let i = 0; i < Object.keys(instruments).length; i++) {
-				if (Object.values(instruments)[i] != null) {
-					// Position instruments
-					Object.values(instruments)[i].setAttribute('position', instrumentListPositions[i]);
-					// Show instruments
-					Object.values(instruments)[i].setAttribute('visible', 'true');
-				}
-			};
-			
-			for (let i = 0; i < Object.keys(labels).length; i++) {
-				if (Object.values(labels)[i] != null) {
-					// ToDo: Show instrument labels
-					Object.values(labels)[i].setAttribute('visible', 'true');
-					// ToDo: Position instrument labels
-					Object.values(labels)[i].setAttribute('position', instrumentLabelPositions[i]);
-				}
-			};
 			break;
-		case sceneStates.infoGamma:
-			// ToDo: Hide other instruments
-			// ToDo: Hide other instrument names
-			
-			// ToDo: Position gamma instrument label
-			// ToDo: Position gamma instrument
+		case Scenes.InfoGamma:
+			infoStateShared();
+			infoTitle.setAttribute('value', titleValues.gammaTitle);
+			instrumentDescription.setAttribute('value', descriptionValues.gammaDesc);
+			infoSceneElements = {gamma: instruments.gamma, title: infoTitle, description: instrumentDescription};
+			moveGroup(infoSceneElements, infoScenePositions);
+			showGroup(infoSceneElements);
+						
 			// ToDo: Show 'scan' button
-			// ToDo: Show gamma description text
 			break;
-		case sceneStates.infoMagnet:
+		case Scenes.InfoMagnet:
+			infoStateShared();
+			infoTitle.setAttribute('value', titleValues.magnetTitle);
+			instrumentDescription.setAttribute('value', descriptionValues.magnetDesc);
+			infoSceneElements = {magnet: instruments.magnet, title: infoTitle, description: instrumentDescription};
+			moveGroup(infoSceneElements, infoScenePositions);
+			showGroup(infoSceneElements);
+						
+			// ToDo: Show 'scan' button
 			break;
-		case sceneStates.infoMulti:
+		case Scenes.InfoMulti:
+			infoStateShared();
+			infoTitle.setAttribute('value', titleValues.multiTitle);
+			instrumentDescription.setAttribute('value', descriptionValues.multiDesc);
+			infoSceneElements = {multi: instruments.multi, title: infoTitle, description: instrumentDescription};
+			moveGroup(infoSceneElements, infoScenePositions);
+			showGroup(infoSceneElements);
+						
+			// ToDo: Show 'scan' button
 			break;
-		case sceneStates.infoSolar:
+		case Scenes.InfoSolar:
+			infoStateShared();
+			infoTitle.setAttribute('value', titleValues.solarTitle);
+			instrumentDescription.setAttribute('value', descriptionValues.solarDesc);
+			infoSceneElements = {solar: instruments.solar, title: infoTitle, description: instrumentDescription};
+			moveGroup(infoSceneElements, infoScenePositions);
+			showGroup(infoSceneElements);
+						
+			// ToDo: Show 'scan' button
 			break;
-		case sceneStates.infoXband:
-			break;
-		case sceneStates.arGamma:
-			break;
-		case sceneStates.arMagnet:
-			break;
-		case sceneStates.arMulti:
-			break;
-		case sceneStates.arSolar:
-			break;
-		case sceneStates.arXband:
+		case Scenes.InfoXband:
+			infoStateShared();
+			infoTitle.setAttribute('value', titleValues.xbandTitle);
+			instrumentDescription.setAttribute('value', descriptionValues.xbandDesc);
+			infoSceneElements = {xband: instruments.xband, title: infoTitle, description: instrumentDescription};
+			moveGroup(infoSceneElements, infoScenePositions);
+			showGroup(infoSceneElements);
+						
+			// ToDo: Show 'scan' button
 			break;
 		default:
 			console.log("Error: Cannot advance to unknown scene state");
 	}
+}
+
+// Retreat to scene state s
+function retreatState(s) {
+	console.log("retreatState " + s.description); 
+	sceneState = s;
+	updateDebugText();
+
+	switch (sceneState) {
+		case Scenes.Opening:
+			// Hide spacecraft scene elements
+			document.getElementById("backButton").style.display = "none";
+			hideGroup(spacecraftSceneElements);
+
+			// Show logo image/text
+			document.getElementById("applogo").style.display = "block";
+			// Show home button
+			document.getElementById("homeButton").style.display = "block";
+			moveGroup(openingSceneElements, openingScenePositions);
+			showGroup(openingSceneElements);
+			break;
+		case Scenes.Spacecraft:
+			hideGroup(selectionSceneElements);
+			// Show spacecraft scene
+			moveGroup(spacecraftSceneElements, spacecraftScenePositions);
+			showGroup(spacecraftSceneElements);
+
+			// ToDo: Show instrument dashed circle outlines
+			// ToDo: Show 'tap' image over spacecraft
+
+			break;
+		case Scenes.Selection:
+			hideGroup(infoSceneElements);
+			
+			// Show selection scene
+			moveGroup(selectionSceneElements, selectionScenePositions);
+			showGroup(selectionSceneElements);
+
+			break;
+		default:
+			console.log("Error: Cannot retreat to unknown scene state");
+	}
+}
+
+function infoStateShared() {
+	hideGroup(selectionSceneElements);
+}
+
+function hideGroup(group) {
+	Object.values(group).forEach(val => {
+		if (val != null) val.setAttribute('visible', 'false');
+	});
+}
+
+function showGroup(group) {
+	Object.values(group).forEach(val => {
+		if (val != null) val.setAttribute('visible', 'true');
+	});
+}
+
+function moveGroup(group, positions) {
+	pos = Object.values(positions);
+	Object.values(group).forEach((obj, index) => {
+		if (obj != null) obj.setAttribute('position', pos[index]);
+	});
 }
