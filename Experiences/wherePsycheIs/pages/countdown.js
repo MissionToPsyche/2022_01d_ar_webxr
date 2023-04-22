@@ -1,6 +1,6 @@
 console.log("Hello world!")
 
-var count = 5;
+var count = 10;
 
 function countDown(){ 
     if(count > 0){
