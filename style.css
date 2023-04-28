@@ -90,12 +90,12 @@ h2 {
 .arInfo .whatIsAR {
     margin: 0 20px;
 }
-.arInfo h2 {
+.arInfo h1 {
     color: #5C04D7;
     font-weight: 400;
     margin: 10px 0;
 }
-.arInfo h2 span {
+.arInfo h1 span {
     font-size: 1.2em;
 }
 .howDoesItWork {
@@ -106,7 +106,8 @@ h2 {
     align-items: center;
     height: 27rem;
     padding-left: 20px;
-    margin-top: 100px
+    margin-top: 100px;
+    margin-bottom: auto;
 }
 .howDoesItWork .title{
     padding-top: 50px;
@@ -156,14 +157,14 @@ h2 {
 .experiences .checkout {
     padding-left: 20px;
 }
-.experiences .checkout h2 {
+.experiences .checkout h1 {
     color: var(--blue-font-color);
 }
-.experiences .checkout h2 span {
+.experiences .checkout h1 span {
     text-transform: uppercase;
 }
 .chooseExperience {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     padding: 0 20px;
     display: grid;
     grid-gap: 20px;
@@ -175,6 +176,7 @@ h2 {
     color: white;
     text-transform: uppercase;
     letter-spacing: 1.2px;
+    padding: 10px 0;
 }
 .chooseExperience p {
     color: white;
@@ -193,8 +195,14 @@ h2 {
 }
 .exp1, .exp2, .exp3, .exp4, .exp5 {
     height: 24em;
-    width: 10em;
+    min-width: 10em;
     border-radius: 13px;
+}
+.chooseExperience .exp .details {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .chooseExperience .expImg {
     margin-top: -30px;
@@ -263,6 +271,7 @@ h2 {
     text-transform: uppercase;
     color: var(--white-font-color);
     letter-spacing: 1px;
+    padding: 10px 0;
 }
 .dataCollected .progressBarContainer {
     position: relative;
@@ -312,9 +321,10 @@ h2 {
 }
 .lastPart .lastPartContainer {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.53) 74.48%, rgba(0, 0, 0, 0.92) 100%);
-    padding: 20px;
+    padding: 30px;
+    margin-top: auto;
 }
-.lastPart h2 {
+.lastPart h1 {
     text-transform: uppercase;
     padding: 20px 0;
 }
@@ -338,7 +348,7 @@ h2 {
 @media screen and (max-width: 499px){
     /* For mobile phones */
     h2 {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
     p {
         font-size: 1em;
@@ -356,8 +366,19 @@ h2 {
         font-size: 0.7em;
     }
     .howDoesItWork {
-        margin-top: 30px;
+        margin-top: 50px;
         align-items: unset;
+        margin-bottom: -50px;
+    }
+    .lastPart .lastPartContainer {
+        margin-top: -85px;
+    }
+    .dataCollected {
+        position: relative;
+        z-index: 1;
+    }
+    .lastPart .logos img {
+        width: 40px;
     }
 }
     
