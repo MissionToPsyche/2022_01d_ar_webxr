@@ -15,6 +15,9 @@
       .marsPsycheButton:hover {
         cursor: pointer;
       }
+      .a-loader-title { 
+          color: black;
+      }
       video {
             position: absolute;
             z-index: -10;
@@ -85,8 +88,9 @@
             </div>
         </div>
     </div>
-    <video autoplay></video>
-    <a-scene embedded class="aFrameContainer">
+    <!-- Remove the video -->
+    <!-- <video autoplay></video> -->
+    <a-scene embedded class="aFrameContainer" loading-screen="backgroundColor: black">
         <a-assets>
           <img id="mars" src="../img/mars.jpeg">
           <img id="galaxy" src="../img/gx.png">
@@ -127,7 +131,7 @@
         </a-entity> -->
       
        <!--  <a-sky id="image-360" src="#galaxy"></a-sky> -->
-       <a-sky color="black" opacity="0.85"></a-sky>
+       <a-sky color="black" opacity="1"></a-sky>
        <!-- Default lighting injected by A-Frame. -->
         <a-entity light="type: ambient; color: #BBB"></a-entity>
         <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
@@ -136,7 +140,8 @@
               animation="property: position; dur: 2000; easing:linear; to: 10 5 -9; startEvents: zoom;">
         </a-camera>
       </a-scene>
-      <script>
+      <!-- Remove the video -->
+      <!-- <script>
         const constraints = {
         video: true
         };
@@ -145,7 +150,7 @@
 
         navigator.mediaDevices.getUserMedia(constraints).
         then((stream) => {video.srcObject = stream});
-      </script>
+      </script> -->
       <script src="mars.js"></script>
 </body>
 </html>
