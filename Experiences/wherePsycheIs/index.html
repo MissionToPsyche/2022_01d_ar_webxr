@@ -8,18 +8,20 @@
     <title>Psyche Mission</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-device-orientation-permission-ui/dist/aframe-device-orientation-permission-ui.min.js"></script>
 </head>
 <body>
-    <div class="mainDiv">
-      <img id="border" src="img/psyche-border.png" alt="">
-      <div class="main-container">
-        <img id="welcomeToSpace" class="overlay" src="img/welcome-to-space.png" alt="">
-        <a href="pages/launch.html">
-          <img id="startMission" class="overlay" src="img/start-mission.png" alt="">
-        </a>
-      </div>
+  <div class="mainDiv">
+    <img id="border" src="img/psyche-border.png" alt="">
+    <div class="main-container">
+      <img id="welcomeToSpace" class="overlay" src="img/welcome-to-space.png" alt="">
+      <a href="pages/launch.html">
+        <img id="startMission" class="overlay" src="img/start-mission.png" alt="">
+      </a>
+      <!-- <img id="startMission" class="overlay" src="img/start-mission.png" alt=""> -->
     </div>
-    <a-scene embedded class="aFrameContainer" loading-screen="backgroundColor: black">
+  </div>
+  <a-scene embedded class="aFrameContainer" loading-screen="backgroundColor: black" device-orientation-permission-ui>
         <a-assets>
           <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
           <img id="galaxy" src="img/gx.png">
