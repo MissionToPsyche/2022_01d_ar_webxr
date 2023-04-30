@@ -406,7 +406,7 @@ export class GameManager {
     paragraphThree.setAttribute("scale", "0.6 0.6 0.6");
     parent.appendChild(paragraphThree);
 
-    const paragraphFourValue = "We hope you have enjoyed this immersive experience and are inspired to continue learning about the mysteries of our universe.";
+    const paragraphFourValue = "We hope you have enjoyed this experience and will stay tuned to find out more about what scientists discover about the Psyche asteroid on the mission!";
     const paragraphFour = this.generateParagraph(paragraphFourValue, "#00008a");
     paragraphFour.setAttribute("position", "0 1.55 0.4");
     paragraphFour.setAttribute("scale", "0.6 0.6 0.6");
