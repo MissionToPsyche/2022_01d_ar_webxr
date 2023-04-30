@@ -1,88 +1,308 @@
 <!DOCTYPE html>
+<html>
 	<head>
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>Psyche Formation Experience</title>
+		<meta charset="utf-8">
+		<title>Psyche Formation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- A-frame script-->
+		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+		<!-- A-timeline scripts -->
+		<script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script> 
+		<script src="https://unpkg.com/aframe-animation-timeline-component@1.6.0/dist/aframe-animation-timeline-component.min.js"></script>
+		<!-- Particle scripts--> 
+		<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script> 
 	</head>
 
-	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-		<!-- include a-frame-->
-		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    	<!-- we import arjs version without NFT but with marker + location based support -->
-    	<script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-		<script src="../../js/aframe-environment-component.js"></script>
-		<script src="../../js/aframe-spe-particles-component.js"></script>
-		<script src="../../js/extended-wasd-controls.js"></script>
-		
-		<!-- Beginning of A-Scene -->
-		<a-scene>
-        
-			<!-- Assets to use later -->
-			<a-assets>
-                <a-asset-item
-                    id="asteroid-model"
-                    src="../../models/gltf/otherAsteroid/scene.gltf">
-                </a-asset-item>
-                <a-asset-item
-                    id="planetesimal-model"
-                    src="../../models/gltf/planetesimal/scene.gltf">
-                </a-asset-item>
-				<a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+	<body>
+		<!--Start A-Scene -->
+		<a-scene animation-timeline__1="timeline: #myTimeline; loop: false" cursor="rayOrigin: mouse">
+			<!-- Create A-Assets-->
+			<a-assets timeout="10000">
+				<a-asset-item src="https://cdn.aframe.io/fonts/Roboto-msdf.json"></a-asset-item>
+
+				<!-- Create A-timeline-->
+				<a-timeline id="myTimeline">
+					<!-- Intro text animation-->
+					<a-timeline-animation select="#introText" name="threeseconddelay"></a-timeline-animation>
+					<a-timeline-animation select="#introText" name="fadeout"></a-timeline-animation>
+					<a-timeline-animation select="#introText" name="togglevisibleoff"></a-timeline-animation>
+					
+					<!-- Planetesimal appearing animation -->
+					<a-timeline-animation select="#Planetesimal" name="scale"></a-timeline-animation>
+
+					<!-- Text about asteroid impact animation-->
+					<a-timeline-animation select="#text1" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#text1" name="fadein"></a-timeline-animation>
+					<a-timeline-animation select="#text1" name="threeseconddelay"></a-timeline-animation>
+					<a-timeline-animation select="#text1" name="fadeout"></a-timeline-animation>
+					<a-timeline-animation select="#text1" name="togglevisibleoff"></a-timeline-animation>
+					
+					<!-- Asteroid appearing animations -->
+					<a-timeline-animation select="#Asteroid" name="scale"></a-timeline-animation>
+					<a-timeline-animation select="#Asteroid" name="move_towards_planetesimal"></a-timeline-animation>
+					
+					<!-- Explosion and transformation into molten planetesimal animations-->
+					<a-timeline-animation select="#Explosion" name="enable"></a-timeline-animation>
+					<a-timeline-animation select="#Asteroid" name="bounce_off1"></a-timeline-animation>
+					<a-timeline-animation select="#Planetesimal" name="togglevisibleoff"></a-timeline-animation>
+					<a-timeline-animation select="#Molten" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#Asteroid" name="bounce_off2"></a-timeline-animation>	
+					<a-timeline-animation select="#Asteroid" name="togglevisibleoff"></a-timeline-animation>
+
+					<!-- Core hardening text animations-->
+					<a-timeline-animation select="#text2" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#text2" name="fadein"></a-timeline-animation>
+					<a-timeline-animation select="#text2" name="threeseconddelay"></a-timeline-animation>
+
+					<!-- Core hardening animations -->
+					<a-timeline-animation select="#Hardened" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#Molten" name="harden"></a-timeline-animation>
+					<a-timeline-animation select="#text2" name="fadeout"></a-timeline-animation>
+					<a-timeline-animation select="#text2" name="togglevisibleoff"></a-timeline-animation>
+
+					<!-- Smaller asteroid impacts text animations-->
+					<a-timeline-animation select="#text3" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#text3" name="fadein"></a-timeline-animation>
+
+					<!-- Impacts of smaller rock 1-->
+					<a-timeline-animation select="#Debris1" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision"></a-timeline-animation>
+
+					<!-- Impacts of smaller rock 2-->
+					<a-timeline-animation select="#Debris1" name="move_to_position2"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision2"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 3-->
+					<a-timeline-animation select="#Debris1" name="move_to_position3"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision3"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 4-->
+					<a-timeline-animation select="#Debris1" name="move_to_position4"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision4"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 5-->
+					<a-timeline-animation select="#Debris1" name="move_to_position5"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision5"></a-timeline-animation>
+					
+					<!-- Impacts of smaller rock 6-->
+					<a-timeline-animation select="#Debris1" name="move_to_position6"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="move_to_collision6"></a-timeline-animation>
+					<a-timeline-animation select="#Debris1" name="togglevisibleoff"></a-timeline-animation>
+
+					<!-- Text Fades out -->
+					<a-timeline-animation select="#text3" name="fadeout"></a-timeline-animation>
+					<a-timeline-animation select="#text3" name="togglevisibleoff"></a-timeline-animation>
+
+					<!-- How psyche looks today text fade in-->
+					<a-timeline-animation select="#text4" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#text4" name="fadein"></a-timeline-animation>
+
+					<!-- Psyche -->
+					<a-timeline-animation select="#Hardened" name="scaledown"></a-timeline-animation>
+					<a-timeline-animation select="#Hardened" name="togglevisibleoff"></a-timeline-animation>
+					<a-timeline-animation select="#Psyche" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#Psyche" name="scale"></a-timeline-animation>
+
+					<!-- Text fade out-->
+					<a-timeline-animation select="#text4" name="fadeout"></a-timeline-animation>
+					<a-timeline-animation select="#text4" name="togglevisibleoff"></a-timeline-animation>
+
+					<!--Link Home-->
+					<a-timeline-animation select="#Psyche" name="move_down"></a-timeline-animation>
+					<a-timeline-animation select="#link" name="togglevisible"></a-timeline-animation>
+					<a-timeline-animation select="#link" name="scale"></a-timeline-animation>
+				</a-timeline>
+
+				<!-- Stars Background-->
+				<img 
+					id="skyTexture"
+					src="./images/stars background.jpg">
+
+				<!-- Link to landing page Background-->
+				<img 
+					id="linkTexture"
+					src="./images/spaceship background.png">
+
+				<!-- Molten Planetesimal Texture-->	
+				<img 
+					id="moltenMaterial" 
+					src="./images/molten.png">
+
+				<!-- Hardened Planetesimal Texture-->	
+				<img 
+					id="hardenedMaterial" 
+					src="./images/asteroid.png">
+
+				<!-- Planetesimal -->
+				<a-asset-item
+					id="planetesimal-model"
+					src="../../models/gltf/planetesimal/scene.gltf">
+				</a-asset-item>
+				
+				<!-- Asteroid -->
+				<a-asset-item
+					id="asteroid-model"
+					src="../../models/gltf/otherAsteroid/scene.gltf">
+				</a-asset-item>		  
+				
+				<!-- Psyche -->
+				<a-asset-item
+					id="psyche-model"
+					src="../../models/gltf/psycheAsteroid/psyche_improved.gltf">
+				</a-asset-item>
+
+				<!-- Mixin with animations of all space objects -->
+				<a-mixin id="spaceRockMixin"
+					animation__rotate="property: rotation; to: 0 360 0; easing: linear; dur: 50000; autoplay: true; loop: true"
+					animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
+					animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
+					animation__delay="property: visible; from: true; to: true; dur: 5000; autoplay: false">
+				</a-mixin>
+
+				<!-- Mixin for text animations -->
+				<a-mixin id="text"
+					text="align: center; color: #FFF; width: 6; opacity: 0"
+					animation__fadein="property: text.opacity; from: 0; to: 1; dur: 3000; easing: linear; autoplay: false"
+					animation__threeseconddelay="property: visible; from: true; to: true; dur: 3000; autoplay: false"
+					animation__fadeout="property: text.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false"
+					animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
+					animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
+					position="0 3 -3"
+					visible="false">
+				</a-mixin>
+
+				<!-- Mixin for intro text-->
+				<a-mixin id="intro"
+					text="align: center; color: #FFF; width: 6; opacity: 1"
+					animation__threeseconddelay="property: visible; from: true; to: true; dur: 3000; autoplay: false"
+					animation__fadeout="property: text.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false"
+					animation__togglevisibleoff="property: visible; from: true; to: false; dur: 1; autoplay: false"
+					position="0 3 -3"
+					visible="true">
+				</a-mixin>
 			</a-assets>
+			
+			<!-- Particle system -->
+			<a-entity id="Explosion" 
+				position="0 0 -7"
+				animation__enable="property: particle-system.enabled; from: false; to: true; dur:1; autoplay: false"
+				particle-system="enabled:false; texture: images/smokeparticle.png; particleCount:25000; color: #FF0000,#444400; velocityValue: 0 0 0; accelerationSpread: 0 0 0; accelerationValue: 0 0 0; maxAge: 2; duration:0.5">
+			</a-entity>
 
-			<!--Marker -->
-			<a-marker preset="hiro">
- 
-                <!-- Intro Text -->
-				<a-box 
-                    color="#666666" 
-                    depth="1" 
-                    height="0.25" 
-                    width="3"
-                    position="0 3 0"
-                    rotation="0 0 0"
-                    opacity="0"
-                    animation="property: opacity; to: 1; loop: 1; dur:5000"
-                    animation__fade_out="property: opacity; from:1; to: 0; loop: 1; delay:5000; dur:5000">
-                    <a-text
-                        value="How was Psyche Formed"
-                        color="white"
-                        align="center"
-                        position="0 0.3 0"
-                        rotation="-90 0 0"
-                        material="color: blue"
-                        opacity="0"
-                        animation__fade_in="property: opacity; to: 1; loop: 1; dur:5000"
-                        animation__fade_out="property: opacity; from:1; to: 0; loop: 1; delay:5000; dur:5000">
-                    </a-text>
-                </a-box>
+			<!-- Background -->
+			<a-sky src="#skyTexture"></a-sky>
 
-                <!-- Planetesimal -->
-				<a-gltf-model 
-					id="Planetesimal" 
-					src="#planetesimal-model"
-					position="0 0 0"
-					rotation="-90 0 0"
-					animation__rotate="property: rotation; to: 360 0 0; loop: true; dur: 50000"
-					scale="0.005 0.005 0.005">
-				</a-gltf-model>
+			<!--Light-->
+			<a-entity light="color: #FFFFFF; intensity: 2" position="-1 1 0.5"></a-entity>
 
-				<!-- Other Asteroid -->
-				<a-gltf-model 
-					id="Asteroid" 
-					src="#asteroid-model"
-					position="10 0 -1"
-					rotation="0 0 0"
-					animation__move_towards_planetesimal="property: position; to: 3 0 -1; easing:linear; loop: 1; dur: 5000; delay:10000"
-					animation__bounce_off="property: position; from: 3 0 -1; to: -3 0 -21; easing:linear; loop: 1; delay:15000; dur: 10000"
-					animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 10000"  
-					scale="0.01 0.01 0.01">
-				</a-gltf-model>
-			</a-marker>		  
+			<!-- Texts -->
+			<a-entity id="introText" mixin="intro" text="value: How do scientists think Psyche formed?"></a-entity>
+			<a-entity id="text1" mixin="text" text="value: One scenario is that long ago, a planetesimal that had separated internally into a rocky mantle and iron core suffered violent impacts that stripped away its mantle, leaving behind core material."></a-entity>
+			<a-entity id="text2" mixin="text" text="value: The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."></a-entity>
+			<a-entity id="text3" mixin="text" text="value: As smaller objects continued to impact Psyche, they could leave craters on the surface."></a-entity>
+			<a-entity id="text4" mixin="text" text="value: And this is an artist's concept of how Psyche may looks today."></a-entity>
+			
+			<!-- Link to Landing Page-->
+			<a-entity
+				id="link"
+				visible="false"
+				scale="0 0 0"
+				animation__togglevisible="property: visible; from: false; to: true; dur: 1; autoplay: false"
+				animation__scale="property: scale; to: 1 1 1; dur: 2000; easing: easeInOutElastic; autoplay: false">
+				<a-link 
+					position="0 2 -3" 
+					href="../../index.html" 
+					target="_blank" 
+					title="Landing Page" 
+					image="#linkTexture" 
+					borderColor="black">
+				</a-link>	
+			</a-entity>
+		
+			<!-- Planetesimal -->
+			<a-gltf-model
+				id="Planetesimal" 
+				mixin="spaceRockMixin"
+				src="#planetesimal-model"
+				position="0 0 -10"
+				rotation="0 0 0"
+				scale="0 0 0"
+				animation__scale="property: scale; to: 0.005 0.005 0.005; dur: 2000; easing: easeInOutElastic; autoplay: false">
+			</a-gltf-model>
 
-			<a-light type="ambient" color="#fff"></a-light>
-			<a-light type="directional" color="#fff" intensity="0.3" position="-0.5 1 1"></a-light>
+			<!-- Other Asteroid -->
+			<a-gltf-model 
+				id="Asteroid" 
+				mixin="spaceRockMixin"
+				src="#asteroid-model"
+				position="5 0 -1"
+				rotation="0 0 0"
+				scale="0 0 0"
+				animation__rotate="property: rotation; to: 0 360 0; autoplay: true; loop: true; dur: 10000"
+				animation__scale="property: scale; to: 0.01 0.01 0.01; dur: 2000; easing: easeInOutElastic; autoplay: false"
+				animation__move_towards_planetesimal="property: position; to: 2 0 -7; easing:linear; autoplay:false; dur: 1875"
+				animation__bounce_off1="property: position; from: 2 0 -7; to: 1.73 2.67 -7.53; easing:linear; autoplay:false; dur: 500"
+				animation__bounce_off2="property: position; from: 1.73 2.67 -7.53; to: 0 20 -11; easing:linear; autoplay:false; dur: 3250">
+			</a-gltf-model>
 
-			<a-camera><a-cursor></a-cursor></a-camera>
+			<!-- Molten Planetesimal-->
+			<a-entity 
+				id="Molten"
+				mixin="spaceRockMixin"
+				position="0 0 -10" 
+				geometry="primitive: sphere" 
+				material="src: #moltenMaterial; opacity: 1;"
+				scale="2 2 2"
+				visible="false"
+				animation__harden="property: material.opacity; from: 1; to: 0; dur: 3000; easing: linear; autoplay: false">
+			</a-entity>
+			
+			<!-- Hardened Planetesimal-->
+			<a-entity 
+				id="Hardened"
+				mixin="spaceRockMixin"
+				position="0 0 -10" 
+				geometry="primitive: sphere" 
+				material="src: #hardenedMaterial; opacity: 1;"
+				scale="2 2 2"
+				visible="false"
+				animation__scaledown="property: scale; to: 0 0 0; dur: 2000; easing: easeInOutElastic; autoplay: false">
+			</a-entity>
+
+			<!-- Debris 1-->
+			<a-gltf-model 
+				id="Debris1" 
+				mixin="spaceRockMixin"
+				src="#asteroid-model"
+				position="1.85 0 1"
+				rotation="0 0 0"
+				visible="false"
+				animation__move_to_collision="property: position; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position2="property: position; from: 0 0 -10; to: -1.85 0 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision2="property: position; from: -1.85 0 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position3="property: position; from: 0 0 -10; to: 1.85 2 1;  autoplay:false; dur: 1"
+				animation__move_to_collision3="property: position; from: 1.85 2 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position4="property: position; from: 0 0 -10; to: -2 2 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision4="property: position; from: -2 2 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position5="property: position; from: 0 0 -10; to: 5 1 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision5="property: position; from: 5 1 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				animation__move_to_position6="property: position; from: 0 0 -10; to: -5 1 1; easing:linear; autoplay:false; dur: 1"
+				animation__move_to_collision6="property: position; from: -5 1 1; to: 0 0 -10; easing:linear; autoplay:false; dur: 1000"
+				scale="0.001 0.001 0.001">
+			</a-gltf-model>		
+
+			<!-- Psyche -->
+			<a-entity 
+				id="Psyche"
+				gltf-model="#psyche-model" 
+				mixin="spaceRockMixin"
+				position="0 0 -10"
+				color="#FFFFFF" 
+				scale="0 0 0"
+				roughness="0.7"
+				animation__scale="property: scale; to: 0.08 0.08 0.08; dur: 2000; easing: easeInOutElastic; autoplay: false"
+				animation__move_down="property: position; to: 0 -5 -10; easing:easeInOutElastic; autoplay:false; dur: 1000">
+			</a-entity>
 		</a-scene>
 	</body>
 </html>
